@@ -5,20 +5,44 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.14",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "doctrine/dbal": "^3.3",
+        "fideloper/proxy": "^4.4",
+        "google/recaptcha": "^1.2",
+        "intervention/image": "^2.5",
+        "laravel/helpers": "^1.4",
+        "laravel/installer": "^4.2",
+        "laravel/socialite": "^5.2",
+        "laravel/ui": "^3.2",
+        "maatwebsite/excel": "^3.1",
+        "mews/captcha": "^3.2",
+        "nwidart/laravel-modules": "^9.0",
+        "propaganistas/laravel-disposable-email": "^2.1",
+        "rachidlaasri/laravel-installer": "^4.1",
+        "socialiteproviders/envato": "^4.1",
+        "socialiteproviders/zoho": "^4.1",
+        "spatie/laravel-cookie-consent": "^3.1",
+        "spatie/laravel-honeypot": "^4.0",
+        "spatie/laravel-medialibrary": "^9.6",
+        "spatie/laravel-permission": "^4.2",
+        "stichoza/google-translate-php": "^4.1",
+        "torann/geoip": "^3.0",
+        "webklex/laravel-imap": "^2.4",
+        "yajra/laravel-datatables": "^1.5",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +54,12 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/helpers.php",
+            "app/Helper/Installer/Function.php",
+            "app/Helper/languagehelper.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

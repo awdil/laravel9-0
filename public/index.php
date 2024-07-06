@@ -1,5 +1,18 @@
 <?php
 
+/*
+Project         :   UHelp-Support Ticketing System
+@package        :   Laravel
+Laravel Version :   8.82.0
+PHP Version     :   8.1.2
+Created Date    :   19-02-2022
+Copyright       :   Spruko Technologies Private Limited
+Author          :   SPRUKO™
+Author URL      :   https://themeforest.net/user/spruko
+Support         :   support@spruko.com
+License         :   Licensed under ThemeForest Licence
+*/
+
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -16,8 +29,8 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
+if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
+    require __DIR__.'/../storage/framework/maintenance.php';
 }
 
 /*
@@ -47,9 +60,8 @@ require __DIR__.'/../vendor/autoload.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
-
-$response = $kernel->handle(
+$response = tap($kernel->handle(
     $request = Request::capture()
-)->send();
+))->send();
 
 $kernel->terminate($request, $response);
