@@ -8,16 +8,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\IPLIST;
+use GeoIP;
+use App\Models\Setting;
+use DB;
+
 class RouteServiceProvider extends ServiceProvider
 {
+
     /**
-     * The path to the "home" route for your application.
+     * This namespace is applied to your controller routes.
      *
-     * This is used by Laravel authentication to redirect users after login.
+     * In addition, it is set as the URL generator's root namespace.
      *
      * @var string
      */
-    public const HOME = '/home';
+    protected $namespace = 'App\Http\Controllers';
+
+    /**
+     * The path to the "home" route for your application.
+     *
+     * @var string
+     */
+    public const HOME = 'admin/';
+    public const HOMEFRONTEND = 'client/dashboard';
 
     /**
      * The controller namespace for the application.
@@ -36,7 +50,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
@@ -57,7 +70,66 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+        });
+
+
+        RateLimiter::for('refresh', function(Request $request){
+            if(session()->has('redcaptcha')){
+
+            }else{
+
+                try {
+                    DB::connection()->getPdo();
+                    if(!DB::getSchemaBuilder()->hasTable('settings')){
+
+
+                    }else{
+
+                        if(setting('DOS_Enable') == 'on'){
+                            $key = 'login.'.$request->ip();
+                            $maxe = Setting::where('key' ,'IPMAXATTEMPT')->first();
+                            $max = $maxe->value; // attempt
+                            // $max = 100; // attempt
+
+                            $ipsec = Setting::where('key' ,'IPSECONDS')->first();
+                            $decay = $ipsec->value; // seconds
+                            // $decay = 100; // seconds
+
+                            if(RateLimiter::tooManyAttempts($key,$max)){
+                                $ipexists = IPLIST::where('ip', $request->ip())->exists();
+
+                                if($ipexists){
+                                    $ipupdate = IPLIST::where('ip', $request->ip())->first();
+                                    $ipdata = GeoIP::getLocation($request->getClientIp());
+
+                                    $ipupdate->types = 'Locked';
+                                    $ipupdate->update();
+                                }else{
+                                    $ipdata = GeoIP::getLocation($request->getClientIp());
+                                    IPLIST::create([
+                                        'ip' => $ipdata->ip,
+                                        'country' => $ipdata->iso_code,
+                                        'entrytype' => 'Auto',
+                                        'types' => 'Locked'
+
+                                    ]);
+                                }
+
+                                abort(429);
+                            }
+                            else {
+                                RateLimiter::hit($key,$decay);
+
+                            }
+                        }
+
+                    }
+                } catch (\Exception $e) {
+                    return ;
+                    die("Could not connect to the database.  Please check your configuration. error:" . $e );
+                }
+            }
         });
     }
 }
