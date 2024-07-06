@@ -15,7 +15,6 @@ class MailConfigServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        emailtemplatesetting();
         try {
             DB::connection()->getPdo();
             if(!DB::getSchemaBuilder()->hasTable('settings')){

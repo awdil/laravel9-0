@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Helper\Installer\trait\ApichecktraitHelper;
+use App\Traits\ApichecktraitHelper;
 use Auth;
 use App\Models\Setting;
 use Carbon\Carbon;

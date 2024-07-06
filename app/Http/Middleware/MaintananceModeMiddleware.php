@@ -24,7 +24,7 @@ class MaintananceModeMiddleware
                 return $next($request);
             }else{
 
-                if ( setting('MAINTENANCE_MODE') == 'on' && !$request->is('admin/*') && !$request->is('admin') ){
+                if ( env('MAINTENANCE_MODE') == 'on' && !$request->is('admin/*') && !$request->is('admin') ){
 
                     return response()->view('errors.503', [], 503);
                 }

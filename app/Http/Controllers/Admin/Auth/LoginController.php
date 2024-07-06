@@ -19,7 +19,7 @@ use Auth;
 use Session;
 use GeoIP;
 use App\Models\Announcement;
-use App\Helper\Installer\trait\ApichecktraitHelper;
+use App\Traits\ApichecktraitHelper;
 
 class LoginController extends Controller
 {

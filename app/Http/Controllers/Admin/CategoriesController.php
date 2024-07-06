@@ -80,6 +80,52 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        //dump("heping<hr>");
+        try {
+            // Validate the incoming request data
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:255',
+                'display' => 'required|in:both,ticket,knowledge',
+                'priority' => 'nullable|string|max:255',
+                'status' => 'nullable|boolean',
+            ]);
+
+            if ($validator->fails()) {
+                // Return validation errors
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            // Construct the data array for the new category
+            $data = [
+                'name' => $request->input('name'),
+                'display' => $request->input('display'),
+                'priority' => $request->input('priority', 'Medium'), // Default to 'Medium' if not provided
+                'status' => $request->input('status') ? '1' : '0',
+                'categoryslug' => Str::slug($request->input('name'), '-'),
+            ];
+
+            // Create the new category
+            $category = Category::create($data);
+
+            // Log success message
+            \Log::info('Category created successfully: ' . json_encode($category));
+
+            // Return success response
+            return response()->json([
+                'code' => 200,
+                'success' => __('The category was successfully created.', 'alerts'),
+                'data' => $category
+            ], 200);
+        } catch (\Exception $e) {
+            // Log error message
+            \Log::error('Error creating category: ' . $e->getMessage());
+
+            // Return error response
+            return response()->json(['error' => 'An error occurred while creating the category.'], 500);
+        }
+    }
+    public function store22(Request $request)
+    {
        // dd($request);
         try {
             // Validate the incoming request data

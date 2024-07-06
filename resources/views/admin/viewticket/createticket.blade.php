@@ -446,77 +446,7 @@
 			});
 
 
-			@php $module = Module::all(); @endphp
-
-			@if(in_array('Uhelpupdate', $module))
-
-
-
-			// Purchase Code Validation
-			$("body").on('keyup', '#envato_id', function() {
-				let value = $(this).val();
-				if (value != '') {
-					if(value.length == '36'){
-						var _token = $('input[name="_token"]').val();
-					$.ajax({
-						url: "{{ route('guest.envatoverify') }}",
-						method: "POST",
-						data: {data: value, _token: _token},
-
-						dataType:"json",
-
-						success: function (data) {
-							if(data.valid == 'true'){
-								$('.sprukoapiblock').removeAttr('disabled');
-								$('#envato_id').addClass('is-valid');
-								$('#envato_id').attr('readonly', true);
-								$('.purchasecode').removeAttr('disabled');
-								$('#envato_id').css('border', '1px solid #02f577');
-								$('#envato_support').val('Supported');
-                                licensekey = data.key
-								toastr.success(data.message);
-							}
-							if(data.valid == 'expried'){
-								@if(setting('ENVATO_EXPIRED_BLOCK') == 'on')
-
-								$('.purchasecode').attr('disabled', true);
-								$('#envato_id').css('border', '1px solid #e13a3a');
-								$('#envato_support').val('Expired');
-								toastr.error(data.message);
-								@endif
-								@if(setting('ENVATO_EXPIRED_BLOCK') == 'off')
-								$('.sprukoapiblock').removeAttr('disabled');
-								$('#envato_id').addClass('is-valid');
-								$('#envato_id').attr('readonly', true);
-								$('.purchasecode').removeAttr('disabled');
-								$('#envato_id').css('border', '1px solid #02f577');
-								$('#envato_support').val('Expired');
-                                licensekey = data.key
-								toastr.warning(data.message);
-								@endif
-
-							}
-							if(data.valid == 'false'){
-								$('.purchasecode').attr('disabled', true);
-								$('#envato_id').css('border', '1px solid #e13a3a');
-								toastr.error(data.message);
-							}
-
-
-						},
-						error: function (data) {
-
-						}
-					});
-					}
-				}else{
-					toastr.error('{{lang('Purchase Code field is Required', 'alerts')}}');
-					$('.purchasecode').attr('disabled', true);
-					$('#envato_id').css('border', '1px solid #e13a3a');
-				}
-			});
-
-			@endif
+			
 
 			// $('#subject').maxlength({
 			// 	alwaysShow: true,

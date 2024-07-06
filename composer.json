@@ -21,7 +21,6 @@
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.2",
-        "nwidart/laravel-modules": "^9.0",
         "propaganistas/laravel-disposable-email": "^2.1",
         "rachidlaasri/laravel-installer": "^4.1",
         "socialiteproviders/envato": "^4.1",
@@ -57,7 +56,6 @@
         },
         "files": [
             "app/helpers.php",
-            "app/Helper/Installer/Function.php",
             "app/Helper/languagehelper.php"
         ]
     },
