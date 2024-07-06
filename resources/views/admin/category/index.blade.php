@@ -142,7 +142,7 @@
 									<div class = "d-flex">
 									@if(Auth::user()->can('Category Edit'))
 
-										<a href="javascript:void(0)" data-id="{{$category->id}}" class="action-btns1 edit-testimonial">
+										<a href="javascript:void(0)" data-id="{{$category->id}}" class="action-btns1 edit-category">
 											<i class="feather feather-edit text-primary" data-id="{{$category->id}}"data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Edit')}}"></i>
 										</a>
 
@@ -266,8 +266,8 @@
 		/*  When user click add category button */
 		$('#create-category').on('click', function () {
 			$('#btnsave').val("create-product");
-			$('#testimonial_id').val('');
-			$('#testimonial_form').trigger("reset");
+			$('#category_id').val('');
+			$('#category_form').trigger("reset");
 			$('.modal-title').html("{{lang('Add New Category')}}");
 
 			$.post('category/all', function(data){
@@ -279,7 +279,7 @@
 				});
 
 			});
-			$('#addtestimonial').modal('show');
+			$('#addcategory').modal('show');
 
 			checkPro()
 		});
@@ -301,16 +301,16 @@
 		}
 
 		/* When click edit category */
-		$('body').on('click', '.edit-testimonial', function () {
-			var testimonial_id = $(this).data('id');
-			$.get('categories/' + testimonial_id  + '/edit', function (data) {
+		$('body').on('click', '.edit-category', function () {
+			var category_id = $(this).data('id');
+			$.get('categories/' + category_id  + '/edit', function (data) {
 				$('#nameError').html('');
 				$('#displayError').html('');
 				$('#priorityError').html('');
 				$('.modal-title').html("{{lang('Edit Category')}}");
-				$('#btnsave').val("edit-testimonial");
-				$('#addtestimonial').modal('show');
-				$('#testimonial_id').val(data.post.id);
+				$('#btnsave').val("edit-category");
+				$('#addcategory').modal('show');
+				$('#category_id').val(data.post.id);
 				$('#name').val(data.post.name);
 				if (data.post.display == "both")
 				{
@@ -434,9 +434,10 @@
 
 
 
-		$('body').on('submit', '#testimonial_form', function (e) {
+	$('body').on('submit', '#category_form', function (e) {
+		
 		e.preventDefault(); // Prevent default form submission
-
+		
 		// Disable the button during the request
 		$('#btnsave').prop('disabled', true);
 		$('#btnsave').html('Sending...');
@@ -464,8 +465,8 @@
 					$('#displayError').html('');
 
 					// Reset the form and close the modal
-					$('#testimonial_form').trigger("reset");
-					$('#addtestimonial').modal('hide');
+					$('#category_form').trigger("reset");
+					$('#addcategory').modal('hide');
 
 					// Show success message
 					toastr.success(data.success);
@@ -486,6 +487,61 @@
 			}
 		});
 	});
+
+	// $('#btnsave').on('click', function (e) {
+	// 	e.preventDefault(); // Prevent default button click behavior
+
+	// 	// Disable the button during the request
+	// 	$(this).prop('disabled', true).html('Sending...');
+
+	// 	// Create a FormData object from the form
+	// 	var formData = new FormData($('#category_form')[0]); // Assuming 'category_form' is your form's ID
+
+	// 	// Make an AJAX POST request
+	// 	$.ajax({
+	// 		type: 'POST',
+	// 		url: SITEURL + "/admin/categories/store",
+	// 		data: formData,
+	// 		cache: false,
+	// 		contentType: false,
+	// 		processData: false,
+	// 		headers: {
+	// 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Ensure this is included
+	// 		},
+	// 		success: function (data) {
+	// 			// Handle success response
+	// 			if (data.errors) {
+	// 				// Handle validation errors
+	// 				$('#nameError').html(data.errors.name);
+	// 				$('#displayError').html(data.errors.display);
+	// 			} else if (data.success) {
+	// 				// Clear any previous error messages
+	// 				$('#nameError').html('');
+	// 				$('#displayError').html('');
+
+	// 				// Reset the form and close the modal
+	// 				$('#category_form').trigger("reset");
+	// 				$('#addcategory').modal('hide');
+
+	// 				// Show success message
+	// 				toastr.success(data.success);
+	// 				return false;
+	// 				// Optionally, reload the page to show changes
+	// 				//location.reload();
+	// 			}
+	// 		},
+	// 		error: function (data) {
+	// 			// Handle server-side error
+	// 			console.log('Error:', data);
+	// 			toastr.error('An error occurred. Please try again later.');
+	// 		},
+	// 		complete: function () {
+	// 			// Re-enable the button after the request completes
+	// 			$('#btnsave').prop('disabled', false).html('{{lang('Save Changes')}}');
+	// 		}
+	// 	});
+	// });
+
 
 
 		// Assign group submit

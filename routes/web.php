@@ -28,7 +28,7 @@ use App\Http\Controllers\User\DashboardController;
 |
 */
 Route::middleware(ProtectAgainstSpam::class)->group(function() {
-	Route::middleware(['admincountryblock','datarecovery','throttle:refresh', 'ipblockunblock'])->group(function () {
+	Route::middleware(['admincountryblock','throttle:refresh', 'ipblockunblock'])->group(function () {
 		Route::group(['namespace' => 'Admin', 'prefix'	 => 'admin'], function () {
 			Auth::routes([
 				'register'	=>	false

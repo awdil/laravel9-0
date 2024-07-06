@@ -1,5 +1,5 @@
                 <!-- Add testimonial-->
-                <div class="modal fade sprukosubcat"  id="addtestimonial" aria-hidden="true">
+                <div class="modal fade sprukosubcat"  id="addcategory" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -8,8 +8,8 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <form method="POST" enctype="multipart/form-data" id="testimonial_form" name="testimonial_form">
-                                <input type="hidden" name="testimonial_id" id="testimonial_id">
+                            <form method="POST" enctype="multipart/form-data" id="category_form" name="category_form">
+                                <input type="hidden" name="category_id" id="category_id">
                                 @csrf
                                 @honeypot
                                 <div class="modal-body">
