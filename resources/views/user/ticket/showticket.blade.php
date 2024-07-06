@@ -903,30 +903,8 @@
         }
     });
 
-    let ctmername =  {!! json_encode($ticket->cust->username) !!};
-    let pchase =  {!! json_encode(decrypt($ticket->purchasecode)) !!};
-    let encryptpchase =  {!! json_encode($ticket->purchasecode) !!};
 
-    if(pchase != null && pchase != 'undefined'){
-        $.ajax({
-            url:"{{ route('admin.ticketlicenseverify') }}",
-            type:"POST",
-            data: {
-                envatopurchase_id: encryptpchase,
-            },
-            success:function (data) {
-                if(data.client.trim() === ctmername.trim()){
-                    $('#custmermismatch').addClass("d-none");
-                }else{
-                    $('#custmermismatch').removeClass("d-none");
-                }
-            },
-            error:function(data){
-                // $('#purchasedata').html('');
-            }
-
-        });
-    }
+    
 
 </script>
 

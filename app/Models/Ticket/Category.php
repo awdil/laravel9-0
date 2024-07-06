@@ -68,11 +68,6 @@ class Category extends Model
         return $this->hasMany(Projects_category::class,'category_id');
     }
 
-    public function envato()
-    {
-        return $this->hasMany(CategoryEnvato::class, 'category_id');
-
-    }
 
     public function childs()
     {

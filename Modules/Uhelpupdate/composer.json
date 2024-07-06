@@ -1,0 +1,23 @@
+{
+    "name": "nwidart/uhelpupdate",
+    "description": "",
+    "authors": [
+        {
+            "name": "adil admin",
+            "email": "adilamin177@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Uhelpupdate\\": ""
+        }
+    }
+}

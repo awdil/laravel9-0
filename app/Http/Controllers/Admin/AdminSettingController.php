@@ -423,7 +423,6 @@ class AdminSettingController extends Controller
         $data['DARK_MODE'] = $request->darkmode;
         $data['SPRUKOADMIN_P'] = $request->sprukoadminp;
         $data['SPRUKOADMIN_C'] = $request->sprukocustp;
-        $data['ENVATO_ON'] = $request->envatoon;
         $data['purchasecode_on'] = $request->purchasecodeon;
         $data['defaultlogin_on'] = $request->defaultloginon;
         $data['article_count'] = $request->articlecount;

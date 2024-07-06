@@ -656,40 +656,7 @@ class CategoriesController extends Controller
 
     }
 
-    public function categoryenvatoassign(Request $r)
-    {
-
-        if($r->input('categorys_id') != null){
-
-            $categories = CategoryEnvato::get();
-
-            foreach($categories as $category){
-
-                $category->truncate();
-            }
-            foreach($r->input('categorys_id') as $value){
-
-                $category = CategoryEnvato::create([
-                    'category_id' => $value,
-                    'envato_enable' => '1'
-                ]);
-
-            }
-        }else{
-
-            $categories = CategoryEnvato::get();
-
-            foreach($categories as $category){
-
-                $category->truncate();
-            }
-        }
-
-
-        return response()->json(['success' => lang('Updated successfully', 'alerts'), 200]);
-
-
-    }
+    
 
     public function subcategoryindex()
     {

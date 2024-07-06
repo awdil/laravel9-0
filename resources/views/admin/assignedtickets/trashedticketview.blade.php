@@ -607,45 +607,7 @@
 					}
 				});
 
-                $('body').on('click', '#purchasecodebtn', function()
-                {
-                    var envatopurchase_id = $(this).data('id');
-
-                    @if(!empty(Auth::user()->getRoleNames()[0]) && Auth::user()->getRoleNames()[0] == 'superadmin')
-                    var envatopurchase_i = envatopurchase_id;
-
-                    @else
-                        @if(setting('purchasecode_on') == 'on')
-                        var envatopurchase_i = envatopurchase_id;
-                        @else
-                        var trailingCharsIntactCount = 4;
-
-                        var envatopurchase_i = new Array(envatopurchase_id.length - trailingCharsIntactCount + 1).join('*') + envatopurchase_id.slice( -trailingCharsIntactCount);
-                        @endif
-                    @endif
-
-
-
-                    $('.modal-title').html('Purchase Details');
-                    $('.purchasecode').html(envatopurchase_i);
-                    $('#addpurchasecode').modal('show');
-                    $('#purchasedata').html('');
-
-                    $.ajax({
-                        url:"{{ route('admin.ticketlicenseverify') }}",
-                        type:"POST",
-                        data: {
-                            envatopurchase_id: envatopurchase_id
-                        },
-                        success:function (data) {
-                            $('#purchasedata').html(data);
-                        },
-                        error:function(data){
-                            $('#purchasedata').html('');
-                        }
-
-                    });
-                });
+                
 
                 // TICKET RESTORE SCRIPT
 				$('body').on('click', '#show-restore', function () {

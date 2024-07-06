@@ -753,11 +753,7 @@ class AdminTicketController extends Controller
 
         $this->authorize('Ticket Create');
 
-        $categories = CategoryEnvato::where('category_id',$request->category)->first();
-
-        if(setting('ENVATO_ON') == 'on' && $categories != null && $request->envato_id == 'undefined'){
-            return response()->json(['message' => 'envatoerror', 'error' => lang('Please enter valid details to create a ticket.', 'alerts')], 200);
-        }
+        
 
         $email  = $request->email;
         $completeDomain = substr(strrchr($email, "@"), 1);

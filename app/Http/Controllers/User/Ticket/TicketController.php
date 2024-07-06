@@ -108,12 +108,6 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = CategoryEnvato::where('category_id',$request->category)->first();
-
-        if(setting('ENVATO_ON') == 'on' && $categories != null && $request->envato_id == 'undefined'){
-            return response()->json(['message' => 'envatoerror', 'error' => lang('Please enter valid details to create a ticket.', 'alerts')], 200);
-        }
-
         $this->validate($request, [
             'subject' => 'required|max:255',
             'category' => 'required',

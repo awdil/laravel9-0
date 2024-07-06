@@ -85,11 +85,6 @@ class GuestticketController extends Controller
     // Guest Ticket Creating
     public function gueststore(Request $request)
     {
-        $categories = CategoryEnvato::where('category_id',$request->category)->first();
-
-        if(setting('ENVATO_ON') == 'on' && $categories != null && $request->envato_id == 'undefined'){
-            return response()->json(['message' => 'envatoerror', 'error' => lang('Please enter valid details to create a ticket.', 'alerts')], 200);
-        }
 
         if ($request->session()->has('sessionemail')) {
             $emailvalidate = $request->session()->get('sessionemail');
@@ -388,11 +383,6 @@ class GuestticketController extends Controller
     // Guest Ticket Creating1
     public function gueststore1(Request $request)
     {
-        $categories = CategoryEnvato::where('category_id',$request->category)->first();
-
-        if(setting('ENVATO_ON') == 'on' && $categories != null && $request->envato_id == 'undefined'){
-            return response()->json(['message' => 'envatoerror', 'error' => lang('Please enter valid details to create a ticket.', 'alerts')], 200);
-        }
 
         if (setting('GUEST_TICKET') == 'yes') {
             session()->put('guestdetailssession', $request->session()->get('guestdetailssession'));
@@ -2078,14 +2068,10 @@ class GuestticketController extends Controller
             ->where('projects_categories.category_id', $parent_id)
             ->get();
 
-        // envato asssign
-
-        $categoryenvato = CategoryEnvato::where('category_id', $parent_id)->get();
 
         $data = [
             'subcategoriess' => $output,
             'subcategories' => $subcategories,
-            'envatosuccess' => $categoryenvato,
         ];
         return response()->json($data
             , 200);

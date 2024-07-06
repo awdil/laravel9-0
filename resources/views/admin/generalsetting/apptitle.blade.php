@@ -856,18 +856,7 @@
 
             </div>
 
-            <div class="switch_section">
-                <div class="switch-toggle d-flex d-md-max-block mt-4">
-
-                    <a class="onoffswitch2">
-                        <input type="checkbox" name="envato_on" id="envato_on" class=" toggle-class onoffswitch2-checkbox sprukoregister" value="yes" @if(setting('ENVATO_ON') == 'on') checked="" @endif>
-                        <label for="envato_on" class="toggle-class onoffswitch2-label" ></label>
-                    </a>
-                    <label class="form-label ps-3 ps-md-max-0">{{lang('Envato On', 'setting')}}</label>
-                    <small class="text-muted ps-2 ps-md-max-0"><i>({{lang('If you disable this Envato switch, the entire "Envato" option will disappear from the application', 'setting')}})</i></small>
-                </div>
-
-            </div>
+           
 
             <div class="switch_section">
                 <div class="switch-toggle d-flex d-md-max-block mt-4">
@@ -1080,7 +1069,6 @@
             var darkmode = $('#darkmode').prop('checked') == true ? '1' : '0';
             var sprukoadminp = $('#sprukoadminp').prop('checked') == true ? 'on' : 'off';
             var sprukocustp = $('#sprukoadminc').prop('checked') == true ? 'on' : 'off';
-            var envatoon = $('#envato_on').prop('checked') == true ? 'on' : 'off';
             var purchasecodeon = $('#purchasecode_on').prop('checked') == true ? 'on' : 'off';
             var defaultloginon = $('#defaultlogin_on').prop('checked') == true ? 'on' : 'off';
             var articlecount = $('#article_count').prop('checked') == true ? 'on' : 'off';
@@ -1102,7 +1090,6 @@
                     'darkmode' : darkmode,
                     'sprukoadminp' : sprukoadminp,
                     'sprukocustp' : sprukocustp,
-                    'envatoon' : envatoon,
                     'purchasecodeon' : purchasecodeon,
                     'defaultloginon' : defaultloginon,
                     'articlecount' : articlecount,

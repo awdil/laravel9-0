@@ -1348,38 +1348,7 @@ $('body').on('click', '.sprukocategory', function(){
 				$('#subcategory').append(data.projectop);
 
 			}
-			@if(setting('ENVATO_ON') == 'on')
-			if(data.ticket.purchasecode != null){
-				$('#envato_id')?.empty();
-				$('#envatopurchase .row')?.remove();
-				let selectDiv = document.querySelector('#envatopurchase');
-				let Divrow = document.createElement('div');
-				Divrow.setAttribute('class','row');
-				let Divcol3 = document.createElement('div');
-				let selectlabel =  document.createElement('label');
-				selectlabel.setAttribute('class','form-label')
-				selectlabel.innerHTML = "{{lang('Envato Purchase Code')}}";
-				let divcol9 = document.createElement('div');
-				let selecthSelectTag =  document.createElement('input');
-				selecthSelectTag.setAttribute('class','form-control');
-				selecthSelectTag.setAttribute('type','search');
-				selecthSelectTag.setAttribute('id', 'envato_id');
-				selecthSelectTag.setAttribute('name', 'envato_id');
-				// selecthSelectTag.setAttribute('value', data.ticket.purchasecode);
-				selecthSelectTag.setAttribute('placeholder', '{{lang("Update Your Purchase Code")}}');
-				let selecthSelectInput =  document.createElement('input');
-				selecthSelectInput.setAttribute('type','hidden');
-				selecthSelectInput.setAttribute('id', 'envato_support');
-				selecthSelectInput.setAttribute('name', 'envato_support');
-				// selecthSelectInput.setAttribute('value', data.ticket.purchasecodesupport);
-				selectDiv.append(Divrow);
-				Divrow.append(Divcol3);
-				Divcol3.append(selectlabel);
-				divcol9.append(selecthSelectTag);
-				divcol9.append(selecthSelectInput);
-				Divrow.append(divcol9);
-			}
-			@endif
+			
 			if(data.ticket.subcategory != null){
 
 				$('#selectssSubCategory').show()
@@ -1427,45 +1396,7 @@ $('body').on('change', '#sprukocategorylist', function(e) {
 				$('#subscategory').html('')
 			}
 
-			@if(setting('ENVATO_ON') == 'on')
-			// Envato access
-			if(data.envatosuccess.length >= 1){
-				$('.sprukoapiblock').attr('disabled', true);
-				$('#envato_id')?.empty();
-				$('#envatopurchase .row')?.remove();
-				let selectDiv = document.querySelector('#envatopurchase');
-				let Divrow = document.createElement('div');
-				Divrow.setAttribute('class','row');
-				let Divcol3 = document.createElement('div');
-				let selectlabel =  document.createElement('label');
-				selectlabel.setAttribute('class','form-label')
-				selectlabel.innerHTML = "{{lang('Envato Purchase Code')}}";
-				let divcol9 = document.createElement('div');
-				let selecthSelectTag =  document.createElement('input');
-				selecthSelectTag.setAttribute('class','form-control');
-				selecthSelectTag.setAttribute('type','search');
-				selecthSelectTag.setAttribute('id', 'envato_id');
-				selecthSelectTag.setAttribute('name', 'envato_id');
-				selecthSelectTag.setAttribute('placeholder', 'Enter Your Purchase Code');
-				let selecthSelectInput =  document.createElement('input');
-				selecthSelectInput.setAttribute('type','hidden');
-				selecthSelectInput.setAttribute('id', 'envato_support');
-				selecthSelectInput.setAttribute('name', 'envato_support');
-				selectDiv.append(Divrow);
-				Divrow.append(Divcol3);
-				Divcol3.append(selectlabel);
-				divcol9.append(selecthSelectTag);
-				divcol9.append(selecthSelectInput);
-				Divrow.append(divcol9);
-				$('.purchasecode').attr('disabled', true);
-
-			}else{
-				$('#envato_id')?.empty();
-				$('#envatopurchase .row')?.remove();
-				$('.sprukoapiblock').removeAttr('disabled');
-				$('.purchasecode').removeAttr('disabled');
-			}
-			@endif
+			
 
 
 			// projectlist
@@ -1622,128 +1553,6 @@ $(`.readMore`).showmore({
 });
 // ReadMore Js End
 
-let ctmername =  {!! json_encode($ticket->cust->username) !!};
-
-let encryptpchase =  {!! json_encode($ticket->purchasecode) !!};
-
-let pchase
-if(encryptpchase != null){
-	let exampletext = ` json_encode(($ticket->purchasecode)) !!}`
-	const newFirstElement = '{!'
-	let exampletext2 =  '!'+exampletext.slice(0, 13)+'decrypt'+exampletext.slice(13, 41);
-	pchase = newFirstElement + exampletext2;
-
-}
-
-if(pchase != null && pchase != 'undefined'){
-	$.ajax({
-		url:"{{ route('admin.ticketlicenseverify') }}",
-		type:"POST",
-		data: {
-			envatopurchase_id: encryptpchase
-		},
-		success:function (data) {
-			if(data?.client){
-				if(data?.client?.trim() === ctmername.trim()){
-					$('#custmermismatch').addClass("d-none");
-				}else{
-					$('#custmermismatch').removeClass("d-none");
-				}
-			}
-		},
-		error:function(data){
-			// $('#purchasedata').html('');
-		}
-
-	});
-}
-
-
-$('body').on('click', '#purchasverified, #reverttowrong', function()
-{
-	var _id = $(this).data('id');
-
-	console.log(_id);
-
-	$.ajax({
-		url:"{{ route('purchasedetailsverify') }}",
-		type:"get",
-		data: {
-			id: _id
-		},
-		success:function (data) {
-			toastr.success(data.success);
-			location.reload();
-		},
-		error:function(data){
-			// $('#purchasedata').html('');
-		}
-
-	});
-});
-
-$('body').on('click', '#wrongcustomer, #reverttoverify', function()
-{
-	var _id = $(this).data('id');
-
-	console.log(_id);
-
-	$.ajax({
-		url:"{{ route('wrongcustomer') }}",
-		type:"get",
-		data: {
-			id: _id
-		},
-		success:function (data) {
-			toastr.success(data.success);
-			location.reload();
-		},
-		error:function(data){
-			// $('#purchasedata').html('');
-		}
-
-	});
-});
-
-$('body').on('click', '#purchasecodebtn', function()
-{
-	var envatopurchase_id = $(this).data('id');
-
-	@if(!empty(Auth::user()->getRoleNames()[0]) && Auth::user()->getRoleNames()[0] == 'superadmin')
-	var envatopurchase_i = envatopurchase_id;
-
-	@else
-		@if(setting('purchasecode_on') == 'on')
-		var envatopurchase_i = envatopurchase_id;
-		@else
-		var trailingCharsIntactCount = 4;
-
-		var envatopurchase_i = new Array(envatopurchase_id.length - trailingCharsIntactCount + 1).join('*') + envatopurchase_id.slice( -trailingCharsIntactCount);
-		@endif
-	@endif
-
-
-
-	$('.modal-title').html('Purchase Details');
-	$('.purchasecode').html(envatopurchase_i);
-	$('#addpurchasecode').modal('show');
-	$('#purchasedata').html('');
-
-	$.ajax({
-		url:"{{ route('admin.ticketlicenseverify') }}",
-		type:"POST",
-		data: {
-			envatopurchase_id: envatopurchase_id
-		},
-		success:function (data) {
-			$('#purchasedata').html(data.output);
-		},
-		error:function(data){
-			$('#purchasedata').html('');
-		}
-
-	});
-});
 
 // Canned Maessage Select2
 $('.cannedmessage').select2({
