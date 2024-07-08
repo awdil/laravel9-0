@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-header border-0">
                 <h4 class="card-title"> {{lang('Personal Details')}}</h4>
             </div>
@@ -143,7 +143,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
         @if(setting('SPRUKOADMIN_P') == 'on')
 
         <div class="card">

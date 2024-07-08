@@ -389,6 +389,18 @@ Route::middleware(ProtectAgainstSpam::class)->group(function() {
 					Route::post('deleteall', 'DepartmentController@deleteall')->name('deleteall');
 					Route::post('status/{id}', 'DepartmentController@status')->name('status');
 				});
+
+				Route::group(['prefix' => 'plants', 'as' => 'plants.'], function(){
+
+					Route::get('/', 'PlantsController@index')->name('index');
+					Route::post('create', 'PlantsController@create')->name('create');
+					Route::post('store', 'PlantsController@store')->name('store');
+					Route::get('edit/{id}', 'PlantsController@edit')->name('edit');
+					Route::delete('delete/{id}', 'PlantsController@delete')->name('delete');
+					Route::post('deleteall', 'PlantsController@deleteall')->name('deleteall');
+					Route::post('status/{id}', 'PlantsController@status')->name('status');
+				});
+
 				Route::get('tickethistory/{id}', 'AdminTicketViewController@tickethistory')->name('admin.tickethistory');
 				Route::get('customerprevioustickets/{cust_id}', 'AdminTicketViewController@customerprevioustickets')->name('admin.customer.tickethistory');
 
