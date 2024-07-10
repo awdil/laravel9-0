@@ -13,7 +13,7 @@
                                 @csrf
                                 @honeypot
                                 <div class="modal-body">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <div class="row">
                                             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
                                                 <label class="form-label d-flex align-items-center">{{lang('Name')}} <span class="text-red ms-1">*</span> </label>
@@ -22,6 +22,27 @@
                                                 <input type="text" class="form-control" name="name" id="name">
                                                 <span id="nameError" class="text-danger alert-message"></span>
                                             </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                                <label class="form-label d-flex align-items-center">{{lang('Name')}} <span class="text-red ms-1">*</span> </label>
+                                            </div>
+                                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7">
+                                                <input type="text" class="form-control" name="name" id="name">
+                                                <span id="nameError" class="text-danger alert-message"></span>
+                                            </div>
+                                            <!-- Status Section -->
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                                <label class="form-label pe-1 me-6">{{lang('Status :')}}</label>
+                                                <a class="onoffswitch2">
+                                                    <input type="checkbox" name="status" id="myonoffswitch18" class="toggle-class onoffswitch2-checkbox" value="1">
+                                                    <label for="myonoffswitch18" class="toggle-class onoffswitch2-label"></label>
+                                                </a>
+                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -77,18 +98,43 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="row">
+                                        <div class="row d-flex align-items-center">
+                                            <!-- Status Section -->
                                             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
-                                                <label class="form-label pe-1 me-6">{{lang('Status :')}}</label>
+                                                <label class="form-label pe-1 me-6">{{lang('Image :')}}</label>
                                             </div>
-                                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
+                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
                                                 <a class="onoffswitch2">
-                                                    <input type="checkbox"  name="status" id="myonoffswitch18" class=" toggle-class onoffswitch2-checkbox" value="1" >
-                                                    <label for="myonoffswitch18" class="toggle-class onoffswitch2-label"></label>
+                                                    <input type="checkbox" name="status" id="myonoffswitch18Image" class="toggle-class onoffswitch2-checkbox" value="1">
+                                                    <label for="myonoffswitch18Image" class="toggle-class onoffswitch2-label"></label>
                                                 </a>
+                                            </div>
+                                            <!-- Icon Section -->
+                                            <div id="icon-section" class="col-xl-7 col-lg-7 col-md-9 col-sm-9 col-9 d-flex align-items-center">
+                                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
+                                                    <label class="form-label pe-1 me-6">{{lang('Icon :')}}</label>
+                                                </div>
+                                                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6">
+                                                    <select class="form-control" name="category">
+                                                        <option value="category1">{{lang('Category 1')}}</option>
+                                                        <option value="category2">{{lang('Category 2')}}</option>
+                                                        <option value="category3">{{lang('Category 3')}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- Image Upload Section (Initially Hidden) -->
+                                            <div id="image-upload-section" class="col-xl-7 col-lg-7 col-md-9 col-sm-9 col-9 d-flex align-items-center" style="display: none;">
+                                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
+                                                    <label class="form-label pe-1 me-6">{{lang('Upload Image :')}}</label>
+                                                </div>
+                                                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6">
+                                                    <input type="file" class="form-control" name="image-upload">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                                 <div class="modal-footer">
                                     <a href="#" class="btn btn-outline-danger" data-bs-dismiss="modal">{{lang('Close')}}</a>

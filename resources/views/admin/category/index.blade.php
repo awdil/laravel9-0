@@ -634,6 +634,17 @@
 			}
 		});
 
+
+		$('#myonoffswitch18Image').change(function() {
+            if($(this).is(':checked')) {
+                $('#icon-section').hide();
+                $('#image-upload-section').show();
+            } else {
+                $('#icon-section').show();
+                $('#image-upload-section').hide();
+            }
+        });
+
 	})(jQuery);
 </script>
 
