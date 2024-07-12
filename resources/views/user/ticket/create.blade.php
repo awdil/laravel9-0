@@ -147,8 +147,7 @@
                                 </div>
                                 <div class="form-group" id="selectSubCategory">
                                 </div>
-                                <div class="form-group" id="envatopurchase">
-                                </div>
+                                
                                 @if($customfields->isNotEmpty())
                                     @foreach($customfields as $customfield)
 
@@ -310,7 +309,7 @@
 <script type="text/javascript">
     "use strict";
 
-    var licensekey;
+   
 
     (function($){
 
@@ -469,7 +468,7 @@
             $('#createticketbtn').html(`{{lang('Loading..', 'menu')}} <i class="fa fa-spinner fa-spin"></i>`);
             $('#createticketbtn').prop('disabled', true);
             var formData = new FormData(this);
-            formData.set('envato_id', licensekey);
+            
 
             let checked  = document.querySelectorAll('.required:checked').length;
             var isValid = checked > 0;
@@ -501,29 +500,20 @@
                 processData: false,
 
                 success: (data) => {
-                    if(data.message == 'envatoerror')
-                    {
-                        toastr.error(data.error);
-                        window.location.reload();
-                    }else{
-                        $('#SubjectError').html('');
-                        $('#MessageError').html('');
-                        $('#EmailError').html('');
-                        $('#CategoryError').html('');
-                        $('#verifyotpError').html('');
-                        $('#agreetermsError').html('');
-                        toastr.success(data.success);
-                        if(localStorage.getItem('usersubject') || localStorage.getItem('usermessage')){
-                            localStorage.removeItem("usersubject");
-                            localStorage.removeItem("usermessage");
-                        }
-                        window.location.replace('{{url('customer/')}}');
+                    
+                    $('#SubjectError').html('');
+                    $('#MessageError').html('');
+                    $('#EmailError').html('');
+                    $('#CategoryError').html('');
+                    $('#verifyotpError').html('');
+                    $('#agreetermsError').html('');
+                    toastr.success(data.success);
+                    if(localStorage.getItem('usersubject') || localStorage.getItem('usermessage')){
+                        localStorage.removeItem("usersubject");
+                        localStorage.removeItem("usermessage");
                     }
-
-
-
-
-
+                    window.location.replace('{{url('customer/')}}');
+                    
                 },
                 error: function(data){
 

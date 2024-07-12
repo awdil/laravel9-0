@@ -33,9 +33,6 @@ trait SocialAuthSettings
         Config::set('services.twitter.client_secret', ($settings->twitter_secret_id)? $settings->twitter_secret_id : env('TWITTER_CLIENT_SECRET'));
         Config::set('services.twitter.redirect', route('social.login-callback', 'twitter'));
 
-        Config::set('services.envato.client_id', ($settings->envato_client_id)? $settings->envato_client_id : env('ENVATO_CLIENT_ID'));
-        Config::set('services.envato.client_secret', ($settings->envato_secret_id)? $settings->envato_secret_id : env('ENVATO_CLIENT_SECRET'));
-        Config::set('services.envato.redirect', route('social.login-callback', 'envato'));
-
+       
     }
 }

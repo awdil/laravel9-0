@@ -379,13 +379,7 @@
                 </div>
 
                 <div class="col-xxl-9">
-                    @if($ticket->usernameverify != 'verified' && $ticket->cust->logintype == 'envatosociallogin')
-                        <div class="alert alert-light-danger br-13 d-none" id="custmermismatch">
-                            <div class="align-items-center">
-                                <span class="">{{lang('The item was purchased by a different user. The user details of the item purchaser and your current Helpdesk logged-in user details are different. Please log in to our support application with the same account that was used for the purchase. For some security and technical reasons, we cannot process this ticket further. We hope you understand. And please let us know if you have updated your Envato username so that we can verify your username update history and move forward.')}}</span>
-                            </div>
-                        </div>
-                    @endif
+                    
                     <div class="card">
                         <div class="card-header border-0 mb-1 d-block">
                             <div class="d-sm-flex d-block">

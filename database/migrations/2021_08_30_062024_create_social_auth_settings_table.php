@@ -24,9 +24,7 @@ class CreateSocialAuthSettingsTable extends Migration
             $table->string('twitter_client_id')->nullable();
             $table->string('twitter_secret_id')->nullable();
             $table->enum('twitter_status', ['enable', 'disable'])->default('disable');
-            $table->string('envato_client_id')->nullable();
-            $table->string('envato_secret_id')->nullable();
-            $table->enum('envato_status', ['enable', 'disable'])->default('disable');
+            
             $table->timestamps();
         });
 
@@ -36,7 +34,6 @@ class CreateSocialAuthSettingsTable extends Migration
             'facebook_status' => 'disable',
             'google_status' => 'disable',
             'twitter_status' => 'disable',
-            'envato_status' => 'disable',
         ]);
     }
 

@@ -34,7 +34,7 @@ use Carbon\Carbon;
 use App\Models\Customfield;
 use App\Models\TicketCustomfield;
 use App\Models\CCMAILS;
-use Modules\Uhelpupdate\Entities\CategoryEnvato;
+
 use App\Models\tickethistory;
 
 class AdminTicketController extends Controller
@@ -844,14 +844,7 @@ class AdminTicketController extends Controller
         $ticket = Ticket::find($ticket->id);
         $ticket->ticket_id = setting('CUSTOMER_TICKETID').'G-'.$ticket->id;
         $ticket->user_id = Auth::user()->id;
-        if($request->input('envato_id')){
-
-            $ticket->purchasecode = encrypt($request->input('envato_id'));
-        }
-        if($request->input('envato_support')){
-
-            $ticket->purchasecodesupport = $request->input('envato_support');
-        }
+        
 
         $categoryfind = Category::find($request->category);
         $ticket->priority = $categoryfind->priority;

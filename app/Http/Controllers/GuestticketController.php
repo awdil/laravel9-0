@@ -30,7 +30,6 @@ use GeoIP;
 use Illuminate\Http\Request;
 use Mail;
 use Modules\Uhelpupdate\Entities\APIData;
-use Modules\Uhelpupdate\Entities\CategoryEnvato;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Models\tickethistory;
 
@@ -165,14 +164,7 @@ class GuestticketController extends Controller
                 $ticket = Ticket::find($ticket->id);
                 $ticket->ticket_id = setting('CUSTOMER_TICKETID') . 'G-' . $ticket->id;
 
-                if ($request->input('envato_id')) {
-
-                    $ticket->purchasecode = encrypt($request->input('envato_id'));
-                }
-                if ($request->input('envato_support')) {
-
-                    $ticket->purchasecodesupport = $request->input('envato_support');
-                }
+                
                 $categoryfind = Category::find($request->category);
                 $ticket->priority = $categoryfind->priority;
                 if ($request->subscategory) {
@@ -563,14 +555,7 @@ class GuestticketController extends Controller
             ]);
             $ticket = Ticket::find($ticket->id);
             $ticket->ticket_id = setting('CUSTOMER_TICKETID') . 'G-' . $ticket->id;
-            if ($request->input('envato_id')) {
-
-                $ticket->purchasecode = encrypt($request->input('envato_id'));
-            }
-            if ($request->input('envato_support')) {
-
-                $ticket->purchasecodesupport = $request->input('envato_support');
-            }
+            
             $categoryfind = Category::find($request->category);
             $ticket->priority = $categoryfind->priority;
             if ($request->subscategory) {
@@ -1522,18 +1507,7 @@ class GuestticketController extends Controller
 
     }
 
-    public function envatoverify(Request $request)
-    {
-        if ($request->data) {
-
-            $apidatatoken = APIData::first();
-
-            $envato_license = $request->data;
-
-			return response()->json(['valid' => 'true', 'message' => lang('The purchase code has been validated and is supported.', 'alerts'), 'key' => $envato_license]);
-
-        }
-    }
+    
     /**
      * Show the form for creating a new resource.
      *

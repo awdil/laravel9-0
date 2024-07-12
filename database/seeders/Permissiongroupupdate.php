@@ -157,14 +157,7 @@ class Permissiongroupupdate extends Seeder
             $emailtemplate->permissionsgroupname = 'Email Template';
             $emailtemplate->update();
         }
-        //Envato
-        $envatos = Permission::find(['104','105','106']);
-
-        foreach($envatos as $envato)
-        {
-            $envato->permissionsgroupname = 'Envato';
-            $envato->update();
-        }
+        
         //App Info
         $appinfos = Permission::find(['107','108']);
 

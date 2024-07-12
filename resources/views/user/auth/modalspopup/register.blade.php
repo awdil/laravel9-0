@@ -12,20 +12,10 @@
                         <div class="single-page customerpage">
                             <div class="wrapper wrapper2 box-shadow-0 border-0">
 
-                                @if($socialAuthSettings->envato_status == 'enable' || $socialAuthSettings->google_status == 'enable'||$socialAuthSettings->facebook_status == 'enable' || $socialAuthSettings->twitter_status == 'enable')
+                                @if($socialAuthSettings->google_status == 'enable'||$socialAuthSettings->facebook_status == 'enable' || $socialAuthSettings->twitter_status == 'enable')
 
                                     <div class="login-icons card-body pt-3 pb-0 text-center justify-content-center">
-                                        @if($socialAuthSettings->envato_status == 'enable')
-                                        <a class="btn header-buttons text-start social-icon-2 btn-lg btn-lime text-white mb-4 btn-block p-0" href="javascript:;" data-bs-toggle="tooltip" title="{{lang('Login with Envato')}}" onclick="window.location.href = envato;" data-bs-original-title="{{lang('Login with Envato')}}">
-                                            <div class="d-inline w-15 justify-content-center">
-                                                <svg class="px-4 py-2 my-auto border-end border-white-1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x38_5-envato"><g><g><g>
-                                                    <path fill="#fff" d="M401.225,19.381c-17.059-8.406-103.613,1.196-166.01,61.218      c-98.304,98.418-95.947,228.089-95.947,228.089s-3.248,13.335-17.086-6.011c-30.305-38.727-14.438-127.817-12.651-140.23      c2.508-17.494-8.615-17.999-13.243-12.229c-109.514,152.46-10.616,277.288,54.136,316.912c75.817,46.386,225.358,46.354,284.922-85.231C509.547,218.042,422.609,29.875,401.225,19.381L401.225,19.381z M401.225,19.381"></path></g></g></g></g><g id="Layer_1"></g>
-                                                </svg>
-                                            </div>
-
-                                            <span class="px-4 py-2 my-auto text-white">{{lang('Login with Envato')}}</span>
-                                        </a>
-                                        @endif
+                                        
                                         @if($socialAuthSettings->google_status == 'enable')
                                         <a class="btn header-buttons text-start social-icon-2 btn-lg btn-google text-white mb-4 btn-block p-0" href="javascript:;" data-bs-toggle="tooltip"
                                             title="{{lang('Login with Google')}}" onclick="window.location.href = google;" data-bs-original-title="{{lang('Login with Google')}}">
@@ -278,7 +268,6 @@
             var facebook = "{{ route('social.login', 'facebook') }}";
             var google = "{{ route('social.login', 'google') }}";
             var twitter = "{{ route('social.login', 'twitter') }}";
-            var envato = "{{ route('social.login', 'envato') }}";
 
             //set button id on click to hide first modal
             $("#login").on( "click", function() {

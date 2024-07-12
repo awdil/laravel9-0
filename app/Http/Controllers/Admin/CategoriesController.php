@@ -25,7 +25,6 @@ use App\Models\CategoryUser;
 use Illuminate\Support\Facades\Validator;
 use Response;
 use Str;
-use Modules\Uhelpupdate\Entities\CategoryEnvato;
 use App\Models\tickethistory;
 
 class CategoriesController extends Controller
@@ -445,10 +444,7 @@ class CategoriesController extends Controller
         $ticketcategory->category_id = $req->category;
         $ticketcategory->project = $req->project;
         $ticketcategory->subcategory = $req->subscategory;
-        if($req->envato_id){
-            $ticketcategory->purchasecode = encrypt($req->envato_id);
-            $ticketcategory->purchasecodesupport = $req->envato_support;
-        }
+       
 
 
 
@@ -638,7 +634,7 @@ class CategoriesController extends Controller
             $output = '';
             $category = Category::whereIn('display',['ticket', 'both'])->where('status', '1')->get();
 
-            $categoryenvato = CategoryEnvato::pluck('category_id')->toArray();
+            
 
 
             $totalrow = $category->count();
@@ -647,7 +643,7 @@ class CategoriesController extends Controller
                 $output .='<option label="Select Category"></option>';
                 foreach($category as $categories){
                     $output .= '
-                    <option  value="'.$categories->id.'" '.(in_array($categories->id, $categoryenvato) ? 'selected':'' ).'>'.$categories->name.'</option>
+                    <option  value="'.$categories->id.'" >'.$categories->name.'</option>
                     ';
                 }
             }

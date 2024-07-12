@@ -68,9 +68,7 @@ class AdminSettingController extends Controller
         $socialAuth->google_secret_id = $request->google_secret_id;
         ($request->google_status)  ? $socialAuth->google_status = 'enable' : $socialAuth->google_status = 'disable';
 
-        $socialAuth->envato_client_id = $request->envato_client_id;
-        $socialAuth->envato_secret_id = $request->envato_secret_id;
-        ($request->envato_status) ? $socialAuth->envato_status = 'enable' : $socialAuth->envato_status = 'disable';
+
 
         $socialAuth->save();
 
@@ -408,7 +406,7 @@ class AdminSettingController extends Controller
 
         $data['only_social_logins'] = $request->defaultsocialloginon;
         if($request->defaultsocialloginon == 'on'){
-            if($socialAuth->twitter_status == 'enable' || $socialAuth->facebook_status == 'enable'|| $socialAuth->google_status == 'enable'|| $socialAuth->envato_status == 'enable'){
+            if($socialAuth->twitter_status == 'enable' || $socialAuth->facebook_status == 'enable'|| $socialAuth->google_status == 'enable'){
                 $data['REGISTER_DISABLE'] = 'off';
                 $data['REGISTER_POPUP'] = 'no';
             }else{
@@ -640,35 +638,8 @@ class AdminSettingController extends Controller
 
     }
 
-    public function envatosetting()
-    {
+    
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        return view('admin.envato.envatosetting')->with($data);
-    }
-
-    public function expiredsupport(Request $request)
-    {
-        $request->validate([
-            'SUPPORT_POLICY_URL' => 'required|url',
-        ]);
-
-        $data['purchasecode_on']  =  $request->has('purchasecode_on') ? 'on' : 'off';
-        $data['ENVATO_EXPIRED_BLOCK']  =  $request->has('ENVATO_EXPIRED_BLOCK') ? 'on' : 'off';
-        $data['SUPPORT_POLICY_URL']  =  $request->input(['SUPPORT_POLICY_URL']);
-        $this->updateSettings($data);
-
-        return back()->with('success',  lang('Updated successfully', 'alerts'));
-
-    }
 
     public function datetimeformatstore(Request $request)
     {

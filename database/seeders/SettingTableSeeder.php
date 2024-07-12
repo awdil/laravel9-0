@@ -350,11 +350,6 @@ class SettingTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ], [
-            'key' => 'social_media_envato',
-            'value' => '',
-            'created_at' => now(),
-            'updated_at' => now()
-        ], [
             'key' => 'default_lang',
             'value' => 'en',
             'created_at' => now(),

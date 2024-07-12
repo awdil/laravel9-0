@@ -8,6 +8,9 @@
 
 <!-- INTERNAL Sweet-Alert css -->
 <link href="{{asset('assets/plugins/sweet-alert/sweetalert.css')}}?v=<?php echo time(); ?>" rel="stylesheet" />
+	<!-- INTERNAl dropzone css -->
+	<link href="{{asset('assets/plugins/dropzone/dropzone.css')}}?v=<?php echo time(); ?>" rel="stylesheet" />
+
 
 @endsection
 
@@ -45,7 +48,7 @@
 				<table class="table table-bordered border-bottom text-nowrap w-100" id="support-category">
 					<thead>
 						<tr>
-							<th >{{lang('Sl.No')}}</th>
+							
 							@can('Category Delete')
 
 							<th width="10" >
@@ -61,9 +64,7 @@
 							</th>
 							@endcannot
 							<th >{{lang('Category Name')}}</th>
-							<th >{{lang('Ticket/Knowledge')}}</th>
-							<th >{{lang('Assign To Groups')}}</th>
-							<th >{{lang('Assigned Priority')}}</th>
+							<th >{{lang('Icon')}}</th>
 							<th >{{lang('Status')}}</th>
 							<th >{{lang('Actions')}}</th>
 						</tr>
@@ -72,7 +73,7 @@
 						@php $i = 1; @endphp
 						@foreach($categories as $category)
 							<tr>
-								<td>{{$i++}}</td>
+								
 								<td>
 									@if(Auth::user()->can('Category Delete'))
 										<input type="checkbox" name="student_checkbox[]" class="checkall" value="{{$category->id}}" />
@@ -82,45 +83,8 @@
 								</td>
 								<td>{{$category->name}}</td>
 								<td>{{$category->display}}</td>
-								<td>
-									@if(Auth::user()->can('Category Assign To Groups'))
-
-										@if($category->display == 'ticket' || $category->display == 'both')
-											<a href="javascript:void(0)" data-id="{{$category->id}}" id="assigneds" class="badge badge-pill badge-info mt-2" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Assign to group')}}">
-												{{$category->groupscategoryc()->count()}}
-											</a>
-										@endif
-
-									@else
-										~
-									@endif
-								</td>
-								<td>
-									@if($category->priority != null)
-
-										@if($category->priority == "Low")
-
-										<span class="badge badge-success-light" >{{$category->priority}}</span>
-
-
-										@elseif($category->priority == "High")
-
-										<span class="badge badge-danger-light">{{$category->priority}}</span>
-
-										@elseif($category->priority == "Critical")
-
-										<span class="badge badge-danger-dark">{{$category->priority}}</span>
-
-										@else
-
-										<span class="badge badge-warning-light">{{$category->priority}}</span>
-
-										@endif
-
-									@else
-										~
-									@endif
-								</td>
+								
+								
 								<td>
 									@if(Auth::user()->can('Category Edit'))
 										@if($category->status == '1')
@@ -193,7 +157,8 @@
 
 <!-- INTERNAL Sweet-Alert js-->
 <script src="{{asset('assets/plugins/sweet-alert/sweetalert.min.js')}}?v=<?php echo time(); ?>"></script>
-
+<!-- INTERNAL dropzone js-->
+<script src="{{asset('assets/plugins/dropzone/dropzone.js')}}?v=<?php echo time(); ?>"></script>
 <script type="text/javascript">
 
 	"use strict";

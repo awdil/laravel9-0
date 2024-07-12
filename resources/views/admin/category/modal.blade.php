@@ -26,109 +26,55 @@
                                     </div> -->
                                     <div class="form-group">
                                         <div class="row d-flex align-items-center">
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
                                                 <label class="form-label d-flex align-items-center">{{lang('Name')}} <span class="text-red ms-1">*</span> </label>
                                             </div>
-                                            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-7">
+                                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
                                                 <input type="text" class="form-control" name="name" id="name">
                                                 <span id="nameError" class="text-danger alert-message"></span>
                                             </div>
-                                            <!-- Status Section -->
-                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
-                                                <label class="form-label pe-1 me-6">{{lang('Status :')}}</label>
-                                                <a class="onoffswitch2">
-                                                    <input type="checkbox" name="status" id="myonoffswitch18" class="toggle-class onoffswitch2-checkbox" value="1">
-                                                    <label for="myonoffswitch18" class="toggle-class onoffswitch2-label"></label>
-                                                </a>
-                                            </div>
-                                            
-                                            
+                                    
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
-                                                <label class="form-label">{{lang('View On:')}}  <span class="text-red">*</span></label>
-                                            </div>
-                                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9 custom-controls-stacked d-md-flex  d-md-max-block">
-                                                <label class="custom-control form-radio success me-4">
-                                                    <input type="radio" class="custom-control-input display" id="display" name="display" value="both">
-                                                    <span class="custom-control-label">{{lang('View On Both')}}</span>
-                                                </label>
-                                                <label class="custom-control form-radio success me-4">
-                                                    <input type="radio" class="custom-control-input display" id="display1" name="display" value="ticket">
-                                                    <span class="custom-control-label">{{lang('View On Tickets')}}</span>
-                                                </label>
-                                                <label class="custom-control form-radio success me-4">
-                                                    <input type="radio" class="custom-control-input display" id="display2" name="display" value="knowledge">
-                                                    <span class="custom-control-label">{{lang('View On Knowledge')}}</span>
-                                                </label>
-                                                <span id="displayError" class="text-danger alert-message"></span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
-                                    <div id="priority_hide">
-                                        <div class="form-group">
+                                    <div class="form-group">
+                                    
+                                        <div class="spfileupload">
                                             <div class="row">
-                                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
-                                                    <label class="form-label">{{lang('Choose Priority :')}}</label>
-                                                </div>
-                                                <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9 custom-controls-stacked d-md-flex  d-md-max-block">
-                                                    <label class="custom-control form-radio success me-4">
-                                                        <input type="radio" class="custom-control-input" id="priority" name="priority" value="Low">
-                                                        <span class="custom-control-label">{{lang('Low')}}</span>
-                                                    </label>
-                                                    <label class="custom-control form-radio success me-4">
-                                                        <input type="radio" class="custom-control-input " id="priority1" name="priority" value="Medium">
-                                                        <span class="custom-control-label">{{lang('Medium')}}</span>
-                                                    </label>
-                                                    <label class="custom-control form-radio success me-4">
-                                                        <input type="radio" class="custom-control-input " id="priority2" name="priority" value="High">
-                                                        <span class="custom-control-label">{{lang('High')}}</span>
-                                                    </label>
-                                                    <label class="custom-control form-radio success me-4">
-                                                        <input type="radio" class="custom-control-input " id="priority3" name="priority" value="Critical">
-                                                        <span class="custom-control-label">{{lang('Critical')}}</span>
-                                                    </label>
-                                                    <span id="priorityError" class="text-danger alert-message"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <div class="col-xl-7 col-lg-9 col-md-9 col-sm-9">
+                                                    <div class="form-group">
+                                                        <div class="@error('image') is-invalid @enderror ">
+                                                            <label class="form-label fs-16">{{lang('Upload Icon', 'setting')}}</label>
+                                                            <div class="input-group file-browser">
+                                                                <input class="form-control " name="image" type="file" >
 
-                                    <div class="form-group">
-                                        <div class="row d-flex align-items-center">
-                                            <!-- Status Section -->
-                                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
-                                                <label class="form-label pe-1 me-6">{{lang('Image :')}}</label>
-                                            </div>
-                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-4">
-                                                <a class="onoffswitch2">
-                                                    <input type="checkbox" name="status" id="myonoffswitch18Image" class="toggle-class onoffswitch2-checkbox" value="1">
-                                                    <label for="myonoffswitch18Image" class="toggle-class onoffswitch2-label"></label>
-                                                </a>
-                                            </div>
-                                            <!-- Icon Section -->
-                                            <div id="icon-section" class="col-xl-7 col-lg-7 col-md-9 col-sm-9 col-9 d-flex align-items-center">
-                                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
-                                                    <label class="form-label pe-1 me-6">{{lang('Icon :')}}</label>
+                                                            </div>
+                                                            <small class="text-muted"><i>{{lang('The file size should not be more than 5MB', 'filesetting')}}</i></small>
+                                                        </div>
+                                                        @error('image')
+
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ lang($message) }}</strong>
+                                                        </span>
+                                                        @enderror
+
+                                                    </div>
                                                 </div>
-                                                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6">
-                                                    <select class="form-control" name="category">
-                                                        <option value="category1">{{lang('Category 1')}}</option>
-                                                        <option value="category2">{{lang('Category 2')}}</option>
-                                                        <option value="category3">{{lang('Category 3')}}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <!-- Image Upload Section (Initially Hidden) -->
-                                            <div id="image-upload-section" class="col-xl-7 col-lg-7 col-md-9 col-sm-9 col-9 d-flex align-items-center" style="display: none;">
-                                                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3">
-                                                    <label class="form-label pe-1 me-6">{{lang('Upload Image :')}}</label>
-                                                </div>
-                                                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6">
-                                                    <input type="file" class="form-control" name="image-upload">
+                                                <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3">
+                                                    <div class="file-image-1 ms-sm-auto sprukologoss ms-sm-auto">
+                                                        <div class="product-image sprukologoimages">
+                                                            @if($title->image == null)
+                                                            <img src="{{asset('uploads/logo/logo/logo-white.png')}}" class="br-5" alt="logo">
+                                                            @else
+
+                                                            <button class="btn ticketnotedelete border-white text-gray logosdelete" value="logo1" data-id="">
+                                                                <i class="feather feather-x" ></i>
+                                                            </button>
+                                                            <img src="" class="br-5" alt="">
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

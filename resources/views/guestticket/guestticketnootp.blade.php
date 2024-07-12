@@ -128,8 +128,7 @@
                                                 </div>
                                                 <div class="form-group" id="selectSubCategory">
                                                 </div>
-                                                <div class="form-group" id="envatopurchase">
-                                                </div>
+                                                
                                                 @if($customfields->isNotEmpty())
                                                     @foreach($customfields as $customfield)
 
@@ -340,7 +339,7 @@
 		<script type="text/javascript">
 			'use strict';
 
-            var licensekey;
+            
 
 					$.ajaxSetup({
 						headers: {
@@ -437,7 +436,7 @@
 						$('#createticketbtn').prop('disabled', true);
 
 						var formData = new FormData(this);
-                        formData.set('envato_id', licensekey);
+                        
 
 						let checked  = document.querySelectorAll('.required:checked').length;
 						var isValid = checked > 0;
@@ -499,11 +498,7 @@
 									$('#EmailError').html(data.error);
 								}
 
-                                if(data.message == 'envatoerror')
-                                {
-                                    toastr.error(data.error);
-                                    window.location.reload();
-                                }
+                                
 
 							},
 							error: function(data){

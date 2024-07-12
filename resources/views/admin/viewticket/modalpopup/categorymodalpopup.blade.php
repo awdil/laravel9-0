@@ -22,8 +22,7 @@
 								</div>
 								<span id="CategoryError" class="text-danger"></span>
                             </div>
-							<div class="form-group" id="envatopurchase">
-							</div>
+							
 							<div class="form-group" id="selectssSubCategory" style="display: none;">
 
 								<label class="form-label mb-0 mt-2">{{lang('Subcategory')}}</label>

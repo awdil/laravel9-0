@@ -58,9 +58,6 @@ class UpdateData extends Command
             $user->value = 'updated3.1.2';
             $user->update();
 
-            $userset = Setting::where('key','envato_purchasecode')->first();
-            $userset->key = 'update_setting';
-            $userset->update();
         }
 
         if(setting('newupdate') == 'version3.1'){
@@ -76,9 +73,7 @@ class UpdateData extends Command
             $user->value = 'updated3.1.2';
             $user->update();
 
-            $userset = Setting::where('key','envato_purchasecode')->first();
-            $userset->key = 'update_setting';
-            $userset->update();
+           
         }
     }
 }

@@ -315,33 +315,7 @@ class TranslationSeeder extends Seeder
 
         ]);
 
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'menu',
-            'key' => 'Envato',
-            'value' => 'Envato',
-
-        ]);
-
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'menu',
-            'key' => 'Envato API Token',
-            'value' => 'Envato API Token',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'menu',
-            'key' => 'Envato License Verification',
-            'value' => 'Envato License Verification',
-
-        ]);
+      
 
         Translate::create([
 
@@ -2334,51 +2308,9 @@ class TranslationSeeder extends Seeder
 
         ]);
 
-        Translate::create([
+       
 
-            'lang_code' => 'en',
-            'group_langname' => 'setting',
-            'key' => 'Envato On',
-            'value' => 'Envato On',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'setting',
-            'key' => 'If you disable this Envato switch, the "Envato" option will disappear from the application’s side menu.',
-            'value' => 'If you disable this Envato switch, the "Envato" option will disappear from the application’s side menu.',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'setting',
-            'key' => 'Envato Expired On',
-            'value' => 'Envato Expired On',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'setting',
-            'key' => 'An expired license cannot be used by "customers" or "guests" if you enable this Envato Expired switch.',
-            'value' => 'An expired license cannot be used by "customers" or "guests" if you enable this Envato Expired switch.',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'setting',
-            'key' => 'Purchase code enable to agent',
-            'value' => 'Purchase code enable to agent',
-
-        ]);
-
+       
         Translate::create([
 
             'lang_code' => 'en',
@@ -2965,14 +2897,7 @@ class TranslationSeeder extends Seeder
 
         ]);
 
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'setting',
-            'key' => 'Add this callback URL to your "Envato" App settings.',
-            'value' => 'Add this callback URL to your "Envato" App settings.',
-
-        ]);
+        
 
         Translate::create([
 
@@ -4029,23 +3954,7 @@ class TranslationSeeder extends Seeder
 
         ]);
 
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'general',
-            'key' => 'Envato Api Assign',
-            'value' => 'Envato Api Assign',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'general',
-            'key' => 'Assign Envato Api',
-            'value' => 'Assign Envato Api',
-
-        ]);
+        
 
         Translate::create([
 
@@ -4911,32 +4820,7 @@ class TranslationSeeder extends Seeder
 
         ]);
 
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'general',
-            'key' => 'Envato Settings',
-            'value' => 'Envato Settings',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'general',
-            'key' => 'Envato App ID',
-            'value' => 'Envato App ID',
-
-        ]);
-
-        Translate::create([
-
-            'lang_code' => 'en',
-            'group_langname' => 'general',
-            'key' => 'Envato Secret',
-            'value' => 'Envato Secret',
-
-        ]);
+        
 
         Translate::create([
 

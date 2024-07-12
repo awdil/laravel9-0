@@ -65,7 +65,6 @@ Route::middleware(ProtectAgainstSpam::class)->group(function() {
 				Route::get('/categoryassigned/{id}', 'CategoriesController@agentshow');
 				Route::get('/category/list/{ticket_id}', 'CategoriesController@categorylist');
 				Route::get('/categorylist', 'CategoriesController@categorylistshow');
-				Route::post('/categoryenvatoassign', 'CategoriesController@categoryenvatoassign');
 				Route::post('/category/change/', 'CategoriesController@categorychange');
 				Route::post('/category/all/', 'CategoriesController@categorygetall')->name('category.admin.all');
 				Route::get('/subcategories', 'CategoriesController@subcategoryindex')->name('subcategorys.index');
@@ -218,7 +217,6 @@ Route::middleware(ProtectAgainstSpam::class)->group(function() {
 				Route::post('/sendtestmail', 'AdminSettingController@sendTestMail')->name('settings.email.sendtestmail');
 				Route::post('/colorsetting', 'AdminSettingController@frontendStore')->name('settings.color.colorsetting');
 				Route::post('/urlset', 'AdminSettingController@seturl')->name('settings.url.urlset');
-				Route::get('/envatosetting', 'AdminSettingController@envatosetting')->name('settings.envatosetting');
 				Route::post('/expiredsupport', 'AdminSettingController@expiredsupport')->name('settings.expiredsupport');
 				Route::get('/customcssjssetting', 'CustomcssjsController@index');
 				Route::post('/customcssjssetting', 'CustomcssjsController@customcssjs')->name('settings.custom.cssjs');
@@ -553,7 +551,6 @@ Route::middleware(ProtectAgainstSpam::class)->group(function() {
 
 		});
 
-		Route::post('envatoverify',[GuestticketController::class, 'envatoverify'])->name('guest.envatoverify');
 		Route::delete('/image/delete/{id}', [GuestticketController::class, 'imagedestroy']);
 		Route::get('/rating/{ticket_id}', [GuestticketController::class, 'rating'])->name('guest.rating')->middleware('disablepreventback');
 		Route::get('/rating/star5/{id}', [GuestticketController::class, 'star5']);

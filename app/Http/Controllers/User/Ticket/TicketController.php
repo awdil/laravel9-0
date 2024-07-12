@@ -27,7 +27,7 @@ use App\Models\Ratingtoken;
 use App\Models\Customer;
 use Carbon\Carbon;
 use App\Models\Setting;
-use Modules\Uhelpupdate\Entities\CategoryEnvato;
+
 
 class TicketController extends Controller
 {
@@ -143,15 +143,7 @@ class TicketController extends Controller
                 }
             }
         }
-        // Auto Overdue Ticket
-        if ($request->input('envato_id')) {
-
-            $ticket->purchasecode = encrypt($request->input('envato_id'));
-        }
-        if ($request->input('envato_support')) {
-
-            $ticket->purchasecodesupport = $request->input('envato_support');
-        }
+        
         $categoryfind = Category::find($request->category);
         $ticket->priority = $categoryfind->priority;
         if ($request->subscategory) {

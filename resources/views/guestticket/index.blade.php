@@ -162,8 +162,7 @@
                                             </div>
                                             <div class="form-group" id="selectSubCategory">
                                             </div>
-                                            <div class="form-group" id="envatopurchase">
-                                            </div>
+                                            
                                             @if($customfields->isNotEmpty())
                                                 @foreach($customfields as $customfield)
 
@@ -372,7 +371,7 @@
 
 			"use strict";
 
-            var licensekey;
+           
 
 			(function($)  {
 
@@ -591,7 +590,7 @@
 					$('#createticketbtn').html(`Loading.. <i class="fa fa-spinner fa-spin"></i>`);
 					$('#createticketbtn').prop('disabled', true);
 					var formData = new FormData(this);
-                    formData.set('envato_id', licensekey);
+                   
 
 					let checked  = document.querySelectorAll('.required:checked').length;
 					var isValid = checked > 0;
@@ -651,11 +650,7 @@
 								toastr.error(data.error);
 							}
 
-                            if(data.message == 'envatoerror')
-                            {
-                                toastr.error(data.error);
-                                window.location.reload();
-                            }
+                            
 
 
 						},

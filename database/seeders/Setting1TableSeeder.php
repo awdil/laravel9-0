@@ -19,12 +19,7 @@ class Setting1TableSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
-            [
-                'key' => 'ENVATO_EXPIRED_BLOCK',
-                'value' => 'off',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
+            
             [
                 'key' => 'MAX_FILE_UPLOAD',
                 'value' => '2',

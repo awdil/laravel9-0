@@ -385,7 +385,7 @@ class LoginController extends Controller
                 $user->firstname = $data->user['firstname'];
                 $user->lastname = $data->user['surname'];
                 $user->username = $data->nickname;
-                $user->logintype = 'envatosociallogin';
+               
             }
 
             if(!array_key_exists('firstname', $data->user)){

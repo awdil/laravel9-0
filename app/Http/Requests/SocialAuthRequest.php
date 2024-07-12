@@ -30,9 +30,6 @@ class SocialAuthRequest extends FormRequest
             'facebook_secret_id' => ['required_if:facebook_status,on','max:255'],
             'twitter_client_id' => ['required_if:twitter_status,on','max:255'],
             'twitter_secret_id' => ['required_if:twitter_status,on','max:255'],
-            'envato_client_id' => ['required_if:envato_status,on','max:255'],
-            'envato_secret_id' => ['required_if:envato_status,on','max:255'],
-
         ];
     }
 }

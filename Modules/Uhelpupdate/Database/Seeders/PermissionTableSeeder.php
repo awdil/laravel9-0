@@ -36,11 +36,6 @@ class PermissionTableSeeder extends Seeder
         Permission::create(['id' => 102, 'name' => 'Canned Response Edit'  , 'guard_name' => 'web',]);
         Permission::create(['id' => 103, 'name' => 'Canned Response Delete'  , 'guard_name' => 'web',]);
 
-        // Envato
-        Permission::create(['id' => 104, 'name' => 'Envato Access'  , 'guard_name' => 'web',]);
-        Permission::create(['id' => 105, 'name' => 'Envato API Token Access'  , 'guard_name' => 'web',]);
-        Permission::create(['id' => 106, 'name' => 'Envato License Details Access'  , 'guard_name' => 'web',]);
-
         // App Info
         Permission::create(['id' => 107, 'name' => 'App Info Access'  , 'guard_name' => 'web',]);
         Permission::create(['id' => 108, 'name' => 'App Purchase Code Access'  , 'guard_name' => 'web',]);

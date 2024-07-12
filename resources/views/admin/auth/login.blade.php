@@ -111,7 +111,7 @@
 				var facebook = "{{ route('social.login', 'facebook') }}";
 				var google = "{{ route('social.login', 'google') }}";
 				var twitter = "{{ route('social.login', 'twitter') }}";
-				var envato = "{{ route('social.login', 'envato') }}";
+				
 
 
 
