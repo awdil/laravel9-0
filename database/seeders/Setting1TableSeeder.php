@@ -33,12 +33,6 @@ class Setting1TableSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
-                'key' => 'purchasecode_on',
-                'value' => 'off',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
                 'key' => 'defaultlogin_on',
                 'value' => 'off',
                 'created_at' => now(),

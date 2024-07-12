@@ -1067,9 +1067,6 @@
             var googledisable = $('#GOOGLEFONT_DISABLE').prop('checked') == true ? 'on' : 'off';
             var forcessl = $('#FORCE_SSL').prop('checked') == true ? 'on' : 'off';
             var darkmode = $('#darkmode').prop('checked') == true ? '1' : '0';
-            var sprukoadminp = $('#sprukoadminp').prop('checked') == true ? 'on' : 'off';
-            var sprukocustp = $('#sprukoadminc').prop('checked') == true ? 'on' : 'off';
-            var purchasecodeon = $('#purchasecode_on').prop('checked') == true ? 'on' : 'off';
             var defaultloginon = $('#defaultlogin_on').prop('checked') == true ? 'on' : 'off';
             var articlecount = $('#article_count').prop('checked') == true ? 'on' : 'off';
             var defaultsocialloginon = $('#only_social_logins').prop('checked') == true ? 'on' : 'off';
@@ -1088,9 +1085,6 @@
                     'googledisable' : googledisable,
                     'forcessl' : forcessl,
                     'darkmode' : darkmode,
-                    'sprukoadminp' : sprukoadminp,
-                    'sprukocustp' : sprukocustp,
-                    'purchasecodeon' : purchasecodeon,
                     'defaultloginon' : defaultloginon,
                     'articlecount' : articlecount,
                     'defaultsocialloginon' : defaultsocialloginon,

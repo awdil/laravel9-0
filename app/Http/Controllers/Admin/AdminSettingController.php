@@ -419,9 +419,6 @@ class AdminSettingController extends Controller
         $data['GOOGLEFONT_DISABLE'] = $request->googledisable;
         $data['FORCE_SSL'] = $request->forcessl;
         $data['DARK_MODE'] = $request->darkmode;
-        $data['SPRUKOADMIN_P'] = $request->sprukoadminp;
-        $data['SPRUKOADMIN_C'] = $request->sprukocustp;
-        $data['purchasecode_on'] = $request->purchasecodeon;
         $data['defaultlogin_on'] = $request->defaultloginon;
         $data['article_count'] = $request->articlecount;
         $data['sidemenu_icon_style'] = $request->sidemenustyle;

@@ -331,7 +331,7 @@
                                     <div  class="verifyotp">
                                         <div class="card-footer">
                                             <div class="form-group float-end">
-                                                <button type="submit" class="btn btn-secondary btn-lg purchasecode" id="createticketbtn"><i class="fa fa-paper-plane-o me-1"></i> {{lang('Create Ticket', 'menu')}} </button>
+                                                <button type="submit" class="btn btn-secondary btn-lg " id="createticketbtn"><i class="fa fa-paper-plane-o me-1"></i> {{lang('Create Ticket', 'menu')}} </button>
                                             </div>
                                         </div>
                                     </div>

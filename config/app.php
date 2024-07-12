@@ -172,7 +172,6 @@ return [
          * Package Service Providers...
          */
 
-        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
         App\Providers\MailConfigServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,

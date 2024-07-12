@@ -20644,15 +20644,7 @@ table.table-bordered.dataTable th:first-child, table.table-bordered.dataTable td
   margin-left: 0.75rem !important;
 }
 
-@media (max-width: 575.98px) {
-  .purchasecodes {
-    position: relative;
-  }
-  .purchasecodes .badge {
-    top: 10px;
-    right: 10px;
-  }
-}
+
 .homepage-announcement-icon {
   width: 20px;
   height: 20px;

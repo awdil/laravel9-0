@@ -64,31 +64,7 @@
 									</div>
 								</div>
 
-								@if($ticket->purchasecode != null && decrypt($ticket->purchasecode) != 'undefined')
-
-								<!-- Purchase Code Details -->
-								<div class="purchasecodes alert alert-light-warning br-13 mb-5">
-									<div class="d-flex flex-wrap align-items-center justify-content-between">
-										<div class="d-sm-flex d-block flex-wrap">
-											<p class="mb-0 font-weight-semibold">{{lang('Puchase Code')}} :</p>
-											<span class="">{{ Str::padLeft(Str::substr(decrypt($ticket->purchasecode), -4), Str::length(decrypt($ticket->purchasecode)), Str::padLeft('*', 1)) }}</span>
-										</div>
-										<div>
-											@if($ticket->purchasecodesupport == 'Supported')
-
-											<span class="badge badge-success p-1 m-0">{{lang('Support Active')}}</span>
-											@elseif($ticket->purchasecodesupport == 'Expired')
-
-											<span class="badge badge-danger p-1 m-0">{{lang('Support Expired')}}</span>
-											<p class="mb-0 mt-3">
-											<small>{{lang('Your support for this item has expired. You may still leave a comment but please renew support if you are asking the author for help. View the item support policy')}}</small>
-											</p>
-											@else
-											@endif
-										</div>
-									</div>
-                                 </div>
-								<!-- End Purchase Code Details -->
+								
 
 								@endif
 								<!--  Ticket Information -->

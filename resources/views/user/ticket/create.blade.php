@@ -272,7 +272,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="form-group float-end">
-                                    <button type="submit" class="btn btn-secondary btn-lg purchasecode" id="createticketbtn">{{lang('Create Ticket')}}</button>
+                                    <button type="submit" class="btn btn-secondary btn-lg " id="createticketbtn">{{lang('Create Ticket')}}</button>
                                 </div>
                             </div>
                         </form>

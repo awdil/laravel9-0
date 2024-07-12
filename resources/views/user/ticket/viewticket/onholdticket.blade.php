@@ -123,17 +123,6 @@
 
                                                             @endif
 
-                                                            @if($onholdticket->purchasecodesupport != null)
-                                                            @if($onholdticket->purchasecodesupport == 'Supported')
-
-                                                            <li class="px-2 text-success font-weight-semibold">{{lang('Support Active')}}</li>
-                                                            @if($onholdticket->purchasecodesupport == 'Expired')
-
-                                                            <li class="px-2 text-danger-dark font-weight-semibold">{{lang('Support Expired')}}</li>
-                                                            @endif
-                                                            @endif
-                                                            @endif
-
                                                         </ul>
                                                     </div>
                                                 </div>

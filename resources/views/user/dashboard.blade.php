@@ -323,16 +323,7 @@
 
                                                                     @endif
 
-                                                                    @if($ticket->purchasecodesupport != null)
-                                                                    @if($ticket->purchasecodesupport == 'Supported')
-
-                                                                    <li class="px-2 text-success font-weight-semibold">{{lang('Support Active')}}</li>
-                                                                    @if($ticket->purchasecodesupport == 'Expired')
-
-                                                                    <li class="px-2 text-danger-dark font-weight-semibold">{{lang('Support Expired')}}</li>
-                                                                    @endif
-                                                                    @endif
-                                                                    @endif
+                                                                    
 
                                                                 </ul>
                                                             </div>
