@@ -135,7 +135,6 @@
 												<table class="table table-bordered border-bottom text-nowrap ticketdeleterow w-100" id="assignedticket">
 													<thead >
 														<tr >
-															<th >{{lang('Sl.No')}}</th>
 															@can('Ticket Delete')
 
 															<th width="10" >
@@ -163,9 +162,7 @@
 														@foreach ($gtickets as $tickets)
 
 														<tr {{$tickets->replystatus == 'Replied'? 'class=bg-success-transparent': ''}}>
-															<td class="wpx-40 text-center">
-																{{$i++}}
-															</td>
+															
 															<td class="wpx-40 text-center">
 																@if(Auth::user()->can('Ticket Delete'))
 																	<input type="checkbox" name="student_checkbox[]" class="checkall" value="{{$tickets->id}}" />

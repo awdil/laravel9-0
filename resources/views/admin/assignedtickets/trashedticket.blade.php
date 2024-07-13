@@ -39,7 +39,7 @@
 				<table class="table table-bordered border-bottom text-nowrap w-100" id="overduetickets">
 					<thead >
 						<tr >
-							<th >{{lang('Sl.No')}}</th>
+							
 							@can('Ticket Delete')
 
 							<th width="10" >
@@ -67,9 +67,7 @@
 						@php $i = 1; @endphp
 						@foreach ($tickettrashed as $tickets)
 							<tr {{$tickets->replystatus == 'Replied'? 'class=bg-success-transparent': ''}}>
-								<td class="wpx-40 text-center">
-									{{$i++}}
-								</td>
+								
 								<td class="wpx-40 text-center">
 									@if(Auth::user()->can('Ticket Delete'))
 										<input type="checkbox" name="student_checkbox[]" class="checkall" value="{{$tickets->id}}" />

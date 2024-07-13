@@ -40,44 +40,46 @@
 
                                     <div class="form-group">
                                     
-                                        <div class="spfileupload">
-                                            <div class="row">
-                                                <div class="col-xl-7 col-lg-9 col-md-9 col-sm-9">
-                                                    <div class="form-group">
-                                                        <div class="@error('image') is-invalid @enderror ">
-                                                            <label class="form-label fs-16">{{lang('Upload Icon', 'setting')}}</label>
-                                                            <div class="input-group file-browser">
-                                                                <input class="form-control " name="image" type="file" >
-
-                                                            </div>
-                                                            <small class="text-muted"><i>{{lang('The file size should not be more than 5MB', 'filesetting')}}</i></small>
-                                                        </div>
-                                                        @error('image')
-
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ lang($message) }}</strong>
-                                                        </span>
-                                                        @enderror
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                                <label class="form-label d-flex align-items-center">{{lang('Upload Icon')}} <span class="text-red ms-1">*</span> </label>
+                                            </div>
+                                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                                                <div class="@error('image') is-invalid @enderror ">
+                                                    <div class="input-group file-browser">
+                                                        <input class="form-control " name="image" type="file" >
 
                                                     </div>
+                                                    <small class="text-muted"><i>{{lang('The file size should not be more than 5MB', 'filesetting')}}</i></small>
                                                 </div>
-                                                <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3">
-                                                    <div class="file-image-1 ms-sm-auto sprukologoss ms-sm-auto">
-                                                        <div class="product-image sprukologoimages">
-                                                            @if($title->image == null)
-                                                            <img src="{{asset('uploads/logo/logo/logo-white.png')}}" class="br-5" alt="logo">
-                                                            @else
+                                                @error('image')
 
-                                                            <button class="btn ticketnotedelete border-white text-gray logosdelete" value="logo1" data-id="">
-                                                                <i class="feather feather-x" ></i>
-                                                            </button>
-                                                            <img src="" class="br-5" alt="">
-                                                            @endif
-                                                        </div>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ lang($message) }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                                
+                                            </div>
+                                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                                                <div id="image-preview" class="file-image-1 d-flex justify-content-end" style="display: none;">
+                                                    <div class="product-image custom-ul">
+                                                        <a href="#">
+                                                            <img id="edit-image" src="" class="br-5" alt="">
+                                                        </a>
+                                                        <ul class="icons">
+                                                            <li>
+                                                                <a href="javascript:void(0);" class="bg-danger delete-image" data-id="">
+                                                                    <i class="fe fe-trash"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
 
 

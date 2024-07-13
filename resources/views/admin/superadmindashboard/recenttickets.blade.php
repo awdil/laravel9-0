@@ -37,7 +37,7 @@
 												<table class="table table-bordered border-bottom text-nowrap"  id="overduetickets">
 													<thead >
 														<tr >
-															<th class="wpx-40 text-center">{{lang('Sl.No')}}</th>
+															
 															@can('Ticket Delete')
 
 															<th class="wpx-40 text-center" >
@@ -70,9 +70,7 @@
 														@if($tickets->myassignuser_id == null && $tickets->selfassignuser_id == null)
 
 														<tr {{$tickets->replystatus == 'Replied'? 'class=bg-success-transparent': ''}}>
-															<td class="wpx-40 text-center">
-																{{$i++}}
-															</td>
+															
 															<td class="wpx-40 text-center">
 																@if(Auth::user()->can('Ticket Delete'))
 																	<input type="checkbox" name="student_checkbox[]" class="checkall" value="{{$tickets->id}}" />

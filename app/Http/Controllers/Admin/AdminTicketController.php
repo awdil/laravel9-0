@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Plant;
 use Illuminate\Http\Request;
 
 use Auth;
@@ -740,6 +741,8 @@ class AdminTicketController extends Controller
             $categories = Category::whereIn('display',['ticket', 'both'])->where('status', '1')->get();
             $data['categories'] = $categories;
 
+            $data['plants'] = Plant::all();
+
             $customfields = Customfield::whereIn('displaytypes', ['both', 'createticket'])->where('status','1')->get();
             $data['customfields'] = $customfields;
 
@@ -748,13 +751,9 @@ class AdminTicketController extends Controller
 
     // Admins Creating  Ticket
 
-    public function gueststore(Request $request)
+    public function gueststoreold(Request $request)
     {
-
         $this->authorize('Ticket Create');
-
-        
-
         $email  = $request->email;
         $completeDomain = substr(strrchr($email, "@"), 1);
         $domain = explode(".",$completeDomain)[0];
@@ -790,7 +789,15 @@ class AdminTicketController extends Controller
 
     }
 
-    private function emailpassgueststore($request)
+    public function gueststore(Request $request)
+    {
+        $this->authorize('Ticket Create');   
+        $ticket = $this->emailpassgueststore($request);
+        return response()->json(['message' => 'createticket', 'success' => lang('A ticket has been opened with the ticket ID', 'alerts') . $ticket->ticket_id], 200);
+
+    }
+
+    private function emailpassgueststoreold($request)
     {
         $this->authorize('Ticket Create');
 
@@ -848,6 +855,249 @@ class AdminTicketController extends Controller
 
         $categoryfind = Category::find($request->category);
         $ticket->priority = $categoryfind->priority;
+        $ticket->subcategory = $request->subscategory;
+
+        $ticket->update();
+
+        $customfields = Customfield::whereIn('displaytypes', ['both', 'createticket'])->get();
+
+        foreach($customfields as $customfield){
+            $ticketcustomfield = new TicketCustomfield();
+            $ticketcustomfield->ticket_id = $ticket->id;
+            $ticketcustomfield->fieldnames = $customfield->fieldnames;
+            $ticketcustomfield->fieldtypes = $customfield->fieldtypes;
+            if($customfield->fieldtypes == 'checkbox'){
+                if($request->input('custom_'.$customfield->id) != null){
+
+                    $string = implode(',', $request->input('custom_'.$customfield->id));
+                    $ticketcustomfield->values = $string;
+                }
+
+            }
+            if($customfield->fieldtypes != 'checkbox'){
+                if($customfield->fieldprivacy == '1'){
+                    $ticketcustomfield->privacymode  = $customfield->fieldprivacy;
+                    $ticketcustomfield->values = encrypt($request->input('custom_'.$customfield->id));
+                }else{
+
+                    $ticketcustomfield->values = $request->input('custom_'.$customfield->id);
+                }
+            }
+            $ticketcustomfield->save();
+
+        }
+
+        $ccmails = new CCMAILS();
+        $ccmails->ticket_id = $ticket->id;
+        $ccmails->ccemails = $request->ccmail;
+        $ccmails->save();
+
+
+        $tickethistory = new tickethistory();
+        $tickethistory->ticket_id = $ticket->id;
+
+        $output = '<div class="d-flex align-items-center">
+            <div class="mt-0">
+                <p class="mb-0 fs-12 mb-1">Status
+            ';
+        if($ticket->ticketnote->isEmpty()){
+            if($ticket->overduestatus != null){
+                $output .= '
+                <span class="text-burnt-orange font-weight-semibold mx-1">'.$ticket->status.'</span>
+                <span class="text-danger font-weight-semibold mx-1">'.$ticket->overduestatus.'</span>
+                ';
+            }else{
+                $output .= '
+                <span class="text-burnt-orange font-weight-semibold mx-1">'.$ticket->status.'</span>
+                ';
+            }
+
+        }else{
+            if($ticket->overduestatus != null){
+                $output .= '
+                <span class="text-burnt-orange font-weight-semibold mx-1">'.$ticket->status.'</span>
+                <span class="text-danger font-weight-semibold mx-1">'.$ticket->overduestatus.'</span>
+                <span class="text-warning font-weight-semibold mx-1">Note</span>
+                ';
+            }else{
+                $output .= '
+                <span class="text-burnt-orange font-weight-semibold mx-1">'.$ticket->status.'</span>
+                <span class="text-warning font-weight-semibold mx-1">Note</span>
+                ';
+            }
+        }
+
+        $output .= '
+            <p class="mb-0 fs-17 font-weight-semibold text-dark">'.$ticket->users->name.'<span class="fs-11 mx-1 text-muted">(Responded)</span></p>
+        </div>
+        <div class="ms-auto">
+        <span class="float-end badge badge-primary-light">
+            <span class="fs-11 font-weight-semibold">'.$ticket->users->getRoleNames()[0].'</span>
+        </span>
+        </div>
+
+        </div>
+        ';
+        $tickethistory->ticketactions = $output;
+        $tickethistory->save();
+
+
+        foreach ($request->input('ticket', []) as $file) {
+            $ticket->addMedia(public_path('uploads/guestticket/' . $file))->toMediaCollection('ticket');
+        }
+
+        // create ticket notification
+        $notificationcat = $ticket->category->groupscategoryc()->get();
+        $icc = array();
+            if($notificationcat->isNotEmpty()){
+
+                foreach($notificationcat as $igc){
+
+                    foreach($igc->groupsc->groupsuser()->get() as $user){
+                        $icc[] .= $user->users_id;
+                    }
+                }
+
+                if(!$icc){
+                    $admins = User::leftJoin('groups_users','groups_users.users_id','users.id')->whereNull('groups_users.groups_id')->whereNull('groups_users.users_id')->get();
+                    foreach($admins as $admin){
+                        $admin->notify(new TicketCreateNotifications($ticket));
+                    }
+
+                }else{
+
+                    $user = User::whereIn('id', $icc)->get();
+                    foreach($user as $users){
+                        $users->notify(new TicketCreateNotifications($ticket));
+                    }
+                    $admins = User::leftJoin('groups_users','groups_users.users_id','users.id')->whereNull('groups_users.groups_id')->whereNull('groups_users.users_id')->get();
+                    foreach($admins as $admin){
+                        if($admin->getRoleNames()[0] == 'superadmin'){
+                            $admin->notify(new TicketCreateNotifications($ticket));
+                        }
+                    }
+
+
+                }
+            }else{
+                $admins = User::leftJoin('groups_users','groups_users.users_id','users.id')->whereNull('groups_users.groups_id')->whereNull('groups_users.users_id')->get();
+                foreach($admins as $admin){
+                    $admin->notify(new TicketCreateNotifications($ticket));
+                }
+            }
+        $cust = Customer::with('custsetting')->find($ticket->cust_id);
+        $cust->notify(new TicketCreateNotifications($ticket));
+
+        $ticketData = [
+            'ticket_username' => $ticket->cust->username,
+            'ticket_id' => $ticket->ticket_id,
+            'ticket_title' => $ticket->subject,
+            'ticket_status' => $ticket->status,
+            'ticket_description' => $ticket->message,
+            'ticket_customer_url' => route('guest.ticketdetailshow', $ticket->ticket_id),
+            'ticket_admin_url' => url('/admin/ticket-view/'.$ticket->ticket_id),
+        ];
+
+        try{
+
+            $notificationcatss = $ticket->category->groupscategoryc()->get();
+            $icc = array();
+            if($notificationcatss->isNotEmpty()){
+
+                foreach($notificationcatss as $igc){
+
+                    foreach($igc->groupsc->groupsuser()->get() as $user){
+                        $icc[] .= $user->users_id;
+                    }
+                }
+
+                if(!$icc){
+                    $admins = User::leftJoin('groups_users','groups_users.users_id','users.id')->whereNull('groups_users.groups_id')->whereNull('groups_users.users_id')->get();
+                    foreach($admins as $admin){
+                        if($admin->usetting->emailnotifyon == 1){
+                            Mail::to($admin->email)
+                            ->send( new mailmailablesend( 'admin_send_email_ticket_created', $ticketData ) );
+                        }
+                    }
+
+                }else{
+
+                    $user = User::whereIn('id', $icc)->get();
+                    foreach($user as $users){
+                        if($users->usetting->emailnotifyon == 1){
+                            Mail::to($users->email)
+                            ->send( new mailmailablesend( 'admin_send_email_ticket_created', $ticketData ) );
+                        }
+                    }
+                    $admins = User::leftJoin('groups_users','groups_users.users_id','users.id')->whereNull('groups_users.groups_id')->whereNull('groups_users.users_id')->get();
+                    foreach($admins as $admin){
+                        if($admin->getRoleNames()[0] == 'superadmin' && $admin->usetting->emailnotifyon == 1){
+                            Mail::to($admin->email)
+                            ->send( new mailmailablesend( 'admin_send_email_ticket_created', $ticketData ) );
+                        }
+                    }
+
+
+                }
+            }else{
+                $admins = User::leftJoin('groups_users','groups_users.users_id','users.id')->whereNull('groups_users.groups_id')->whereNull('groups_users.users_id')->get();
+                foreach($admins as $admin){
+                    if($admin->usetting->emailnotifyon == 1){
+                        Mail::to($admin->email)
+                        ->send( new mailmailablesend( 'admin_send_email_ticket_created', $ticketData ) );
+                    }
+                }
+            }
+
+            Mail::to($ticket->cust->email)
+            ->send( new mailmailablesend('customer_send_guestticket_created', $ticketData ) );
+
+            Mail::to($ccemailsend->ccemails )
+                ->send( new mailmailablesend('customer_send_guestticket_created', $ticketData ) );
+
+        }catch(\Exception $e){
+            return $ticket;
+        }
+        return $ticket;
+
+    }
+
+    private function emailpassgueststore($request)
+    {
+        $this->authorize('Ticket Create');
+
+        $this->validate($request, [
+            'plant_id' => 'required|string',
+            'category' => 'required',
+            'message' => 'required',
+        ]);
+
+        $categories = $request->input('category');
+        
+        $firstCategoryId = is_array($categories) && count($categories) > 0 ? $categories[0] : null;
+
+        $categoryNames = $this->getCategoryNamesByIds($request->input('category'));
+        $plantName = $this->getPlantNameById($request->input('plant_id'));
+
+        $subject = $this->formatSubject($plantName, $categoryNames);
+        $ticket = Ticket::create([
+            'subject' => $subject,
+            'cust_id' => 1,
+            'category_id' => $firstCategoryId,
+            'priority' => 'Medium',
+            'message' => $request->input('message'),
+            'project' => $request->input('project'),
+            'status' => 'New',
+            'plant_id' => $request->input('plant_id'),
+            'categories' => $categories, // Store multiple categories
+        ]);
+        $ticket = Ticket::find($ticket->id);
+        $ticket->ticket_id = setting('CUSTOMER_TICKETID').'G-'.$ticket->id;
+        $ticket->user_id = Auth::user()->id;
+        
+
+        $categoryfind = Category::find($request->category);
+       // $ticket->priority = $categoryfind->priority;
         $ticket->subcategory = $request->subscategory;
 
         $ticket->update();
@@ -1467,5 +1717,22 @@ class AdminTicketController extends Controller
         }
 
         return view('admin.viewticket.alltickets')->with($data);
+    }
+
+    // Method to format the subject
+    private function formatSubject($plantName, $categoryNames)
+    {
+        return "Plant: {$plantName} | Categories: {$categoryNames}";
+    }
+    // Method to get category names by IDs
+    private function getCategoryNamesByIds($categoryIds)
+    {
+        $categories = Category::whereIn('id', $categoryIds)->pluck('name')->toArray();
+        return implode(', ', $categories);
+    }
+    private function getPlantNameById($plantId)
+    {
+        $plant = Plant::find($plantId);
+        return $plant ? $plant->plant_id : 'Unknown Plant';
     }
 }

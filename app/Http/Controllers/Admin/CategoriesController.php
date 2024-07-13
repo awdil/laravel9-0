@@ -84,9 +84,13 @@ class CategoriesController extends Controller
             // Validate the incoming request data
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
-                'display' => 'required|in:both,ticket,knowledge',
             ]);
 
+            if($request->file('image')){
+                $request->validate([
+                    'image' => 'required|mimes:jpg,jpeg,png,svg|max:512',
+                ]);
+            }
             if ($validator->fails()) {
                 // Return validation errors
                 return response()->json(['errors' => $validator->errors()], 422);
@@ -101,10 +105,17 @@ class CategoriesController extends Controller
             // Construct the data array based on category existence
             $testi = [
                 'name' => $request->name,
-                'display' => $request->display,
-                'priority' => $request->priority,
-                'status' => $request->status ? '1' : '0',
+                'display' => 'both',
+                'status' => '1',
             ];
+
+            if ($files = $request->file('image')) {    
+                //insert new file
+                $destinationPath = public_path() . "" . '/uploads/callaction/'; // upload path
+                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                $files->move($destinationPath, $profileImage);
+                $testi['image'] = $profileImage;
+            }
 
             if ($categoryfind) {
                 // If the category exists, check its slug

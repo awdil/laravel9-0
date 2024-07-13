@@ -19,7 +19,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','display','status','project_id','categoryslug','priority','parent_id'];
+    protected $fillable = ['name','image','display','status','project_id','categoryslug','priority','parent_id'];
 
     public function tickets()
     {

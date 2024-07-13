@@ -29,7 +29,7 @@ class Ticket extends Model implements HasMedia
     protected $table ="tickets";
     protected $fillable = [
         'cust_id', 'category_id', 'image', 'ticket_id', 'title', 'priority', 'message', 'status','subject','user_id','project_id','auto_close_ticket',
-        'project', 'subcategory'
+        'project', 'subcategory','plant_id', 'categories'
     ];
 
     protected $dates = [
@@ -40,6 +40,10 @@ class Ticket extends Model implements HasMedia
         'auto_replystatus',
         'auto_close_ticket',
         'auto_overdue_ticket'
+    ];
+
+    protected $casts = [
+        'categories' => 'array', // Ensure categories are stored as an array
     ];
 
     public function cust()

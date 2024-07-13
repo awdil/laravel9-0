@@ -82,8 +82,13 @@
 									@endif
 								</td>
 								<td>{{$category->name}}</td>
-								<td>{{$category->display}}</td>
-								
+								<td>
+									@if($category->image)
+										<img src="{{ asset('uploads/callaction/' . $category->image) }}" alt="Category Image" class="img-thumbnail" style="max-width: 100px;">
+									@else
+										No Image
+									@endif
+								</td>
 								
 								<td>
 									@if(Auth::user()->can('Category Edit'))
@@ -277,6 +282,17 @@
 				$('#addcategory').modal('show');
 				$('#category_id').val(data.post.id);
 				$('#name').val(data.post.name);
+				// Reset image preview
+				$('#image-preview').hide();
+				$('#edit-image').attr('src', '');
+				$('.delete-image').data('id', '');
+				
+				if (data.post.image != null) {
+					$('#edit-image').attr('src', '{{ asset('uploads/callaction/') }}/' + data.post.image);
+					$('#edit-image').attr('alt', data.post.image);
+					$('.delete-image').data('id', data.post.id);
+					$('#image-preview').show();
+				}
 				if (data.post.display == "both")
 				{
 					$('#display').prop('checked', true);
@@ -452,61 +468,6 @@
 			}
 		});
 	});
-
-	// $('#btnsave').on('click', function (e) {
-	// 	e.preventDefault(); // Prevent default button click behavior
-
-	// 	// Disable the button during the request
-	// 	$(this).prop('disabled', true).html('Sending...');
-
-	// 	// Create a FormData object from the form
-	// 	var formData = new FormData($('#category_form')[0]); // Assuming 'category_form' is your form's ID
-
-	// 	// Make an AJAX POST request
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: SITEURL + "/admin/categories/store",
-	// 		data: formData,
-	// 		cache: false,
-	// 		contentType: false,
-	// 		processData: false,
-	// 		headers: {
-	// 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Ensure this is included
-	// 		},
-	// 		success: function (data) {
-	// 			// Handle success response
-	// 			if (data.errors) {
-	// 				// Handle validation errors
-	// 				$('#nameError').html(data.errors.name);
-	// 				$('#displayError').html(data.errors.display);
-	// 			} else if (data.success) {
-	// 				// Clear any previous error messages
-	// 				$('#nameError').html('');
-	// 				$('#displayError').html('');
-
-	// 				// Reset the form and close the modal
-	// 				$('#category_form').trigger("reset");
-	// 				$('#addcategory').modal('hide');
-
-	// 				// Show success message
-	// 				toastr.success(data.success);
-	// 				return false;
-	// 				// Optionally, reload the page to show changes
-	// 				//location.reload();
-	// 			}
-	// 		},
-	// 		error: function (data) {
-	// 			// Handle server-side error
-	// 			console.log('Error:', data);
-	// 			toastr.error('An error occurred. Please try again later.');
-	// 		},
-	// 		complete: function () {
-	// 			// Re-enable the button after the request completes
-	// 			$('#btnsave').prop('disabled', false).html('{{lang('Save Changes')}}');
-	// 		}
-	// 	});
-	// });
-
 
 
 		// Assign group submit

@@ -3,6 +3,7 @@
 
 @section('styles')
 
+
 <!-- INTERNAl Summernote css -->
 <link rel="stylesheet" href="{{asset('assets/plugins/summernote/summernote.css')}}?v=<?php echo time(); ?>">
 
@@ -32,24 +33,61 @@
 								@honeypot
 
 								<div class="card-body">
+									<!-- <div class="form-group">
+										<div class="row">
+											<div class="col-md-2">
+												<label class="form-label mb-0 mt-2">{{lang('Email')}} <span class="text-red">*</span></label>
+											</div>
+											<div class="col-md-10">
+												<input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{lang('Email')}}" value="{{ old('email') }}" name="email" id="email">
+												<span id="EmailError" class="text-danger alert-message" ></span>
+												@error('email')
+
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ lang($message) }}</strong>
+													</span>
+												@enderror
+
+											</div>
+										</div>
+									</div> -->
+									@if(setting('cc_email') == 'on')
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-2">
-												<label class="form-label mb-0 mt-2">{{ lang('Plant') }}<span class="text-red">*</span></label>
+												<label class="form-label mb-0 mt-2">{{lang('CC')}} </label>
 											</div>
 											<div class="col-md-10">
-												<select class="form-control select2-show-search  select2" name="plant_id" id="plant_id">
-													<option value="" disabled selected>{{ lang('Select Plant') }}</option>
-													@foreach ($plants as $plant)
-													<option value="{{ $plant->id }}">{{ $plant->plant_id }}</option>
-													@endforeach
-												</select>
-												<span id="PlantError" class="text-danger alert-message"></span>
-												@error('plant_id')
+												<input type="email" class="form-control @error('ccmail') is-invalid @enderror" placeholder="{{lang('CC Email')}}" value="{{ old('ccmail') }}" name="ccmail" id="ccmail">
+												<div><small class="text-muted"> {{lang('You are allowed to send only a single CC.')}}</small></div>
+												<span id="ccEmailError" class="text-danger alert-message" ></span>
+												@error('ccmail')
+
 													<span class="invalid-feedback" role="alert">
-													<strong>{{ lang($message) }}</strong>
+														<strong>{{ lang($message) }}</strong>
 													</span>
 												@enderror
+											</div>
+										</div>
+									</div>
+									@endif
+
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-2">
+												<label class="form-label mb-0 mt-2">{{lang('Plant')}} <span class="text-red">*</span></label>
+											</div>
+											<div class="col-md-10">
+												<input type="text" id="subject" class="form-control @error('subject') is-invalid @enderror"  placeholder="{{lang('Subject')}}" name="subject" value="{{ old('subject') }}">
+													<span id="SubjectError" class="text-danger alert-message"></span>
+												</div>
+												@error('subject')
+
+													<span class="invalid-feedback" role="alert">
+														<strong>{{ lang($message) }}</strong>
+													</span>
+												@enderror
+
 											</div>
 										</div>
 									</div>
@@ -84,6 +122,8 @@
 											</div>
 										</div>
 									</div>
+
+
 									<div class="form-group" id="selectssSubCategory" style="display: none;">
 
 										<div class="row">
