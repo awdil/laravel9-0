@@ -2,6 +2,7 @@
 
 namespace App\Models\Ticket;
 
+use App\Models\Plant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -70,6 +71,11 @@ class Ticket extends Model implements HasMedia
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function plant()
+    {
+        return $this->belongsTo(Plant::class, 'plant_id');
     }
 
     public function role()

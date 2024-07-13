@@ -18,7 +18,16 @@
 																</tr>
 																<tr>
 																	<td>
-																		<span class="w-50">{{lang('Category')}}</span>
+																		<span class="w-50">{{lang('Plant ID')}}</span>
+																	</td>
+																	<td>:</td>
+																	<td>
+																		<span class="font-weight-semibold">#{{ $ticket->ticket_id }}</span>
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<span class="w-50">{{lang('Categories')}}</span>
 																	</td>
 																	<td>:</td>
 																	<td>

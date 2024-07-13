@@ -40,7 +40,7 @@
 										@endif
 
 										</a>
-										<div class="app-sidebar__toggle me-md-5 ms-md-2 mx-0" data-bs-toggle="sidebar">
+										<div class="app-sidebar__toggle me-md-1 ms-md-2 mx-0" data-bs-toggle="sidebar">
 											<a class="open-toggle" href="#">
 												<i class="feather feather-menu"></i>
 											</a>
@@ -48,22 +48,26 @@
 												<i class="feather feather-x"></i>
 											</a>
 										</div>
-										<div class="header-buttons-main mt-0">
-											<a class="btn btn-outline-light header-buttons text-center" href="{{url('/admin/createticket')}}"><i class="fa fa-paper-plane-o pe-lg-2"></i><span class="d-m-none">{{lang('Create Ticket', 'Menu')}}</span></a>
-											<a class="btn btn-outline-light header-buttons text-center visitsite ms-2" href="{{route('home')}}" target="_blank"><i class="fe fe-home pe-lg-2"></i><span class="d-m-none">{{lang('Home Page', 'Menu')}}</span></a>
-
-										</div><!-- SEARCH -->
+										<nav aria-label="breadcrumb">
+											<ol class="breadcrumb">
+												@foreach (generateBreadcrumbs() as $breadcrumb)
+													@if (!$loop->last)
+														<li class="breadcrumb-item"><a href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['name'] }}</a></li>
+													@else
+														<li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb['name'] }}</li>
+													@endif
+												@endforeach
+											</ol>
+										</nav>
+										
 										<div class="d-flex order-lg-2 my-auto ms-sm-auto dropdown-container align-items-center">
-
+											<a class="btn btn-outline-light header-buttons text-center" href="{{url('/admin/createticket')}}"><i class="fa fa-paper-plane-o pe-lg-2"></i><span class="d-m-none">{{lang('Create Ticket', 'Menu')}}</span></a>
 											<div class="dropdown header-flags ms-1">
 
 												<a href="#" class="text-capitalize dropdown-toggle" data-bs-toggle="dropdown">
 													{{ getLangName() }}
-
-
 												</a>
 												<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated text-capitalize">
-
 													@foreach(getLanguageslist() as $lang)
 
 														<a href="{{langURL($lang->languagecode)}}" class="dropdown-item d-flex fs-13 {{ getLangName() == $lang->languagename ? 'active':'' }}">

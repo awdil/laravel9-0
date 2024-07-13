@@ -31,32 +31,31 @@
 	">
 
 
-
 		<div class="page">
 			<div class="page-main">
 					@include('includes.admin.verticalmenu')
 					<div class="app-content main-content">
 						<div class="side-app">
 							@include('includes.admin.menu')
-
+							
 							@if(setting('MAINTENANCE_MODE') == 'on')
 
-								<div class="alert alert-danger sprukoclosebtn mt-5 fs-15">
+								<!-- <div class="alert alert-danger sprukoclosebtn mt-5 fs-15">
 									<i class="fa fa-hourglass-half fa-spin me-2 fs-15" aria-hidden="true"></i>
 									{{ lang('This application is in maintenance mode. We are performing scheduled maintenance.') }}
-								</div>
+								</div> -->
 
 							@endif
 					
 							@if(setting('mail_host') == 'smtp.mailtrap.io' && optional(Auth::user()->getRoleNames())->first() == 'superadmin')
-								<div class="alert alert-warning sprukoclosebtn mt-5 fs-15">
+								<!-- <div class="alert alert-warning sprukoclosebtn mt-5 fs-15">
 									<i class="fa fa-exclamation-triangle me-2 fs-18" aria-hidden="true"></i>
 									{{ lang('It is necessary to set up your email settings first in order to send and receive emails.') }}
 									<div class="">
 										<a href="{{route('email.setting.alert')}}" class="btn btn-dark btn-sm mt-2" target="_blank"> <i class="fa fa-cogs me-2 fs-15" aria-hidden="true"></i>{{lang('Email Setup')}} </a>
 										<a href="" class="btn btn-dark btn-sm mt-2" target="_blank"> <i class="fa fa-link me-2 fs-15" aria-hidden="true"></i>{{lang('Setup Reference ')}}</a>
 									</div>
-								</div>
+								</div> -->
 							@endif
 
 							@php
@@ -65,13 +64,13 @@
                             @endphp
 
                             @if($cronworking != true && optional(Auth::user()->getRoleNames())->first() == 'superadmin')
-								<div class="alert alert-info sprukoclosebtn mt-5 fs-15">
+								<!-- <div class="alert alert-info sprukoclosebtn mt-5 fs-15">
 									<i class="fa fa-exclamation-triangle me-2 fs-18" aria-hidden="true"></i>
 									{{ lang('It is necessary to set up your cron job first in order for the auto functions to work.') }}
                                     <div class="">
 										<a href="" class="btn btn-dark btn-sm mt-2" target="_blank"> <i class="fa fa-link me-2 fs-15" aria-hidden="true"></i>{{lang('Setup Reference ')}}</a>
 									</div>
-								</div>
+								</div> -->
 							@endif
 
 							@yield('content')

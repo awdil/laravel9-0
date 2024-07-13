@@ -18,7 +18,16 @@
 					</tr>
 					<tr>
 						<td>
-							<span class="w-50">{{lang('Category')}}</span>
+							<span class="w-50">{{lang('Plant ID')}}</span>
+						</td>
+						<td>:</td>
+						<td>
+							<span class="font-weight-semibold">#{{ $ticket->plant->plant_id }}</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="w-50">{{lang('Categories')}}</span>
 						</td>
 						<td>:</td>
 						<td>
@@ -26,7 +35,7 @@
 							@if($ticket->category_id != null)
 								@if($ticket->category != null)
 
-								    <span class="font-weight-semibold">{{ $ticket->category->name}}</span>
+								    <span class="font-weight-semibold">{{ getCategoryNamesByIds($ticket->categories)}}</span>
 									@if ($ticket->status != 'Closed' && $ticket->status != 'Suspend')
 
 										<a href="javascript:void(0)" data-id="{{$ticket->ticket_id}}" class="p-1 sprukocategory border border-primary br-7 text-white bg-primary ms-2"> <i class="feather feather-edit-2" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Change Category')}}"></i></a>

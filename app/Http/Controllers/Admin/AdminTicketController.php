@@ -75,7 +75,7 @@ class AdminTicketController extends Controller
     public function show($ticket_id)
     {
         $this->authorize('Ticket Edit');
-        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+        $ticket = Ticket::with('plant')->where('ticket_id', $ticket_id)->firstOrFail();
         $comments = $ticket->comments()->latest()->paginate(10);
 
         $custsimillarticket = Ticket::where('cust_id', $ticket->cust->id)->count();
@@ -1076,8 +1076,8 @@ class AdminTicketController extends Controller
         
         $firstCategoryId = is_array($categories) && count($categories) > 0 ? $categories[0] : null;
 
-        $categoryNames = $this->getCategoryNamesByIds($request->input('category'));
-        $plantName = $this->getPlantNameById($request->input('plant_id'));
+        $categoryNames = getCategoryNamesByIds($request->input('category'));
+        $plantName = getPlantNameById($request->input('plant_id'));
 
         $subject = $this->formatSubject($plantName, $categoryNames);
         $ticket = Ticket::create([
@@ -1725,14 +1725,4 @@ class AdminTicketController extends Controller
         return "Plant: {$plantName} | Categories: {$categoryNames}";
     }
     // Method to get category names by IDs
-    private function getCategoryNamesByIds($categoryIds)
-    {
-        $categories = Category::whereIn('id', $categoryIds)->pluck('name')->toArray();
-        return implode(', ', $categories);
-    }
-    private function getPlantNameById($plantId)
-    {
-        $plant = Plant::find($plantId);
-        return $plant ? $plant->plant_id : 'Unknown Plant';
-    }
 }
