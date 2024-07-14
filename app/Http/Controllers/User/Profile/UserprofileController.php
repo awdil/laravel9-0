@@ -37,20 +37,6 @@ class UserprofileController extends Controller
 
         $timezones = Timezone::Orderby('group')->get();
         $data['timezones'] = $timezones;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
-
         return view('user.profile.userprofile')->with($data);
 
 

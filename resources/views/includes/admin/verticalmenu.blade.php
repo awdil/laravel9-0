@@ -1,3 +1,9 @@
+@php
+    $title = getAppTitle();
+    $footerText = getFooterText();
+    $seopage = getSeoSetting();
+    $pages = getPages();
+@endphp
 <!--aside open-->
 <aside class="app-sidebar">
     <div class="app-sidebar__logo">
@@ -59,18 +65,7 @@
                     <span class="side-menu__label">{{lang('Dashboard', 'Menu')}}</span>
                 </a>
             </li>
-            <li class="slide">
-                <a class="side-menu__item" href="{{url('/admin/profile')}}">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
-                        width="24px" fill="#000000">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path
-                            d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 9c2.7 0 5.8 1.29 6 2v1H6v-.99c.2-.72 3.3-2.01 6-2.01m0-11C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z" />
-                    </svg>
-                    <span class="side-menu__label">{{lang('Profile', 'Menu')}}</span>
-                </a>
-            </li>
-
+        
 
            <!--- Employee menu tickets --->
 
@@ -83,13 +78,13 @@
                </a>
                <ul class="slide-menu custom-ul">
                    <li><a href="{{route('admin.recenttickets')}}" class="slide-item">{{lang('Recent Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/alltickets')}}" class="slide-item">{{lang('Total Tickets', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/all-tickets')}}" class="slide-item">{{lang('Manage Tickets', 'Menu')}}</a></li>
                    <li><a href="{{url('/admin/activeticket')}}" class="slide-item">{{lang('Active Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/closedticket')}}" class="slide-item">{{lang('Closed Tickets', 'Menu')}}</a></li>
+                   <!-- <li><a href="{{url('/admin/closedticket')}}" class="slide-item">{{lang('Closed Tickets', 'Menu')}}</a></li>
                    <li><a href="{{route('admin.onholdticket')}}" class="slide-item">{{lang('On-Hold Tickets', 'Menu')}}</a></li>
                    <li><a href="{{route('admin.overdueticket')}}" class="slide-item">{{lang('Overdue Tickets', 'Menu')}}</a></li>
                    <li><a href="{{route('admin.allassignedtickets')}}" class="slide-item">{{lang('Assigned Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.suspendedtickets')}}" class="slide-item">{{lang('Suspended Tickets', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.suspendedtickets')}}" class="slide-item">{{lang('Suspended Tickets', 'Menu')}}</a></li> -->
 
 
                </ul>
@@ -176,40 +171,7 @@
             </li>
 
             @endcan
-            @can('Knowledge Access')
-
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                        <g>
-                            <rect fill="none" height="24" width="24" />
-                        </g>
-                        <g>
-                            <g />
-                            <g>
-                                <path
-                                    d="M17,19.22H5V7h7V5H5C3.9,5,3,5.9,3,7v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2v-7h-2V19.22z" />
-                                <path d="M19,2h-2v3h-3c0.01,0.01,0,2,0,2h3v2.99c0.01,0.01,2,0,2,0V7h3V5h-3V2z" />
-                                <rect height="2" width="8" x="7" y="9" />
-                                <polygon points="7,12 7,14 15,14 15,12 12,12" />
-                                <rect height="2" width="8" x="7" y="15" />
-                            </g>
-                        </g>
-                    </svg>
-                    <span class="side-menu__label">{{lang('Knowledge', 'Menu')}}</span><i
-                        class="angle fa fa-angle-right"></i>
-                </a>
-                <ul class="slide-menu custom-ul">
-
-                    @can('Article Access')
-
-                    <li><a href="{{url('/admin/article')}}" class="slide-item">{{lang('Articles', 'Menu')}}</a></li>
-                    @endcan
-
-                </ul>
-            </li>
-            @endcan
+            
             @can('Project Access')
 
             <li class="slide">
@@ -291,58 +253,7 @@
                 </ul>
             </li>
             @endcan
-            @can('Landing Page Access')
-
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
-                        width="24px" fill="#000000">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path
-                            d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" />
-                    </svg>
-                    <span class="side-menu__label">{{lang('Landing Page Settings', 'Menu')}}</span><i
-                        class="angle fa fa-angle-right"></i>
-                </a>
-                <ul class="slide-menu custom-ul">
-                    @can('Banner Access')
-
-                    <li><a href="{{url('/admin/bannersetting')}}" class="slide-item">{{lang('Banner', 'Menu')}}</a></li>
-                    @endcan
-                    @can('Feature Box Access')
-
-                    <li><a href="{{url('/admin/feature-box')}}" class="slide-item">{{lang('Feature Box', 'Menu')}}</a>
-                    </li>
-                    @endcan
-                    @can('Call To Action Access')
-
-                    <li><a href="{{url('/admin/call-to-action')}}" class="slide-item">{{lang('Call To Action',
-                            'Menu')}}</a></li>
-                    @endcan
-                    @can('Testimonial Access')
-
-                    <li><a href="{{url('/admin/testimonial')}}" class="slide-item">{{lang('Testmonial', 'Menu')}}</a>
-                    </li>
-                    @endcan
-                    @can('Main FAQ Access')
-                    <li class="sub-slide"> <a class="sub-side-menu__item" data-bs-toggle="sub-slide"
-                            href="javascript:void(0);"><span class="sub-side-menu__label">{{lang('Main FAQ’s', 'Menu')}}</span><i
-                                class="sub-angle fa fa-angle-right"></i></a>
-                        <ul class="sub-slide-menu">
-                            @can('FAQs Access')
-                            <li><a class="sub-slide-item" href="{{url('/admin/faq')}}">{{lang('FAQ’s', 'Menu')}}</a></li>
-                            @endcan
-                            @can('FAQ Category Access')
-                            <li><a class="sub-slide-item" href="{{route('faqsub.index')}}">{{lang('Faq Category', 'Menu')}}</a></li>
-                            @endcan
-
-                        </ul>
-                    </li>
-                    @endcan
-
-                </ul>
-            </li>
-            @endcan
+            
             @can('Customers Access')
 
             <li class="slide">
@@ -358,39 +269,6 @@
             </li>
             @endcan
 
-            
-            
-            
-
-            @can('Groups Access')
-
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                        <rect fill="none" height="24" width="24" />
-                        <g>
-                            <path
-                                d="M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1C4.76,14.04,4.39,14,4,14 c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2 c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85C21.93,14.21,20.99,14,20,14 c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M16.24,13.65c-1.17-0.52-2.61-0.9-4.24-0.9 c-1.63,0-3.07,0.39-4.24,0.9C6.68,14.13,6,15.21,6,16.39V18h12v-1.61C18,15.21,17.32,14.13,16.24,13.65z M8.07,16 c0.09-0.23,0.13-0.39,0.91-0.69c0.97-0.38,1.99-0.56,3.02-0.56s2.05,0.18,3.02,0.56c0.77,0.3,0.81,0.46,0.91,0.69H8.07z M12,8 c0.55,0,1,0.45,1,1s-0.45,1-1,1s-1-0.45-1-1S11.45,8,12,8 M12,6c-1.66,0-3,1.34-3,3c0,1.66,1.34,3,3,3s3-1.34,3-3 C15,7.34,13.66,6,12,6L12,6z" />
-                        </g>
-                    </svg>
-                    <span class="side-menu__label">{{lang('Groups', 'Menu')}}</span><i
-                        class="angle fa fa-angle-right"></i>
-                </a>
-                <ul class="slide-menu custom-ul">
-                    @can('Groups Create')
-
-                    <li><a href="{{url('/admin/groups/create')}}" class="slide-item">{{lang('Create Group',
-                            'Menu')}}</a></li>
-                    @endcan
-                    @can('Groups List Access')
-
-                    <li><a href="{{url('/admin/groups')}}" class="slide-item">{{lang('Groups List', 'Menu')}}</a></li>
-                    @endcan
-
-                </ul>
-            </li>
-            @endcan
 
             <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="#">
@@ -415,63 +293,7 @@
 
                 </ul>
             </li>
-            @can('Custom Pages Access')
-
-            <li class="slide">
-                <a class="side-menu__item" data-bs-toggle="slide" href="#">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
-                        width="24px" fill="#000000">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path
-                            d="M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16zm0-11.47L17.74 9 12 13.47 6.26 9 12 4.53z" />
-                    </svg>
-                    <span class="side-menu__label">{{lang('Custom Pages', 'Menu')}}</span><i
-                        class="angle fa fa-angle-right"></i>
-                </a>
-                <ul class="slide-menu custom-ul">
-                    @can('Pages Access')
-
-                    <li><a href="{{url('/admin/pages')}}" class="slide-item">{{lang('Pages', 'Menu')}}</a></li>
-                    @endcan
-                    @can('404 Error Page Access')
-
-                    <li><a href="{{url('/admin/error404')}}" class="slide-item">{{lang('404 Error Page', 'Menu')}}</a>
-                    </li>
-                    @endcan
-                    @can('Under Maintanance Page Access')
-
-                    <li><a href="{{url('/admin/maintenancepage')}}" class="slide-item">{{lang('Under Maintenance Page',
-                            'Menu')}}</a></li>
-                    @endcan
-
-                </ul>
-            </li>
-            @endcan
-
-            @can('Bussiness Hours Access')
-            <li class="slide">
-                <a class="side-menu__item"  href="{{route('admin.bussinesshour.index')}}">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                    <span class="side-menu__label">{{lang('Bussiness Hours', 'Menu')}}</span>
-                </a>
-            </li>
-            @endcan
-            @can('CustomField Access')
-            <li class="slide">
-                <a class="side-menu__item"  href="{{route('admin.customfield.index')}}">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M3 11.75v-1.5h6v1.5Zm0-3.125v-1.5h9v1.5ZM3 5.5V4h9v1.5ZM13.25 15v-3.25H10v-1.5h3.25V7h1.5v3.25H18v1.5h-3.25V15Z"/></svg>
-                    <span class="side-menu__label">{{lang('Custom Field', 'Menu')}}</span>
-                </a>
-            </li>
-            @endcan
-            @can('Languages Access')
-            <li class="slide">
-                <a class="side-menu__item"  href="{{route('admin.languages.index')}}">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="m9.917 18.333 3.791-10.021h1.73l3.812 10.021H17.5l-.875-2.562h-4.063l-.895 2.562Zm3.166-4.021h2.979l-1.458-4.104h-.062Zm-9.729 1.521-1.187-1.187 4.208-4.208q-.792-.876-1.385-1.813-.594-.937-1.011-1.979h1.729q.396.75.813 1.354.417.604 1.021 1.271.937-1 1.531-2.052.594-1.052.989-2.24H.833V3.312h5.834V1.646h1.666v1.666h5.834v1.667h-2.438q-.417 1.479-1.156 2.875-.74 1.396-1.844 2.625l1.979 2.042-.625 1.708-2.562-2.562Z"/></svg>
-                    <span class="side-menu__label">{{lang('Languages', 'Menu')}}</span>
-                </a>
-            </li>
-            @endcan
+            
 
             @can('App Setting Access')
 
@@ -497,94 +319,30 @@
                     <li><a href="{{url('/admin/ticketsetting')}}" class="slide-item">{{lang('Ticket Setting',
                             'Menu')}}</a></li>
                     @endcan
-                    @can('SEO Access')
-
-                    <li><a href="{{url('/admin/seo')}}" class="slide-item">{{lang('SEO', 'Menu')}}</a></li>
-                    @endcan
-                    @can('Google Analytics Access')
-
-                    <li><a href="{{url('/admin/googleanalytics')}}" class="slide-item">{{lang('Google Analytics',
-                            'Menu')}}</a></li>
-                    @endcan
-                    @can('Custom JS & CSS Access')
-
-                    <li><a href="{{url('/admin/customcssjssetting')}}" class="slide-item">{{lang('Custom CSS & JS',
-                            'Menu')}}</a></li>
-                    @endcan
-                    @can('Captcha Setting Access')
-
-                    <li><a href="{{url('/admin/captcha')}}" class="slide-item">{{lang('Captcha Setting', 'Menu')}}</a>
-                    </li>
-                    @endcan
-                    @can('Social Logins Access')
-
-                    <li><a href="{{url('/admin/sociallogin')}}" class="slide-item">{{lang('Social Logins', 'Menu')}}</a>
-                    </li>
-                    @endcan
+                   
                     @can('Email Setting Access')
 
                     <li><a href="{{url('/admin/emailsetting')}}" class="slide-item">{{lang('Email Setting',
                             'Menu')}}</a></li>
                     @endcan
-                    @can('Custom Chat Access')
-
-                    <li><a href="{{url('/admin/customchatsetting')}}" class="slide-item">{{lang('External Chat',
-                            'Menu')}}</a></li>
-                    @endcan
-                    @can('SecruitySetting Access')
-
-                    <li><a href="{{url('/admin/securitysetting')}}" class="slide-item">{{lang('Security Setting',
-                            'Menu')}}</a></li>
-                    @endcan
-                    @can('IpBlock Access')
-
-                    <li><a href="{{route('ipblocklist')}}" class="slide-item">{{lang('IP List', 'Menu')}}</a></li>
-                    @endcan
+                   
                     @can('Emailtoticket Access')
 
                     <li><a href="{{route('admin.emailtoticket')}}" class="slide-item">{{lang('Email to Tickets',
                             'Menu')}}</a></li>
                     @endcan
 
+                    @can('Email Template Access')
+
+                    <li><a href="{{url('/admin/emailtemplates')}}" class="slide-item">{{lang('Email Templates',
+                            'Menu')}}</a></li>
+                    @endcan
+
                 </ul>
             </li>
             @endcan
-            @can('Announcements Access')
-
-            <li class="slide">
-                <a class="side-menu__item" href="{{url('/admin/announcement')}}">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
-                        height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                        <g>
-                            <rect fill="none" height="24" width="24" />
-                        </g>
-                        <path d="M18,11c0,0.67,0,1.33,0,2c1.2,0,2.76,0,4,0c0-0.67,0-1.33,0-2C20.76,11,19.2,11,18,11z" />
-                        <path
-                            d="M16,17.61c0.96,0.71,2.21,1.65,3.2,2.39c0.4-0.53,0.8-1.07,1.2-1.6c-0.99-0.74-2.24-1.68-3.2-2.4 C16.8,16.54,16.4,17.08,16,17.61z" />
-                        <path
-                            d="M20.4,5.6C20,5.07,19.6,4.53,19.2,4c-0.99,0.74-2.24,1.68-3.2,2.4c0.4,0.53,0.8,1.07,1.2,1.6 C18.16,7.28,19.41,6.35,20.4,5.6z" />
-                        <path
-                            d="M4,9c-1.1,0-2,0.9-2,2v2c0,1.1,0.9,2,2,2h1v4h2v-4h1l5,3V6L8,9H4z M9.03,10.71L11,9.53v4.94l-1.97-1.18L8.55,13H8H4v-2h4 h0.55L9.03,10.71z" />
-                        <path d="M15.5,12c0-1.33-0.58-2.53-1.5-3.35v6.69C14.92,14.53,15.5,13.33,15.5,12z" />
-                    </svg>
-                    <span class="side-menu__label">{{lang('Announcements', 'Menu')}}</span>
-                </a>
-            </li>
-            @endcan
-            @can('Email Template Access')
-
-            <li class="slide">
-                <a class="side-menu__item" href="{{url('/admin/emailtemplates')}}">
-                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24"
-                        width="24px" fill="#000000">
-                        <path d="M0 0h24v24H0V0z" fill="none" />
-                        <path
-                            d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
-                    </svg>
-                    <span class="side-menu__label">{{lang('Email Templates', 'Menu')}}</span>
-                </a>
-            </li>
-            @endcan
+            
+            
             @can('Reports Access')
 
             <li class="slide">

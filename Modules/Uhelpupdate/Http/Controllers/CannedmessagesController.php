@@ -25,17 +25,7 @@ class CannedmessagesController extends Controller
     public function index()
     {
         $this->authorize('Canned Response Access');
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+        
 
         $cannedmessages = Cannedmessages::latest()->get();
         $data['cannedmessages'] = $cannedmessages;
@@ -50,18 +40,16 @@ class CannedmessagesController extends Controller
     public function create()
     {
         $this->authorize('Canned Response Create');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         return view('uhelpupdate::cannedmessages.create')->with($data);
     }
 
@@ -107,17 +95,6 @@ class CannedmessagesController extends Controller
     public function edit($id)
     {
         $this->authorize('Canned Response Edit');
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $cannedmessages = Cannedmessages::findOrFail($id);
         $data['cannedmessage'] = $cannedmessages;

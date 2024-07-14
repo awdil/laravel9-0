@@ -20,16 +20,15 @@ class GeneralSettingController extends Controller
      */
     public function index()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('user.generalsetting')->with($data);

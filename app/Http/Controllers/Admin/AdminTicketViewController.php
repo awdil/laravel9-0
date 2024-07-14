@@ -22,16 +22,14 @@ class AdminTicketViewController extends Controller
 {
     public function customerprevioustickets($cust_id)
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $users = Customer::find($cust_id);
@@ -58,18 +56,15 @@ class AdminTicketViewController extends Controller
 
     public function selfassignticketview()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         $selfassignedtickets = Ticket::where('selfassignuser_id', auth()->id())->where('status', '!=' ,'Closed')->where('status', '!=' ,'Suspend')->latest('updated_at')->get();
         $data['selfassignedtickets'] = $selfassignedtickets;
 
@@ -101,16 +96,14 @@ class AdminTicketViewController extends Controller
 
     public function myclosedtickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $myclosedbyuser = Ticket::where('closedby_user', auth()->id())->latest('updated_at')->get();
@@ -121,16 +114,14 @@ class AdminTicketViewController extends Controller
 
     public function tickettrashed()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $tickettrashed = Ticket::onlyTrashed()->latest('updated_at')->get();
@@ -333,16 +324,14 @@ class AdminTicketViewController extends Controller
         $tickettrashedview = Ticket::onlyTrashed()->findOrFail($id);
         $data['tickettrashedview'] = $tickettrashedview;
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.assignedtickets.trashedticketview')->with($data);
@@ -555,16 +544,14 @@ class AdminTicketViewController extends Controller
 
     public function mysuspendtickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $mysuspendtickets = Ticket::where('status', 'Suspend')->where('lastreply_mail', auth()->id())->latest('updated_at')->get();
@@ -575,18 +562,15 @@ class AdminTicketViewController extends Controller
 
     public function allactiveinprogresstickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         $allactiveinprogresstickets = Ticket::where('status', 'Inprogress')->get();
         $data['allactiveinprogresstickets'] = $allactiveinprogresstickets;
 
@@ -595,16 +579,14 @@ class AdminTicketViewController extends Controller
 
     public function allactivereopentickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $allactivereopentickets = Ticket::whereIn('status', ['Re-Open'])->get();
@@ -615,16 +597,14 @@ class AdminTicketViewController extends Controller
 
     public function allactiveonholdtickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $allactiveonholdtickets = Ticket::whereIn('status', ['On-Hold'])->get();
@@ -635,16 +615,14 @@ class AdminTicketViewController extends Controller
 
     public function allactiveassignedtickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $allactiveassignedtickets = Ticket::whereIn('status', ['Re-Open','Inprogress','On-Hold'])->leftjoin('ticketassignchildren', 'ticketassignchildren.ticket_id', 'tickets.id')->where(function($r){
@@ -658,16 +636,14 @@ class AdminTicketViewController extends Controller
 
     public function tickethistory($id)
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
 

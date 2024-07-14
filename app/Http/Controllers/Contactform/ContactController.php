@@ -18,19 +18,6 @@ use App\Mail\ContactMail;
 class ContactController extends Controller
 {
     public function contact(){
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
 

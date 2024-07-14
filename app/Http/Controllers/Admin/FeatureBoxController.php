@@ -24,19 +24,6 @@ class FeatureBoxController extends Controller
       $this->authorize('Feature Box Access');
         $feature = FeatureBox::get();
         $basic = Apptitle::first();
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $featureboxes = FeatureBox::latest()->get();
 		    $data['featureboxes'] = $featureboxes;
 

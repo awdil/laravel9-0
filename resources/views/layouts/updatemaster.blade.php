@@ -1,3 +1,12 @@
+<?php
+
+$title = getAppTitle();
+$footertext = getFooterText();
+$seopage = getSeoSetting();
+$pages = getPages();
+$post = $pages;
+
+?>
 <!DOCTYPE html>
 <html>
     <head>

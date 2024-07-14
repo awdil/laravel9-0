@@ -16,17 +16,7 @@ class CustomcssjsController extends Controller
     public function index()
     {
         $this->authorize('Custom JS & CSS Access');
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+        
 
         return view('admin.generalsetting.customcssjs')->with($data);
     }
@@ -49,16 +39,14 @@ class CustomcssjsController extends Controller
 
     public function customchat(){
         $this->authorize('Custom Chat Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.generalsetting.customchat')->with($data);

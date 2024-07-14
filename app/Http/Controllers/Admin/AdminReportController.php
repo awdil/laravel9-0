@@ -31,18 +31,7 @@ class AdminReportController extends Controller
       $users = User::latest('updated_at')->paginate(6);
       $data['users'] = $users;
 
-      $title = Apptitle::first();
-      $data['title'] = $title;
-
-      $footertext = Footertext::first();
-      $data['footertext'] = $footertext;
-
-      $seopage = Seosetting::first();
-      $data['seopage'] = $seopage;
-
-      $post = Pages::all();
-      $data['page'] = $post;
-
+      
       $agentactivec = User::where('status','1')->count();
       $data['agentactivec'] = $agentactivec;
       $agentinactive = User::where('status','0')->count();
@@ -92,25 +81,8 @@ class AdminReportController extends Controller
 
    public function ticketreports()
 	{
-
-
       $users = User::get();
       $data['users'] = $users;
-
-      $title = Apptitle::first();
-      $data['title'] = $title;
-
-      $footertext = Footertext::first();
-      $data['footertext'] = $footertext;
-
-      $seopage = Seosetting::first();
-      $data['seopage'] = $seopage;
-
-      $post = Pages::all();
-      $data['page'] = $post;
-
-
-
       return view('admin.reports.ticketratingreport')->with($data);
   }
 
@@ -122,19 +94,6 @@ class AdminReportController extends Controller
       $employeerating = Ticket::select('tickets.*')->leftJoin('comments','comments.ticket_id','tickets.id')
       ->where('comments.user_id', $users->id)->distinct('comments.ticket_id', 'tickets.id')->get();
       $data['employeeratings'] = $employeerating;
-
-
-      $title = Apptitle::first();
-      $data['title'] = $title;
-
-      $footertext = Footertext::first();
-      $data['footertext'] = $footertext;
-
-      $seopage = Seosetting::first();
-      $data['seopage'] = $seopage;
-
-      $post = Pages::all();
-      $data['page'] = $post;
 
       return view('admin.reports.ratingview')->with($data);
    }

@@ -28,18 +28,7 @@ class AdminSettingController extends Controller
 
     public function sociallogin() {
         $this->authorize('Social Logins Access');
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
+        
         $credentials = SocialAuthSetting::first();
         $data['credentials'] = $credentials;
 
@@ -83,17 +72,14 @@ class AdminSettingController extends Controller
     public function captcha()
     {
         $this->authorize('Captcha Setting Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+        $data['page'] = $pages;
 
         return view('admin.generalsetting.captchasetting')->with($data);
     }
@@ -133,16 +119,14 @@ class AdminSettingController extends Controller
     public function email(){
 
         $this->authorize('Email Setting Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
 
@@ -159,19 +143,15 @@ class AdminSettingController extends Controller
     {
         $this->authorize('Ticket Setting Access');
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
-
         return view('admin.generalsetting.ticketsetting')->with($data);
 
     }
@@ -332,16 +312,14 @@ class AdminSettingController extends Controller
     public function emailtemplates()
     {
         $this->authorize('Email Template Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $emailtemplates = EmailTemplate::all();
@@ -358,16 +336,14 @@ class AdminSettingController extends Controller
     public function emailtemplatesEdit($id)
     {
         $this->authorize('Email Template Edit');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $template = EmailTemplate::find($id);
@@ -573,16 +549,14 @@ class AdminSettingController extends Controller
     public function googleanalytics()
     {
         $this->authorize('Google Analytics Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
 

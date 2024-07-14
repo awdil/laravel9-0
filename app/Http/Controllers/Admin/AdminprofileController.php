@@ -46,18 +46,6 @@ class AdminprofileController extends Controller
         $timezones = Timezone::get();
         $data['timezones'] = $timezones;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         if(Auth::check() && Auth::user()->id){
             $avgrating1 = Employeerating::where('user_id', Auth::id())->where('rating', '1')->count();
             $avgrating2 = Employeerating::where('user_id', Auth::id())->where('rating', '2')->count();
@@ -88,18 +76,6 @@ class AdminprofileController extends Controller
         $this->authorize('Profile Edit');
         $user = User::get();
         $data['users'] = $user;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $country = Countries::all();
         $data['countries'] = $country;
@@ -198,24 +174,7 @@ class AdminprofileController extends Controller
         $this->authorize('Customers Access');
         $customer = Customer::get();
         $data['customers'] = $customer;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
-
-
         return view('admin.customers.index')->with($data)->with('i', (request()->input('page', 1) - 1) * 5);
-
-
     }
 
 
@@ -260,18 +219,6 @@ class AdminprofileController extends Controller
         $this->authorize('Customers Create');
         $user = Customer::get();
         $data['users'] = $user;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $country = Countries::all();
         $data['countries'] = $country;
@@ -346,18 +293,6 @@ class AdminprofileController extends Controller
         $timezones = Timezone::get();
         $data['timezones'] = $timezones;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $customfield = TicketCustomfield::where('cust_id', $id)->get();
         $data['customfield'] = $customfield;
 
@@ -415,19 +350,14 @@ class AdminprofileController extends Controller
 
     public function customerimportindex(){
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footerText = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
+        $data['footertext'] = $footerText;
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
-
+        $data['page'] = $pages;
         return view('admin.customers.customerimport')->with($data);
     }
 

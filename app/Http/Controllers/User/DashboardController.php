@@ -36,18 +36,6 @@ class DashboardController extends Controller
         ->where('status', 'On-Hold')->get();
         $data['onhold'] = $onhold;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $now = now();
         $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();
         $data['announcement'] = $announcement;
@@ -60,18 +48,6 @@ class DashboardController extends Controller
 
 
    public function notify(){
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $notifications = auth()->guard('customer')->user()->notifications()->paginate('10')->groupBy(function($date) {
             return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
@@ -98,19 +74,6 @@ class DashboardController extends Controller
    {
         $notification = auth()->guard('customer')->user()->notifications()->where('id', $id)->firstOrFail();
         $data['notifications'] = $notification;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         return view('user.notification.viewnotification')->with($data);
    }
 
@@ -127,15 +90,6 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
             });
        }
-
-       $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
        $view = view('user.notificationpageinclude',compact('notifications','title', 'footertext', 'seopage'))->render();
        return response()->json(['html'=>$view]);
@@ -162,15 +116,6 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
             });
        }
-
-       $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
        $view = view('user.notificationpageinclude',compact('notifications','title', 'footertext', 'seopage'))->render();
        return response()->json(['html'=>$view]);

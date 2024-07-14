@@ -17,37 +17,32 @@ class GeneralPageController extends Controller
 {
 	public function index(){
 		$this->authorize('Pages Access');
-
-		$title = Apptitle::first();
-		$data['title'] = $title;
-
-		$footertext = Footertext::first();
-		$data['footertext'] = $footertext;
-
-		$seopage = Seosetting::first();
-		$data['seopage'] = $seopage;
-
-		$post = Pages::all();
-		$data['page'] = $post;
-
-
-
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
+        $data['title'] = $title;
+        $data['footertext'] = $footertext;
+        $data['seopage'] = $seopage;
+        $data['page'] = $post;
 		return view('admin.generalpage.index')->with($data);
 	}
 
     public function createpage()
     {
         $this->authorize('Pages Access');
-
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
+        $data['page'] = $post;
         return view('admin.generalpage.createpage')->with($data);
     }
 
@@ -124,17 +119,16 @@ class GeneralPageController extends Controller
     {
         $this->authorize('Pages Edit');
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $page = Pages::find($id);
-        $data['page'] = $page;
+        $data['page'] = $post;
 
         return view('admin.generalpage.editpage')->with($data);
     }

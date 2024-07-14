@@ -17,18 +17,7 @@ class CustomerrorpagesController extends Controller
     {
         
         $this->authorize('404 Error Page Access');
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
+       
         return view('admin.errorpages.error404')->with($data);
     }
 
@@ -55,16 +44,14 @@ class CustomerrorpagesController extends Controller
     public function maintenancepage()
     {
         $this->authorize('Under Maintanance Page Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.errorpages.undermaintenance')->with($data);

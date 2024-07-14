@@ -41,18 +41,6 @@ class CategoriesController extends Controller
             $categories = DB::table('categories')->paginate();
             $data['categories'] = $categories;
 
-            $title = Apptitle::first();
-            $data['title'] = $title;
-
-            $footertext = Footertext::first();
-            $data['footertext'] = $footertext;
-
-            $seopage = Seosetting::first();
-            $data['seopage'] = $seopage;
-
-            $post = Pages::all();
-            $data['page'] = $post;
-
             $categories = Category::get();
             $data['categories'] = $categories;
 
@@ -174,15 +162,6 @@ class CategoriesController extends Controller
         $this->authorize('Category Edit');
         $categories = Category::where('id', $id)->findOrFail();
         $data['categories'] = $categories;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         return view('admin.category.showcategory')-> with($data);
     }
@@ -669,18 +648,6 @@ class CategoriesController extends Controller
     {
         $subcategory = Subcategory::get();
         $data['subcategory'] = $subcategory;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.category.subcategory')->with($data);
     }

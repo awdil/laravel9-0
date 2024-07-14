@@ -61,14 +61,10 @@ class LoginController extends Controller
 
     public function showloginform(){
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
+        
 
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $now = now();
         $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();

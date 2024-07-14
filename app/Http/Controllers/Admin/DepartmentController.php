@@ -19,18 +19,6 @@ class DepartmentController extends Controller
 
         $this->authorize('Department Access');
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $departments = Department::latest()->get();
         $data['departments'] = $departments;
 

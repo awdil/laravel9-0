@@ -1,4 +1,10 @@
-							<!--app header-->
+@php
+    $title = getAppTitle();
+    $footerText = getFooterText();
+    $seopage = getSeoSetting();
+    $pages = getPages();
+@endphp
+<!--app header-->
 							<div class="app-header header header-main">
 								<div class="container-fluid">
 									<div class="d-flex align-items-center justify-content-between">
@@ -61,7 +67,7 @@
 										</nav>
 										
 										<div class="d-flex order-lg-2 my-auto ms-sm-auto dropdown-container align-items-center">
-											<a class="btn btn-outline-light header-buttons text-center" href="{{url('/admin/createticket')}}"><i class="fa fa-paper-plane-o pe-lg-2"></i><span class="d-m-none">{{lang('Create Ticket', 'Menu')}}</span></a>
+											<a class="btn btn-primary header-buttons text-center" href="{{url('/admin/createticket')}}"><i class="fa fa-paper-plane-o pe-lg-2"></i><span class="d-m-none">{{lang('Create Ticket', 'Menu')}}</span></a>
 											<div class="dropdown header-flags ms-1">
 
 												<a href="#" class="text-capitalize dropdown-toggle" data-bs-toggle="dropdown">
@@ -100,7 +106,7 @@
 													</span>
 												</a>
 												<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow animated">
-													<div class="p-3 text-center border-bottom">
+													<div class="p-1 text-center border-bottom">
 														<a href="{{url('/admin/profile')}}" class="text-center user pb-0 font-weight-bold">{{Auth::user()->name}}</a>
 														@if(!empty(Auth::user()->getRoleNames()[0]))
 														<p class="text-center user-semi-title">{{ Auth::user()->getRoleNames()[0]}}</p>

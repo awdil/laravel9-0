@@ -553,68 +553,6 @@
 </div>
 <!-- End Contact us email -->
 
-<!-- Chat GPT Open AI -->
-<div class="col-xl-12 col-lg-12 col-md-12">
-    <div class="card ">
-        <div class="card-header border-0">
-            <h4 class="card-title">{{lang('Chat GPT', 'setting')}}</h4>
-        </div>
-        <div class="switch_section my-0 ps-3">
-            <div class="switch-toggle d-flex d-md-max-block mt-4">
-                <a class="onoffswitch2">
-                    <input type="checkbox" name="enable_gpt" id="enable_gpt" class=" toggle-class onoffswitch2-checkbox enablemenus" value="yes" @if(setting('enable_gpt') == 'on') checked="" @endif>
-                    <label for="enable_gpt" class="toggle-class onoffswitch2-label" ></label>
-                </a>
-                <label class="form-label ps-3 ps-md-max-0">{{lang('Enable Chat GPT', 'setting')}}</label>
-                <small class="text-muted ps-2 ps-md-max-0"><i>({{lang('By enabling this setting, you will be able to use chat gpt to generate text for canned response, email templates, custom notifications, articles and announcements.', 'setting')}})</i></small>
-            </div>
-        </div>
-        <form action="{{ route('settings.chatgpt.store') }}" method="POST">
-            @csrf
-            <div class="card-body pt-2">
-                <div class="form-group d-flex d-md-max-block">
-
-                    <label  class="form-label">{{lang('Enter OpenAI Chat GPT API Secret Key', 'setting')}}</label>
-                    <small class="text-muted ps-2 ps-md-max-0"><i>({{lang('Enter the OpenAI Chat GPT API Secret Key to use Chat GPT in your application.', 'setting')}})</i></small>
-                </div>
-
-                @if(setting('enable_gpt') == 'on')
-                    <div class="col-xl-6">
-                        <input type="text" placeholder="Enter Your API Key Here" name="openai_api" class="form-control @error('openai_api') is-invalid @enderror" value="{{ old('openai_api', setting('openai_api')) }}">
-                        @error('openai_api')
-
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ lang($message) }}</strong>
-                            </span>
-                        @enderror
-
-                    </div>
-                @else
-                    @if(setting('openai_api') != null)
-
-                        <div class="col-xl-6">
-                            <input type="text" placeholder="Enter Your API Key Here" name="openai_api" class="form-control @error('openai_api') is-invalid @enderror" value="{{ old('openai_api', setting('openai_api')) }}" readonly>
-                            @error('openai_api')
-
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ lang($message) }}</strong>
-                                </span>
-                            @enderror
-
-                        </div>
-                    @endif
-                @endif
-
-            </div>
-            <div class="col-md-12 card-footer ">
-                <div class="form-group float-end ">
-                <input type="submit" class="btn btn-secondary" value="{{lang('Save Changes')}}" onclick="this.disabled=true;this.form.submit();">
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- End Chat GPT Open AI -->
 
 <!-- Customer/Guest Delete -->
 <div class="col-xl-12 col-lg-12 col-md-12">

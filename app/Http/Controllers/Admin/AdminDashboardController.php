@@ -44,17 +44,6 @@ class AdminDashboardController extends Controller
     //Super Admin Dashboard
     public function adminDashboard()
     {
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         // Ticket Counting
         $totaltickets = Ticket::count();
@@ -223,18 +212,6 @@ class AdminDashboardController extends Controller
 
         }
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $selfassigncount = Ticket::where('selfassignuser_id',Auth::id())->where('status', '!=' ,'Closed')->where('status', '!=' ,'Suspend')->count();
         $data['selfassigncount'] = $selfassigncount;
 
@@ -373,17 +350,6 @@ class AdminDashboardController extends Controller
         $allactiveoverduetickets = Ticket::whereIn('status', ['Re-Open','Inprogress','On-Hold'])->whereNotNull('overduestatus')->count();
         $data['allactiveoverduetickets'] = $allactiveoverduetickets;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.superadmindashboard.activeticket' )->with($data);
     }
@@ -427,17 +393,6 @@ class AdminDashboardController extends Controller
 
         }
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.userticket.viewticket.activeticket' )->with($data);
 
@@ -450,17 +405,7 @@ class AdminDashboardController extends Controller
         $allclosedtickets = Ticket::where('status', 'Closed')->latest('updated_at')->get();
         $data['allclosedtickets'] = $allclosedtickets;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
 
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.superadmindashboard.closedticket')->with($data);
     }
@@ -478,17 +423,7 @@ class AdminDashboardController extends Controller
 
         $closed = Ticket::where('status', 'Closed')->get();
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+   
 
         $agent = User::count();
         $data['agent'] = $agent;
@@ -532,17 +467,7 @@ class AdminDashboardController extends Controller
 
         $closed = Ticket::where('status', 'Closed')->get();
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+     
 
         $agent = User::count();
         $data['agent'] = $agent;
@@ -576,17 +501,7 @@ class AdminDashboardController extends Controller
         $allonholdtickets = Ticket::where('status','On-Hold')->latest('updated_at')->get();
         $data['allonholdtickets'] = $allonholdtickets;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+  
 
         return view('admin.superadmindashboard.onholdtickets')->with($data);
     }
@@ -629,17 +544,6 @@ class AdminDashboardController extends Controller
 
         }
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.assignedtickets.onholdtickets')->with($data);
     }
@@ -663,17 +567,7 @@ class AdminDashboardController extends Controller
         $alloverduetickets = Ticket::whereIn('overduestatus', ['Overdue'])->latest('updated_at')->get();
         $data['alloverduetickets'] = $alloverduetickets;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+     
 
         return view('admin.superadmindashboard.overdueticket')->with($data);
 
@@ -715,17 +609,7 @@ class AdminDashboardController extends Controller
 
         }
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+    
 
         $tickets = Ticket::whereIn('overduestatus', ['Overdue'])->get();
 
@@ -738,17 +622,7 @@ class AdminDashboardController extends Controller
         $allassignedtickets = Ticket::latest('updated_at')->get();
         $data['allassignedtickets'] = $allassignedtickets;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+       
 
         return view('admin.superadmindashboard.allassignedtickets')->with($data);
     }
@@ -770,17 +644,6 @@ class AdminDashboardController extends Controller
         $recenttickets = Ticket::whereIn('status', ['New'])->latest('updated_at')->get();
         $data['recenttickets'] = $recenttickets;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.superadmindashboard.recenttickets')->with($data);
     }
@@ -826,17 +689,6 @@ class AdminDashboardController extends Controller
 
         }
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         return view('admin.assignedtickets.recenttickets')->with($data);
 
@@ -892,17 +744,7 @@ class AdminDashboardController extends Controller
         $notification = auth()->user()->notifications()->where('id', $id)->firstOrFail();
         $data['notifications'] = $notification;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+    
 
         return view('admin.notification.viewnotification')->with($data);
    }
@@ -921,14 +763,7 @@ class AdminDashboardController extends Controller
             });
        }
 
-       $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
+     
 
        $view = view('admin.notificationpageinclude',compact('notifications','title', 'footertext', 'seopage'))->render();
        return response()->json(['html'=>$view]);
@@ -955,14 +790,6 @@ class AdminDashboardController extends Controller
             });
        }
 
-       $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
        $view = view('admin.notificationpageinclude',compact('notifications','title', 'footertext', 'seopage'))->render();
        return response()->json(['html'=>$view]);
@@ -996,17 +823,7 @@ class AdminDashboardController extends Controller
    {
         $data['suspendedtickets'] = Ticket::where('status', 'Suspend')->latest('updated_at')->get();
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
+     
 
         return view('admin.superadmindashboard.suspendedtickets')->with($data);
    }

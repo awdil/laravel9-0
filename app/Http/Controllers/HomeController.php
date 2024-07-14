@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customfield;
+use App\Models\Ticket\Ticket;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -32,59 +34,90 @@ use App\Models\FaqCategory;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        if (setting('defaultlogin_on') == 'on'){
-            return redirect()->route('auth.login');
+    // public function index()
+    // {
+    //     if (setting('defaultlogin_on') == 'on'){
+    //         return redirect()->route('auth.login');
+    //     }
+    //     $articlecomments = ArticleComment::latest('created_at')->get();
+    //     $data['articlecomments'] = $articlecomments;
+
+    //     $categorys = Category::with('articles')->paginate();
+    //     $data['categorys'] = $categorys;
+
+    //     $faqcategory = FaqCategory::where('status', '1')->latest()->get();
+    //     $data['faqcategorys'] = $faqcategory;
+
+    //     $article = Article::where('status', 'published')->latest('created_at')->paginate(5);
+    //     $data['article'] = $article;
+
+    //     $populararticle = Article::where('status', 'published')->paginate(5)->sortByDesc('views');
+    //     $data['populararticle'] = $populararticle;
+
+    //     $testimonial = Testimonial::get();
+    //     $data['testimonial'] = $testimonial;
+
+    //     $call = callaction::first();
+    //     $data['call'] = $call;
+
+    //     $feature = FeatureBox::get();
+    //     $data['feature'] = $feature;
+
+    //     $title = Apptitle::first();
+    //     $data['title'] = $title;
+
+    //     $footertext = Footertext::first();
+    //     $data['footertext'] = $footertext;
+
+    //     $seopage = Seosetting::first();
+    //     $data['seopage'] = $seopage;
+
+    //     $post = Pages::all();
+    //     $data['page'] = $post;
+
+    //     $socialAuthSettings = SocialAuthSetting::first();
+    //     $data['socialAuthSettings'] = $socialAuthSettings;
+
+    //     $now = now();
+    //     $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();
+    //     $data['announcement'] = $announcement;
+
+    //     $announcements = Announcement::whereNotNull('announcementday')->get();
+    //     $data['announcements'] = $announcements;
+
+    //     return view ('home')-> with($data);
+
+
+    // }
+    public function index(){
+        if (setting('GUEST_TICKET') == 'yes') {
+            $tickets = Ticket::paginate(10);
+            $categories = Category::whereIn('display', ['ticket', 'both'])->where('status', '1')
+                ->get();
+            $data['categories'] = $categories;
+
+            $socialAuthSettings = SocialAuthSetting::first();
+            $data['socialAuthSettings'] = $socialAuthSettings;
+
+            $recentarticles = Article::latest()->paginate(5);
+            $data['recentarticles'] = $recentarticles;
+
+            $populararticle = Article::orderBy('views', 'desc')->latest()->paginate(5);
+            $data['populararticles'] = $populararticle;
+
+            $customfields = Customfield::whereIn('displaytypes', ['both', 'createticket'])->where('status','1')->get();
+            $data['customfields'] = $customfields;
+
+            if (setting('GUEST_TICKET_OTP') == 'no') {
+
+                return view('guestticket.index', compact('tickets', 'categories'))->with($data);
+            } else {
+
+                return view('guestticket.guestticketnootp', compact('tickets', 'categories'))->with($data);
+            }
+        }else{
+            return redirect()->back()->with('error','You cannot have access for this guest ticket create.');
         }
-        $articlecomments = ArticleComment::latest('created_at')->get();
-        $data['articlecomments'] = $articlecomments;
-
-        $categorys = Category::with('articles')->paginate();
-        $data['categorys'] = $categorys;
-
-        $faqcategory = FaqCategory::where('status', '1')->latest()->get();
-        $data['faqcategorys'] = $faqcategory;
-
-        $article = Article::where('status', 'published')->latest('created_at')->paginate(5);
-        $data['article'] = $article;
-
-        $populararticle = Article::where('status', 'published')->paginate(5)->sortByDesc('views');
-        $data['populararticle'] = $populararticle;
-
-        $testimonial = Testimonial::get();
-        $data['testimonial'] = $testimonial;
-
-        $call = callaction::first();
-        $data['call'] = $call;
-
-        $feature = FeatureBox::get();
-        $data['feature'] = $feature;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
-        $socialAuthSettings = SocialAuthSetting::first();
-        $data['socialAuthSettings'] = $socialAuthSettings;
-
-        $now = now();
-        $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();
-        $data['announcement'] = $announcement;
-
-        $announcements = Announcement::whereNotNull('announcementday')->get();
-        $data['announcements'] = $announcements;
-
-        return view ('home')-> with($data);
-
 
     }
 
@@ -150,18 +183,6 @@ class HomeController extends Controller
 
         $populararticle = Article::orderBy('views','desc')->latest()->paginate(5);
         $data['populararticles'] = $populararticle;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
@@ -335,18 +356,6 @@ class HomeController extends Controller
             $faqcats = FaqCategory::where('status', '1')->with('faqdetails')->get();
             $data['faqcats'] = $faqcats;
 
-            $title = Apptitle::first();
-            $data['title'] = $title;
-
-            $footertext = Footertext::first();
-            $data['footertext'] = $footertext;
-
-            $seopage = Seosetting::first();
-            $data['seopage'] = $seopage;
-
-            $post = Pages::all();
-            $data['page'] = $post;
-
             $socialAuthSettings = SocialAuthSetting::first();
             $data['socialAuthSettings'] = $socialAuthSettings;
 
@@ -356,14 +365,6 @@ class HomeController extends Controller
 
         public function frontshow($pageslug)
         {
-            $title = Apptitle::first();
-            $data['title'] = $title;
-
-            $footertext = Footertext::first();
-            $data['footertext'] = $footertext;
-
-            $seopage = Seosetting::first();
-            $data['seopage'] = $seopage;
 
             $page = Pages::where('pageslug', $pageslug)->first();
             $data['pages'] = $page;
@@ -384,17 +385,6 @@ class HomeController extends Controller
 
         public function faqcategorypage($id)
         {
-            $title = Apptitle::first();
-            $data['title'] = $title;
-
-            $footertext = Footertext::first();
-            $data['footertext'] = $footertext;
-
-            $seopage = Seosetting::first();
-            $data['seopage'] = $seopage;
-
-            $post = Pages::all();
-            $data['page'] = $post;
 
             $socialAuthSettings = SocialAuthSetting::first();
             $data['socialAuthSettings'] = $socialAuthSettings;

@@ -137,5 +137,4 @@ class Ticket extends Model implements HasMedia
         return $this->hasMany(tickethistory::class, 'ticket_id');
     }
 
-
 }

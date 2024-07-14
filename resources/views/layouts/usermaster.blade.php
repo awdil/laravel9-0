@@ -45,7 +45,7 @@
 					</div>
 				</div>
 
-				@include('includes.footer')
+				
 		@include('includes.scripts')
 
 		@guest

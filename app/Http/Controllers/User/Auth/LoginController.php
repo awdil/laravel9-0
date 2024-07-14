@@ -37,10 +37,6 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
 
@@ -50,9 +46,6 @@ class LoginController extends Controller
 
         $announcements = Announcement::whereNotNull('announcementday')->get();
         $data['announcements'] = $announcements;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         if(setting('only_social_logins') == 'on'){
             return view('user.auth.onlysociallogin')->with($data);
@@ -64,14 +57,9 @@ class LoginController extends Controller
 
     public function emailverification(Request $request)
     {
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
+    
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $now = now();
         $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();

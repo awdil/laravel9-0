@@ -45,18 +45,6 @@ class TicketController extends Controller
             $categories = Category::whereIn('display', ['ticket', 'both'])->where('status', '1')
                 ->get();
 
-            $title = Apptitle::first();
-            $data['title'] = $title;
-
-            $footertext = Footertext::first();
-            $data['footertext'] = $footertext;
-
-            $seopage = Seosetting::first();
-            $data['seopage'] = $seopage;
-
-            $post = Pages::all();
-            $data['page'] = $post;
-
             $populararticle = Article::orderBy('views', 'desc')->latest()->paginate(5);
             $data['populararticles'] = $populararticle;
 
@@ -377,18 +365,6 @@ class TicketController extends Controller
     public function activeticket()
     {
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $activetickets = Ticket::where('cust_id', Auth::guard('customer')->user()->id)->whereIn('status', ['New', 'Re-Open', 'Inprogress'])->latest('updated_at')->get();
         $data['activetickets'] = $activetickets;
 
@@ -398,18 +374,6 @@ class TicketController extends Controller
     public function closedticket()
     {
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $closedtickets = Ticket::where('cust_id', Auth::guard('customer')->user()->id)->where('status', 'Closed')->latest('updated_at')->get();
         $data['closedtickets'] = $closedtickets;
 
@@ -418,19 +382,6 @@ class TicketController extends Controller
 
     public function onholdticket()
     {
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $onholdtickets = Ticket::where('cust_id', Auth::guard('customer')->user()->id)->where('status', 'On-Hold')->latest('updated_at')->get();
         $data['onholdtickets'] = $onholdtickets;
 
@@ -448,18 +399,6 @@ class TicketController extends Controller
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
         $comments = $ticket->comments()->with('ticket')->paginate(5);
         $category = $ticket->category;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         // customer restrict to reply for the ticket.
         $commentsNull = $ticket->comments()->get();
@@ -1152,16 +1091,15 @@ class TicketController extends Controller
             return redirect('customer/')->with("error", lang('Your rating has already been submitted.'));
         }
         $ticket = Ticket::where('id', $ratingticket->ticket_id)->first();
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $rating = $ticket->comments()->whereNotNull('user_id')->get();
@@ -1286,17 +1224,6 @@ class TicketController extends Controller
     // Print Ticket
     public function pdfmake($id)
     {
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $page = Pages::all();
-        $data['page'] = $page;
 
         $showprintticket = Ticket::findOrFail($id);
         $data['showprintticket'] = $showprintticket;

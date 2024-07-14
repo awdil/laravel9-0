@@ -1,3 +1,12 @@
+<?php
+
+$title = getAppTitle();
+$footertext = getFooterText();
+$seopage = getSeoSetting();
+$pages = getPages();
+$post = $pages;
+
+?>
 <!-- Header-->
 <div class="landingmain-header header">
 	<div class="horizontal-main landing-header clearfix sticky">
@@ -82,7 +91,7 @@
 										</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-										<div class="p-3 text-center border-bottom">
+										<div class="p-1 text-center border-bottom">
 											<a href="#"
 												class="text-center user pb-0 font-weight-bold">{{Auth::guard('customer')->user()->username}}</a>
 											<p class="text-center user-semi-title">
@@ -122,44 +131,7 @@
 
 				<nav class="horizontalMenu clearfix order-lg-2 my-auto ms-auto">
 					<ul class="horizontalMenu-list custom-ul">
-						@if(setting('defaultlogin_on') == 'off')
-
-						<li>
-							<a href="{{url('/')}}">{{lang('Home', 'Menu')}}</a>
-						</li>
-
-						@endif
-						@if (setting('KNOWLEDGE_ENABLE') == 'yes')
-
-						<li>
-							<a href="{{url('/knowledge')}}" class="sub-icon">{{lang('Knowledge', 'Menu')}} </a>
-						</li>
-						@endif
-						@if (setting('FAQ_ENABLE') == 'yes')
-
-						<li>
-							<a href="{{url('/faq')}}" class="sub-icon">{{lang('FAQ’s', 'Menu')}}</a>
-						</li>
-						@endif
-						@if (setting('CONTACT_ENABLE') == 'yes')
-
-						<li>
-							<a href="{{url('/contact-us')}}">{{lang('Contact Us', 'Menu')}}</a>
-						</li>
-						@endif
-
-						@foreach ($page as $pages)
-						@if($pages->status == '1')
-						@if($pages->viewonpages == 'both' || $pages->viewonpages == 'header')
-
-						<li>
-							<a href="{{url('page/' .$pages->pageslug)}}">{{$pages->pagename}}</a>
-						</li>
-
-						@endif
-						@endif
-						@endforeach
-
+						
 						@if (Auth::guard('customer')->check())
 
 						@include('includes.user.notifynotication')
@@ -197,7 +169,7 @@
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-								<div class="p-3 text-center border-bottom">
+								<div class="p-1 text-center border-bottom">
 									<a href="#"
 										class="text-center user pb-0 font-weight-bold">{{Auth::guard('customer')->user()->username}}</a>
 									<p class="text-center user-semi-title">{{Auth::guard('customer')->user()->email}}

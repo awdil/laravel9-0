@@ -11,7 +11,7 @@
 		@php
 			use App\Models\Apptitle;
 
-			$title = Apptitle::first();
+			$title = getAppTitle();
 		@endphp
 
 		@if ($title->image4 == null)

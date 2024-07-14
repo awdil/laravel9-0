@@ -15,13 +15,6 @@ use App\Models\Announcement;
 class ResetpasswordController extends Controller
 {
     public function resetpassword($token){
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
         $user = DB::table('password_resets')->where('token', $token)->first();
         $data['user'] = $user;
 

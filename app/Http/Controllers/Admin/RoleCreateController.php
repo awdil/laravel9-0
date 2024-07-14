@@ -24,16 +24,15 @@ class RoleCreateController extends Controller
         $permission = Permission::get();
         $data['permission'] = $permission;
         
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-    
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-    
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-    
-        $post = Pages::all();
         $data['page'] = $post;
 
         $roles = Role::all();
@@ -80,19 +79,6 @@ class RoleCreateController extends Controller
             return $group->permissionsgroupname;
         });
         $data['permission'] = $permission;
-
-            
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
     
         return view('admin.rolecreate.create')->with($data);
 
@@ -138,18 +124,16 @@ class RoleCreateController extends Controller
             return $group->permissionsgroupname;
         });
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         return view('admin.rolecreate.edit', compact('role', 'permissions'))->with($data);
     }
 

@@ -35,13 +35,6 @@ class RegisterController extends Controller
     use RegistersUsers, SocialAuthSettings;
 
     public function showRegistrationForm(){
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
 

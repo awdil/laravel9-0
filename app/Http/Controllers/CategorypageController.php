@@ -15,11 +15,6 @@ class CategorypageController extends Controller
 {
     public function index($id){
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
 
         $categoryss = Category::where('categoryslug', $id)->first();
         if($categoryss == null)

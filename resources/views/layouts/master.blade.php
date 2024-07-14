@@ -1,3 +1,12 @@
+<?php
+
+$title = getAppTitle();
+$footertext = getFooterText();
+$seopage = getSeoSetting();
+$pages = getPages();
+$post = $pages;
+
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
 	<head>

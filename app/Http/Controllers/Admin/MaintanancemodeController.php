@@ -18,19 +18,15 @@ class MaintanancemodeController extends Controller
 
         $this->authorize('Maintenance Mode Access');
 
-        $basic = Apptitle::first();
-        $data['basic'] = $basic;
-
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.maintanancemode.index')->with($data);

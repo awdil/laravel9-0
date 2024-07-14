@@ -29,7 +29,7 @@
 								use App\Models\Apptitle;
 								use Carbon\Carbon;;
 
-								$title = Apptitle::first();
+								$title = getAppTitle();
         						$data['title'] = $title;
 
 								if($title->image !== null){

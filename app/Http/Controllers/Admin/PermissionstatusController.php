@@ -21,19 +21,6 @@ class PermissionstatusController extends Controller
         $data['role'] = $role;
         $permission = Permission::get();
         $data['permission'] = $permission;
-        
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
 
         return view ('admin.roles.index')->with($data)->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -49,19 +36,7 @@ class PermissionstatusController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
         $data['rolePermissions'] = $rolePermissions;
-            
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-    
+        
         return view('admin.roles.edit',compact('role','permission','rolePermissions','title','footertext'))->with($data);
     }
 

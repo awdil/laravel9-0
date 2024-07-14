@@ -44,17 +44,6 @@ class GuestticketController extends Controller
                 ->get();
             $data['categories'] = $categories;
 
-            $title = Apptitle::first();
-            $data['title'] = $title;
-
-            $seopage = Seosetting::first();
-            $data['seopage'] = $seopage;
-
-            $post = Pages::all();
-            $data['page'] = $post;
-
-            $footertext = Footertext::first();
-            $data['footertext'] = $footertext;
 
             $socialAuthSettings = SocialAuthSetting::first();
             $data['socialAuthSettings'] = $socialAuthSettings;
@@ -772,18 +761,6 @@ class GuestticketController extends Controller
         $ticket = Ticket::find($id);
         $data['ticket'] = $ticket;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
 
@@ -817,18 +794,6 @@ class GuestticketController extends Controller
         $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
         $comments = $ticket->comments()->paginate(5);
         $category = $ticket->category;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
@@ -1522,17 +1487,6 @@ class GuestticketController extends Controller
         }
         $ticket = Ticket::where('id', $ratingticket->ticket_id)->first();
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;
@@ -2057,15 +2011,6 @@ class GuestticketController extends Controller
         $ticket = Ticket::find($id);
         $data['ticket'] = $ticket;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $footertext = Footertext::first();
         $data['footertext'] = $footertext;
 
@@ -2168,17 +2113,6 @@ class GuestticketController extends Controller
         $comments = $ticket->comments()->paginate(5);
         $category = $ticket->category;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $socialAuthSettings = SocialAuthSetting::first();
         $data['socialAuthSettings'] = $socialAuthSettings;

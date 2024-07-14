@@ -18,14 +18,15 @@ class BussinesshourController extends Controller
         $basic = Apptitle::first();
         $data['basic'] = $basic;
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
         $bussiness1 = Bussinesshours::where('no_id', '1')->first();
         $data['bussiness1'] = $bussiness1;

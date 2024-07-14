@@ -30,14 +30,16 @@ class MailboxController extends Controller
 
         $this->authorize('Custom Notifications Access');
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
         $customnotify = Sendmail::latest()->get();
         $data['customnotify'] = $customnotify;
@@ -48,14 +50,16 @@ class MailboxController extends Controller
     public function customercompose()
     {
         $this->authorize('Custom Notifications Customer');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
         $user = Customer::where('userType','Customer')->get();
         $data['users'] = $user;
@@ -119,14 +123,16 @@ class MailboxController extends Controller
     public function employeecompose()
     {
         $this->authorize('Custom Notifications Employee');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
         $user = User::get();
         $data['users'] = $user;
@@ -193,15 +199,6 @@ class MailboxController extends Controller
 
     public function mailsent()
     {
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $sendmails = Sendmail::latest()->get();
         $data['sendmails'] = $sendmails;

@@ -20,18 +20,6 @@ class AdminAnnouncementController extends Controller
     {
         $this->authorize('Announcements Access');
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $announcements = Announcement::latest()->get();
         $data['announcements'] = $announcements;
 
@@ -50,14 +38,6 @@ class AdminAnnouncementController extends Controller
 
     public function create(Request $request)
     {
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $normalDay = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
         $data['normalDay'] = $normalDay;
@@ -115,14 +95,6 @@ class AdminAnnouncementController extends Controller
 
     public function edit($id)
     {
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $announcementData = Announcement::findOrFail($id);
         $data['announcementData'] = $announcementData;

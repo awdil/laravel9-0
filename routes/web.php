@@ -45,6 +45,7 @@ Route::middleware(ProtectAgainstSpam::class)->group(function() {
 
 				Route::get('/', 'AdminDashboardController@index')->name('admin.dashboard');
 				Route::get('/activeticket', 'AdminDashboardController@activeticket')->name('admin.activeticket');
+				Route::get('/all-tickets', 'AdminTicketController@allTickets')->name('admin.all_tickets');
 				Route::get('/closedticket', 'AdminDashboardController@closedticket')->name('admin.closedticket');
 				Route::group(['prefix' => 'activeticket', 'as' => 'admin.activeticket.'], function(){
 					Route::get('/inprogress', 'AdminTicketViewController@allactiveinprogresstickets')->name('allactiveinprogresstickets');

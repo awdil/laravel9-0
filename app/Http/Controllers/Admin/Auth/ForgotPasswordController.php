@@ -34,9 +34,6 @@ class ForgotPasswordController extends Controller
         $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
         $now = now();
         $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();
         $data['announcement'] = $announcement;

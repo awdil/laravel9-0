@@ -24,16 +24,6 @@ class TestimonialController extends Controller
         $data['testimonials'] = $testimonials;
 
 		$basic = Apptitle::first();
-
-		$title = Apptitle::first();
-		$data['title'] = $title;
-
-		$footertext = Footertext::first();
-		$data['footertext'] = $footertext;
-
-		$seopage = Seosetting::first();
-		$data['seopage'] = $seopage;
-
 		$post = Pages::all();
 		$data['page'] = $post;
 

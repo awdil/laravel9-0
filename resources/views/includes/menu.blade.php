@@ -79,7 +79,7 @@
 										</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-										<div class="p-3 text-center border-bottom">
+										<div class="p-1 text-center border-bottom">
 											<a href="#"
 												class="text-center user pb-0 font-weight-bold">{{Auth::guard('customer')->user()->username}}</a>
 											<p class="text-center user-semi-title">
@@ -197,7 +197,7 @@
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-								<div class="p-3 text-center border-bottom">
+								<div class="p-1 text-center border-bottom">
 									<a href="#"
 										class="text-center user pb-0 font-weight-bold">{{Auth::guard('customer')->user()->username}}</a>
 									<p class="text-center user-semi-title">{{Auth::guard('customer')->user()->email}}

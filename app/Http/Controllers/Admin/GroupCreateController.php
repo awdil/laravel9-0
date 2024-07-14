@@ -24,18 +24,16 @@ class GroupCreateController extends Controller
     {
 
         $this->authorize('Groups List Access');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         $groups = Groups::get();
         $data['groups'] = $groups;
 
@@ -45,22 +43,18 @@ class GroupCreateController extends Controller
     public function create()
     {
         $this->authorize('Groups Create');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         $users = User::get();
         $data['users'] = $users;
-
-
         return view('admin.groups.create')->with($data);
     }
 
@@ -94,18 +88,16 @@ class GroupCreateController extends Controller
     public function show($id)
     {
         $this->authorize('Groups Edit');
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
-
         $grop = Groups::find($id);
         $data['group'] = $grop;
 

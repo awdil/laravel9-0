@@ -15,21 +15,15 @@ class FaqCategoryController extends Controller
 {
     public function index()
     {
-
-
-        $basic = Apptitle::first();
-        $data['basic'] = $basic;
-
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $faqcategory = FaqCategory::latest()->get();

@@ -17,13 +17,11 @@ class CaptchaipblockController extends Controller
         $ip = IPLIST::where('ip', request()->getClientIp())->first();
         if($ip != null){
             if($ip->types == 'Locked'){
-                $title = Apptitle::first();
+                $title = getAppTitle();
+                $seopage = getSeoSetting();
                 $data['title'] = $title;
-
                 $socialAuthSettings = SocialAuthSetting::first();
                 $data['socialAuthSettings'] = $socialAuthSettings;
-
-                $seopage = Seosetting::first();
                 $data['seopage'] = $seopage;
                 $cookie = Cookie::make('name', 'value', 120);
                 return view('ipblock')->with($data);

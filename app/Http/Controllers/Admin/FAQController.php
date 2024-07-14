@@ -24,19 +24,15 @@ class FAQController extends Controller
         $faq = FAQ::get();
         $data['faqs'] = $faq;
 
-        $basic = Apptitle::first();
-        $data['basic'] = $basic;
-
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.faq.index')->with($data)->with('i', (request()->input('page', 1) - 1) * 5);
@@ -45,21 +41,6 @@ class FAQController extends Controller
 
     public function faqcreate()
     {
-        $basic = Apptitle::first();
-        $data['basic'] = $basic;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
         $faqcategory = FaqCategory::latest()->get();
         $data['faqcategorys'] = $faqcategory;
 
@@ -91,21 +72,6 @@ class FAQController extends Controller
     public function show($id)
     {
         $this->authorize('FAQs Edit');
-
-        $basic = Apptitle::first();
-        $data['basic'] = $basic;
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
 
         $faq = FAQ::find($id);
         $data['faq'] = $faq;

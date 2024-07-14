@@ -15,15 +15,6 @@ class IpblockController extends Controller
 {
     public function index(){
 
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
         $iplists = IPLIST::latest()->get();
         $data['iplists'] = $iplists;
 

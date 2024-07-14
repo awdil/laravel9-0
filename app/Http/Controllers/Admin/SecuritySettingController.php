@@ -15,16 +15,6 @@ class SecuritySettingController extends Controller
 {
     public function index()
     {
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
         $country = Countries::all();
         $data['countries'] = $country;
 
@@ -135,15 +125,6 @@ class SecuritySettingController extends Controller
 
     public function emailtoticket()
     {
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $country = Countries::all();
         $data['countries'] = $country;

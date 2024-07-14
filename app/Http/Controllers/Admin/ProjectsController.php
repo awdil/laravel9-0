@@ -27,21 +27,7 @@ class ProjectsController extends Controller
 
         $projectss = Projects::latest()->get();
         $data['projectss'] = $projectss;
-
-        $basic = Apptitle::first();
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
-        $post = Pages::all();
-        $data['page'] = $post;
-
+        
         $projects = Projects::all();
         $data['project'] = $projects;
 
@@ -166,16 +152,15 @@ class ProjectsController extends Controller
 
     public function projetimport(){
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.projects.projectimport')->with($data);
@@ -201,15 +186,6 @@ class ProjectsController extends Controller
     }
 
     public function notificationpage(){
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $notifications = auth()->user()->notifications()->paginate('10')->groupBy(function($date) {
             return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');

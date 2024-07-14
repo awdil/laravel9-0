@@ -18,15 +18,7 @@ class LanguagesController extends Controller
     public function index()
     {
         $this->authorize('Languages Access');
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
-
+    
         $languages = Languages::withCount(['translates' => function ($query) {
             $query->where('value', null);
         }])->get();
@@ -39,16 +31,16 @@ class LanguagesController extends Controller
     public function create()
     {
         $this->authorize('Languages Create');
-
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
+        $data['page'] = $post;
 
         return view('admin.languagues.create')->with($data);
     }
@@ -57,15 +49,6 @@ class LanguagesController extends Controller
     {
 
         $this->authorize('Languages Edit');
-
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $footertext = Footertext::first();
-        $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $language = Languages::findOrFail($lang);
         $data['language'] = $language;
@@ -209,15 +192,16 @@ class LanguagesController extends Controller
         }
         $translates_count = Translate::where('lang_code', $language->languagecode)->where('value', null)->count();
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
+        $data['page'] = $post;
 
         return view('admin.languagues.translate', [
             'active' => $active,

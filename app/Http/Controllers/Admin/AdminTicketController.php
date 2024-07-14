@@ -50,16 +50,14 @@ class AdminTicketController extends Controller
         $tickets = Ticket::paginate(10);
         $categories = Category::all();
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         return view('admin.viewticket.showticket', compact('tickets', 'categories', 'title'))->with($data);
@@ -83,16 +81,14 @@ class AdminTicketController extends Controller
 
         $category = $ticket->category;
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $cannedmessage = Cannedmessages::tickedetails($ticket_id);
@@ -726,16 +722,14 @@ class AdminTicketController extends Controller
     {
 
         $this->authorize('Ticket Create');
-            $title = Apptitle::first();
+            $title = getAppTitle();
+            $footertext = getFooterText();
+            $seopage = getSeoSetting();
+            $pages = getPages();
+            $post = $pages;
             $data['title'] = $title;
-
-            $footertext = Footertext::first();
             $data['footertext'] = $footertext;
-
-            $seopage = Seosetting::first();
             $data['seopage'] = $seopage;
-
-            $post = Pages::all();
             $data['page'] = $post;
 
             $categories = Category::whereIn('display',['ticket', 'both'])->where('status', '1')->get();
@@ -1468,16 +1462,14 @@ class AdminTicketController extends Controller
         $comments = $ticket->comments;
         $category = $ticket->category;
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
 
@@ -1625,31 +1617,18 @@ class AdminTicketController extends Controller
         return response()->json(['priority' => $priorityname,'success' => lang('Updated successfully', 'alerts')], 200);
     }
 
-    public function alltickets()
-    {
-
-        if(Auth::user()->dashboard == 'Admin'){
-            return $this->adminalltickets();
-        }
-        if(Auth::user()->dashboard == 'Employee' || Auth::user()->dashboard == null){
-            return $this->employeealltickets();
-        }
-
-
-    }
+    
 
     public function adminalltickets()
     {
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $alltickets = Ticket::latest('updated_at')->get();
@@ -1665,16 +1644,14 @@ class AdminTicketController extends Controller
     public function employeealltickets()
     {
 
-        $title = Apptitle::first();
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
         $data['title'] = $title;
-
-        $footertext = Footertext::first();
         $data['footertext'] = $footertext;
-
-        $seopage = Seosetting::first();
         $data['seopage'] = $seopage;
-
-        $post = Pages::all();
         $data['page'] = $post;
 
         $agent = User::count();
@@ -1724,5 +1701,97 @@ class AdminTicketController extends Controller
     {
         return "Plant: {$plantName} | Categories: {$categoryNames}";
     }
-    // Method to get category names by IDs
+    
+    public function allTickets0(Request $request){
+       
+        $allactivetickets = Ticket::whereIn('status', ['Re-Open','Inprogress','On-Hold'])->latest('updated_at')->get();
+        $data['allactivetickets'] = $allactivetickets;
+
+        $allactiveinprogresstickets = Ticket::where('status', 'Inprogress')->count();
+        $data['allactiveinprogresstickets'] = $allactiveinprogresstickets;
+
+        $allactivereopentickets = Ticket::whereIn('status', ['Re-Open'])->count();
+        $data['allactivereopentickets'] = $allactivereopentickets;
+
+        $allactiveonholdtickets = Ticket::whereIn('status', ['On-Hold'])->count();
+        $data['allactiveonholdtickets'] = $allactiveonholdtickets;
+
+        $allactiveassignedtickets = Ticket::whereIn('status', ['Re-Open','Inprogress','On-Hold'])->where(function($r){
+            $r->whereNotNull('myassignuser_id')
+            ->orWhereNotNull('selfassignuser_id');
+        })->count();
+        $data['allactiveassignedtickets'] = $allactiveassignedtickets;
+
+        $allactiveoverduetickets = Ticket::whereIn('status', ['Re-Open','Inprogress','On-Hold'])->whereNotNull('overduestatus')->count();
+        $data['allactiveoverduetickets'] = $allactiveoverduetickets;
+
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['title'] = $title;
+        $data['footertext'] = $footertext;
+        $data['seopage'] = $seopage;
+        $data['page'] = $post;
+        return view('admin.superadmindashboard.allticketsindex' )->with($data);
+    }
+
+    public function allTickets(Request $request)
+    {
+        $query = Ticket::with(['ticketnote', 'category', 'cust', 'selfassign', 'ticketassignmutliples']);
+
+        // Filtering by status
+        if ($request->has('status') && $request->status != 'all' && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        // Filtering by plant
+        if ($request->has('plant') && $request->plant != 'all' && $request->plant != '') {
+            $query->where('plant_id', $request->plant);
+        }
+
+        // Filtering by priority
+        if ($request->has('priority') && $request->priority != 'all' && $request->priority != '') {
+            $query->where('priority', $request->priority);
+        }
+
+        // Filtering by category
+        if ($request->has('category') && $request->category != 'all' && $request->category != '') {
+            $query->whereJsonContains('categories', $request->category);
+        }
+
+        // Filtering by user
+        if ($request->has('user') && $request->user != 'all' && $request->user != '') {
+            $query->where('user_id', $request->user);
+        }
+
+        // Filtering by date range
+        if ($request->has('startDate') && $request->has('endDate') && $request->startDate != '' && $request->endDate != '') {
+            $startDate = Carbon::createFromFormat('Y-m-d', $request->startDate)->toDateString();
+            $endDate = Carbon::createFromFormat('Y-m-d', $request->endDate)->toDateString();
+            $query->whereBetween('updated_at', [$startDate, $endDate]);
+        }
+
+        // Searching by text
+        if ($request->has('searchText') && $request->searchText != '') {
+            $searchText = $request->searchText;
+            $query->where(function ($q) use ($searchText) {
+                $q->where('title', 'like', '%' . $searchText . '%')
+                ->orWhere('message', 'like', '%' . $searchText . '%')
+                ->orWhere('subject', 'like', '%' . $searchText . '%')
+                ->orWhere('ticket_id', 'like', '%' . $searchText . '%')
+                ->orWhere('cust_id', 'like', '%' . $searchText . '%');
+            });
+        }
+
+        // Get the filtered tickets
+        $tickets = $query->latest('updated_at')->get();
+
+        // Pass data to the view
+        return view('admin.superadmindashboard.allticketsindex', compact('tickets'));
+    }
+
+
+
 }

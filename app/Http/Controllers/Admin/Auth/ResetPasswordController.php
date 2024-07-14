@@ -37,11 +37,6 @@ class ResetPasswordController extends Controller
 
 
     public function showResetForm(Request $request, $token){
-        $title = Apptitle::first();
-        $data['title'] = $title;
-
-        $seopage = Seosetting::first();
-        $data['seopage'] = $seopage;
 
         $now = now();
         $announcement = announcement::whereDate('enddate', '>=', $now->toDateString())->whereDate('startdate', '<=', $now->toDateString())->get();

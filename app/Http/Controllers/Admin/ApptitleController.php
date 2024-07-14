@@ -18,17 +18,15 @@ class ApptitleController extends Controller
 		$this->authorize('General Setting Access');
 		$basic = Apptitle::first();
 
-		$title = Apptitle::first();
-		$data['title'] = $title;
-
-		$footertext = Footertext::first();
-		$data['footertext'] = $footertext;
-
-		$seopage = Seosetting::first();
-		$data['seopage'] = $seopage;
-
-		$post = Pages::all();
-		$data['page'] = $post;
+		$title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['title'] = $title;
+        $data['footertext'] = $footertext;
+        $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
 		$timezones = Timezone::get();
         $data['timezones'] = $timezones;
@@ -173,17 +171,15 @@ class ApptitleController extends Controller
 		$this->authorize('Banner Access');
 		$basic = Apptitle::first();
 
-		$title = Apptitle::first();
-		$data['title'] = $title;
-
-		$footertext = Footertext::first();
-		$data['footertext'] = $footertext;
-
-		$seopage = Seosetting::first();
-		$data['seopage'] = $seopage;
-
-		$post = Pages::all();
-		$data['page'] = $post;
+		$title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['title'] = $title;
+        $data['footertext'] = $footertext;
+        $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
 
 		return view('admin.generalsetting.bannerpage', compact('basic','title','footertext'))->with($data);
@@ -218,17 +214,15 @@ class ApptitleController extends Controller
 	public function footer()
 	{
 
-		$title = Apptitle::first();
-		$data['title'] = $title;
-
-		$footertext = Footertext::first();
-		$data['footertext'] = $footertext;
-
-		$seopage = Seosetting::first();
-		$data['seopage'] = $seopage;
-
-		$post = Pages::all();
-		$data['page'] = $post;
+		$title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['title'] = $title;
+        $data['footertext'] = $footertext;
+        $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
 		return view('admin.footer.index')->with($data);
 	}
