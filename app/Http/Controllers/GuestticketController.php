@@ -369,33 +369,24 @@ class GuestticketController extends Controller
             session()->put('guestdetailssession', $request->session()->get('guestdetailssession'));
             if (setting('CAPTCHATYPE') == 'off') {
                 $this->validate($request, [
-                    'subject' => 'required|max:255',
+                    'plant_id' => 'required|string',
                     'category' => 'required',
                     'message' => 'required',
-                    'email' => 'required|max:255|indisposable|email',
-                    'agree_terms' =>  'required|in:agreed',
-
                 ]);
             } else {
                 if (setting('CAPTCHATYPE') == 'manual') {
                     if (setting('RECAPTCH_ENABLE_GUEST') == 'yes') {
                         $request->validate([
-                            'subject' => 'required|max:255',
+                            'plant_id' => 'required|string',
                             'category' => 'required',
                             'message' => 'required',
-                            'email' => 'required|max:255|indisposable|email',
-                            'captcha' => ['required', 'captcha'],
-                            'agree_terms' =>  'required|in:agreed',
                         ]);
 
                     } else {
                         $request->validate([
-                            'subject' => 'required|max:255',
+                            'plant_id' => 'required|string',
                             'category' => 'required',
-                            'email' => 'required|max:255|indisposable|email',
                             'message' => 'required',
-                            'agree_terms' =>  'required|in:agreed',
-
                         ]);
 
                     }
@@ -404,23 +395,16 @@ class GuestticketController extends Controller
                 if (setting('CAPTCHATYPE') == 'google') {
                     if (setting('RECAPTCH_ENABLE_GUEST') == 'yes') {
                         $request->validate([
-                            'subject' => 'required|max:255',
+                            'plant_id' => 'required|string',
                             'category' => 'required',
                             'message' => 'required',
-                            'email' => 'required|max:255|indisposable|email',
-                            'g-recaptcha-response' => 'required|recaptcha',
-                            'agree_terms' =>  'required|in:agreed',
-
                         ]);
 
                     } else {
                         $request->validate([
-                            'subject' => 'required|max:255',
+                            'plant_id' => 'required|string',
                             'category' => 'required',
-                            'email' => 'required|max:255|indisposable|email',
                             'message' => 'required',
-                            'agree_terms' =>  'required|in:agreed',
-
                         ]);
                     }
                 }
@@ -505,48 +489,60 @@ class GuestticketController extends Controller
 
         } else {
 
-            $guest = Customer::create([
+            // $guest = Customer::create([
 
-                'firstname' => '',
-                'lastname' => '',
-                'username' => 'GUEST',
-                'email' => $request->email,
-                'userType' => 'Guest',
-                'password' => null,
-                'status' => '1',
-                'image' => null,
+            //     'firstname' => '',
+            //     'lastname' => '',
+            //     'username' => 'GUEST',
+            //     'email' => $request->email,
+            //     'userType' => 'Guest',
+            //     'password' => null,
+            //     'status' => '1',
+            //     'image' => null,
 
-            ]);
-            $customersetting = new CustomerSetting();
-            $customersetting->custs_id = $guest->id;
-            $customersetting->save();
+            // ]);
+            // $customersetting = new CustomerSetting();
+            // $customersetting->custs_id = $guest->id;
+            // $customersetting->save();
 
         }
-        $guest = Customer::where('email', $request->email)->first();
-        if (!$guest) {
-            return 'notguest';
-        }
-        if ($guest) {
+        // $guest = Customer::where('email', $request->email)->first();
+        // if (!$guest) {
+        //     return 'notguest';
+        // }
+        // if ($guest) 
+        {
 
-            if ($guest->userType == 'Customer') {
+            // if ($guest->userType == 'Customer') {
 
-                return 'customer';
+            //     return 'customer';
 
-            }
+            // }
 
+            $categories = $request->input('category');
+        
+            $firstCategoryId = is_array($categories) && count($categories) > 0 ? $categories[0] : null;
+
+            $categoryNames = getCategoryNamesByIds($request->input('category'));
+            $plantName = getPlantNameById($request->input('plant_id'));
+
+            $subject = $this->formatSubject($plantName, $categoryNames);
             $ticket = Ticket::create([
-                'subject' => $request->input('subject'),
-                'cust_id' => $guest->id,
-                'category_id' => $request->input('category'),
+                'subject' => $subject,
+                'cust_id' => 1,
+                'category_id' => $firstCategoryId,
+                'priority' => 'Medium',
                 'message' => $request->input('message'),
                 'project' => $request->input('project'),
                 'status' => 'New',
+                'plant_id' => $request->input('plant_id'),
+                'categories' => $categories, // Store multiple categories
             ]);
             $ticket = Ticket::find($ticket->id);
-            $ticket->ticket_id = setting('CUSTOMER_TICKETID') . 'G-' . $ticket->id;
+            $ticket->ticket_id = setting('CUSTOMER_TICKETID') . '-Public-' . $ticket->id;
             
             $categoryfind = Category::find($request->category);
-            $ticket->priority = $categoryfind->priority;
+            //$ticket->priority = $categoryfind->priority;
             if ($request->subscategory) {
                 $ticket->subcategory = $request->subscategory;
             }
@@ -2248,5 +2244,10 @@ class GuestticketController extends Controller
         auth()->guard('customer')->user()->unreadNotifications->markAsRead();
 
         return response()->noContent();
+    }
+
+    private function formatSubject($plantName, $categoryNames)
+    {
+        return "Plant: {$plantName} | Categories: {$categoryNames}";
     }
 }

@@ -10,6 +10,7 @@ use App\Models\CCMAILS;
 use App\Models\Customfield;
 use App\Models\Footertext;
 use App\Models\Pages;
+use App\Models\Plant;
 use App\Models\Projects;
 use App\Models\Seosetting;
 use App\Models\TicketCustomfield;
@@ -40,6 +41,11 @@ class TicketController extends Controller
 
     public function create()
     {
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $data['plants'] = Plant::all();
         if(setting('CUSTOMER_TICKET') == 'no'){
 
             $categories = Category::whereIn('display', ['ticket', 'both'])->where('status', '1')
@@ -97,23 +103,32 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'subject' => 'required|max:255',
+            'plant_id' => 'required|string',
             'category' => 'required',
             'message' => 'required',
-            'agree_terms' =>  'required|in:agreed',
-
         ]);
 
+        $categories = $request->input('category');
+        
+        $firstCategoryId = is_array($categories) && count($categories) > 0 ? $categories[0] : null;
+
+        $categoryNames = getCategoryNamesByIds($request->input('category'));
+        $plantName = getPlantNameById($request->input('plant_id'));
+
+        $subject = $this->formatSubject($plantName, $categoryNames);
+
         $ticket = Ticket::create([
-            'subject' => $request->input('subject'),
+            'subject' => $subject,
+            'category_id' => $firstCategoryId,
             'cust_id' => Auth::guard('customer')->user()->id,
-            'category_id' => $request->input('category'),
             'message' => $request->input('message'),
             'project' => $request->input('project'),
             'status' => 'New',
+            'plant_id' => $request->input('plant_id'),
+            'categories' => $categories, // Store multiple categories
         ]);
         $ticket = Ticket::find($ticket->id);
-        $ticket->ticket_id = setting('CUSTOMER_TICKETID') . '-' . $ticket->id;
+        $ticket->ticket_id = setting('CUSTOMER_TICKETID') . '-Customer-' . $ticket->id;
         // Auto Overdue Ticket
 
         if (setting('AUTO_OVERDUE_TICKET') == 'no') {
@@ -133,7 +148,7 @@ class TicketController extends Controller
         }
         
         $categoryfind = Category::find($request->category);
-        $ticket->priority = $categoryfind->priority;
+        //$ticket->priority = $categoryfind->priority;
         if ($request->subscategory) {
             $ticket->subcategory = $request->subscategory;
         }
@@ -364,7 +379,10 @@ class TicketController extends Controller
 
     public function activeticket()
     {
-
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
         $activetickets = Ticket::where('cust_id', Auth::guard('customer')->user()->id)->whereIn('status', ['New', 'Re-Open', 'Inprogress'])->latest('updated_at')->get();
         $data['activetickets'] = $activetickets;
 
@@ -373,7 +391,10 @@ class TicketController extends Controller
 
     public function closedticket()
     {
-
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
         $closedtickets = Ticket::where('cust_id', Auth::guard('customer')->user()->id)->where('status', 'Closed')->latest('updated_at')->get();
         $data['closedtickets'] = $closedtickets;
 
@@ -382,6 +403,10 @@ class TicketController extends Controller
 
     public function onholdticket()
     {
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
         $onholdtickets = Ticket::where('cust_id', Auth::guard('customer')->user()->id)->where('status', 'On-Hold')->latest('updated_at')->get();
         $data['onholdtickets'] = $onholdtickets;
 
@@ -396,9 +421,21 @@ class TicketController extends Controller
      */
     public function show(Request $req, $ticket_id)
     {
-        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+        
+        $ticket = Ticket::with('plant')->where('ticket_id', $ticket_id)->firstOrFail();
         $comments = $ticket->comments()->with('ticket')->paginate(5);
         $category = $ticket->category;
+
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $data['basic'] = $title;
+        $data['title'] = $title;
+        $data['footertext'] = $footertext;
+        $data['seopage'] = $seopage;
+        $data['page'] = $post;
 
         // customer restrict to reply for the ticket.
         $commentsNull = $ticket->comments()->get();
@@ -1232,4 +1269,8 @@ class TicketController extends Controller
 
     }
 
+    private function formatSubject($plantName, $categoryNames)
+    {
+        return "Plant: {$plantName} | Categories: {$categoryNames}";
+    }
 }

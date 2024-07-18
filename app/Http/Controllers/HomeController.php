@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customfield;
+use App\Models\Plant;
 use App\Models\Ticket\Ticket;
 use Illuminate\Http\Request;
 use Auth;
@@ -107,6 +108,8 @@ class HomeController extends Controller
 
             $customfields = Customfield::whereIn('displaytypes', ['both', 'createticket'])->where('status','1')->get();
             $data['customfields'] = $customfields;
+
+            $data['plants'] = Plant::all();
 
             if (setting('GUEST_TICKET_OTP') == 'no') {
 

@@ -52,17 +52,7 @@
                                             @honeypot
                                             <div class="card-body pb-0">
 
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <label class="form-label mb-0 mt-2">{{lang('Email')}} <span class="text-red">*</span></label>
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{lang('Email')}}" name="email" >
-                                                            <span id="EmailError" class="text-danger alert-message" ></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                                 @if(setting('cc_email') == 'on')
                                                     <div class="form-group">
                                                         <div class="row">
@@ -83,33 +73,54 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                                <div class="form-group ">
+                                                <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <label class="form-label mb-0 mt-2">{{lang('Subject')}} <span class="text-red">*</span></label>
+                                                            <label class="form-label mb-0 mt-2">{{ lang('Plant') }}<span class="text-red">*</span></label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <input type="text" id="subject" maxlength="{{setting('TICKET_CHARACTER')}}" class="form-control @error('subject') is-invalid @enderror" placeholder="{{lang('Subject')}}" name="subject" value="{{ old('subject') }}">
-                                                            <small class="text-muted float-end mt-1" id="subjectmaxtext">{{lang('Maximum')}} <b>{{setting('TICKET_CHARACTER')}}</b> {{lang('Characters')}}</small>
-                                                            <div>
-                                                                <span id="SubjectError" class="text-danger alert-message"></span>
-                                                            </div>
+                                                            <select class="form-control select2-show-search  select2" name="plant_id" id="plant_id">
+                                                                <option value="" disabled selected>{{ lang('Select Plant') }}</option>
+                                                                @foreach ($plants as $plant)
+                                                                <option value="{{ $plant->id }}">{{ $plant->plant_id }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <span id="PlantError" class="text-danger alert-message"></span>
+                                                            @error('plant_id')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ lang($message) }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <label class="form-label mb-0 mt-2">{{lang('Category')}} <span class="text-red">*</span></label>
+                                                            <label class="form-label mb-0 mt-2">{{ lang('Category') }}<span class="text-red">*</span></label>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <select  class="form-control select2-show-search  select2 @error('category') is-invalid @enderror"  data-placeholder="{{lang('Select Category')}}" name="category" id="category">
-                                                                <option label="{{lang('Select Category')}}"></option>
-                                                                @foreach ($categories as $category)
-                                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <span id="CategoryError" class="text-danger alert-message"></span>
+                                                        <ul class="custom-checkbox-list">
+                                                            @foreach ($categories as $category)
+                                                            <li>
+                                                                <input type="checkbox" id="checkbox_{{ $category->id }}" name="category[]" value="{{ $category->id }}" @if(in_array($category->id, old('category', []))) checked @endif />
+                                                                <label for="checkbox_{{ $category->id }}">
+                                                                    @if($category->image) 
+                                                                    <img src="{{ asset('uploads/callaction/' . $category->image) }}" alt="{{ $category->name }}" />
+                                                                    @else 
+                                                                    <img src="{{ asset('uploads/callaction/noimage/noimage.png') }}" alt="{{ $category->name }}" />
+                                                                    @endif
+                                                                    <span class="category-name">{{ $category->name }}</span>
+                                                                </label>
+                                                            </li>
+                                                            @endforeach
+                                                        </ul>
+                                                        <span id="CategoryError" class="text-danger alert-message"></span>
+                                                        @error('category')
+                                                            <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ lang($message) }}</strong>
+                                                            </span>
+                                                        @enderror
                                                         </div>
                                                     </div>
                                                 </div>

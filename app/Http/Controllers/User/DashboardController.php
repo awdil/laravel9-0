@@ -42,7 +42,10 @@ class DashboardController extends Controller
 
         $announcements = Announcement::whereNotNull('announcementday')->get();
         $data['announcements'] = $announcements;
-
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
        return view('user.dashboard', compact('tickets','active','closed', 'title','footertext'))->with($data);
    }
 
@@ -90,7 +93,10 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
             });
        }
-
+       $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
        $view = view('user.notificationpageinclude',compact('notifications','title', 'footertext', 'seopage'))->render();
        return response()->json(['html'=>$view]);
 
@@ -116,7 +122,10 @@ class DashboardController extends Controller
                 return \Carbon\Carbon::parse($date->created_at)->format('Y-m-d');
             });
        }
-
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
        $view = view('user.notificationpageinclude',compact('notifications','title', 'footertext', 'seopage'))->render();
        return response()->json(['html'=>$view]);
 

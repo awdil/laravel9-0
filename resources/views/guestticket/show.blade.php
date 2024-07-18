@@ -66,7 +66,7 @@
 
 								
 
-								@endif
+								
 								<!--  Ticket Information -->
 								<div class="card">
 									<div class="card-header  border-0">

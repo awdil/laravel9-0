@@ -98,6 +98,16 @@
                                             </tr>
                                             <tr>
                                                 <td>
+                                                    <span class="w-50">{{lang('Plant ID')}}</span>
+                                                </td>
+                                                <td>:</td>
+                                                <td>
+                                                <span class="font-weight-semibold">#{{ !is_null($ticket->plant) ? $ticket->plant->plant_id : null }}</span>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
                                                     <span class="w-50">{{lang('Category')}}</span>
                                                 </td>
                                                 <td>:</td>

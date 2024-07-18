@@ -74,11 +74,11 @@
            <li class="slide">
                <a class="side-menu__item" data-bs-toggle="slide" href="#">
                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M22 10V6c0-1.11-.9-2-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2zm-2-1.46c-1.19.69-2 1.99-2 3.46s.81 2.77 2 3.46V18H4v-2.54c1.19-.69 2-1.99 2-3.46 0-1.48-.8-2.77-1.99-3.46L4 6h16v2.54zM11 15h2v2h-2zm0-4h2v2h-2zm0-4h2v2h-2z"/></svg>
-                   <span class="side-menu__label">{{lang('Global Tickets', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
+                   <span class="side-menu__label">{{lang('Manage Tickets', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
                </a>
                <ul class="slide-menu custom-ul">
                    <li><a href="{{route('admin.recenttickets')}}" class="slide-item">{{lang('Recent Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/all-tickets')}}" class="slide-item">{{lang('Manage Tickets', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/all-tickets')}}" class="slide-item">{{lang('All Tickets', 'Menu')}}</a></li>
                    <li><a href="{{url('/admin/activeticket')}}" class="slide-item">{{lang('Active Tickets', 'Menu')}}</a></li>
                    <!-- <li><a href="{{url('/admin/closedticket')}}" class="slide-item">{{lang('Closed Tickets', 'Menu')}}</a></li>
                    <li><a href="{{route('admin.onholdticket')}}" class="slide-item">{{lang('On-Hold Tickets', 'Menu')}}</a></li>

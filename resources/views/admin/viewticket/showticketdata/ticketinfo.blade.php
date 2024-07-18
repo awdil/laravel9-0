@@ -22,7 +22,7 @@
 																	</td>
 																	<td>:</td>
 																	<td>
-																		<span class="font-weight-semibold">#{{ $ticket->ticket_id }}</span>
+																		<span class="font-weight-semibold">#{{ $ticket->plant->plant_id }}</span>
 																	</td>
 																</tr>
 																<tr>

@@ -1086,7 +1086,7 @@ class AdminTicketController extends Controller
             'categories' => $categories, // Store multiple categories
         ]);
         $ticket = Ticket::find($ticket->id);
-        $ticket->ticket_id = setting('CUSTOMER_TICKETID').'G-'.$ticket->id;
+        $ticket->ticket_id = setting('CUSTOMER_TICKETID').'-Internal-'.$ticket->id;
         $ticket->user_id = Auth::user()->id;
         
 
