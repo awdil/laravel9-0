@@ -18,7 +18,7 @@
 <!--Page header-->
 <div class="page-header d-xl-flex d-block px-3">
     <div class="page-leftheader">
-        <h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Previous Tickets', 'menu')}}</span></h4>
+        <h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Previous Complaints', 'menu')}}</span></h4>
     </div>
 </div>
 <!--End Page header-->
@@ -122,7 +122,7 @@
                             <div class="row">
                                 <div class="col-7">
                                     <div class="mt-0 text-start">
-                                        <span class="fs-16 font-weight-semibold">{{lang('Total Tickets',
+                                        <span class="fs-16 font-weight-semibold">{{lang('Total Complaints',
                                             'menu')}}</span>
                                         <h3 class="mb-0 mt-1 text-primary fs-25">{{$total->count()}}</h3>
                                     </div>
@@ -143,7 +143,7 @@
                             <div class="row">
                                 <div class="col-7">
                                     <div class="mt-0 text-start">
-                                        <span class="fs-16 font-weight-semibold">{{lang('Active Tickets',
+                                        <span class="fs-16 font-weight-semibold">{{lang('Active Complaints',
                                             'menu')}}</span>
                                         <h3 class="mb-0 mt-1 text-success fs-25">
 
@@ -168,7 +168,7 @@
                             <div class="row">
                                 <div class="col-7">
                                     <div class="mt-0 text-start">
-                                        <span class="fs-16 font-weight-semibold">{{lang('On-Hold Tickets',
+                                        <span class="fs-16 font-weight-semibold">{{lang('On-Hold Complaints',
                                             'menu')}}</span>
                                         <h3 class="mb-0 mt-1 text-secondary fs-25">{{$onhold->count()}}</h3>
                                     </div>
@@ -189,7 +189,7 @@
                             <div class="row">
                                 <div class="col-7">
                                     <div class="mt-0 text-start">
-                                        <span class="fs-16 font-weight-semibold">{{lang('Closed Tickets',
+                                        <span class="fs-16 font-weight-semibold">{{lang('Closed Complaints',
                                             'menu')}}</span>
                                         <h3 class="mb-0 mt-1 text-secondary fs-25">{{$closed->count()}}</h3>
                                     </div>
@@ -208,7 +208,7 @@
         <div >
             <div class="card ">
                 <div class="card-header border-0">
-                    <h4 class="card-title">{{lang('Previous Tickets Of Customer', 'menu')}}</h4>
+                    <h4 class="card-title">{{lang('Previous Complaints Of Customer', 'menu')}}</h4>
                 </div>
                 <div class="card-body" >
                     <div class="spruko-delete">
@@ -236,7 +236,7 @@
                                         </th>
                                         @endcannot
 
-                                        <th >{{lang('Ticket Details')}}</th>
+                                        <th >{{lang('Complaint Details')}}</th>
                                         <th>{{lang('User')}}</th>
                                         <th>{{lang('Status')}}</th>
                                         <th >{{lang('Assign To')}}</th>

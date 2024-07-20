@@ -9,7 +9,7 @@
                         <a class="accordion-toggle collapsed bg-secondary" data-bs-toggle="collapse"
                             data-parent="#accordion" href="#collapseFour" aria-expanded="false">
                         <i class="feather feather-edit-2"></i>
-                        {{lang('Reply Ticket')}}</a>
+                        {{lang('Reply Complaint')}}</a>
                         </h4>
 
                     </div>
@@ -17,7 +17,7 @@
                         <div class="panel-body p-0">
                         @else
                             <div class="card-header  border-0 justify-content-between">
-                                <h4 class="card-title">{{lang('Reply Ticket')}}</h4>
+                                <h4 class="card-title">{{lang('Reply Complaint')}}</h4>
                                 @if(setting('enable_gpt') == 'on' && $comments->isNotEmpty())
                                     <button class="btn btn-primary ms-auto" type="button" id="gptmodal" data-target="#exampleModal234">{{ lang('Ask Chat GPT') }}</button>
                                 @endif
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex">
-                                <input type="submit" class="btn btn-secondary deletelocalstorage ms-auto" id="btnsprukodisable" value="{{lang('Reply Ticket')}}" onclick="this.disabled=true;this.form.submit();">
+                                <input type="submit" class="btn btn-secondary deletelocalstorage ms-auto" id="btnsprukodisable" value="{{lang('Reply Complaint')}}" onclick="this.disabled=true;this.form.submit();">
                             </div>
                         </form>
                         @if($comments->isNotEmpty())

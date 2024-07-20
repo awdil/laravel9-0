@@ -6,17 +6,17 @@
 							<!--Page header-->
 							<div class="page-header d-xl-flex d-block">
 								<div class="page-leftheader">
-									<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Email to Tickets', 'menu')}}</span></h4>
+									<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Email to Complaints', 'menu')}}</span></h4>
 								</div>
 							</div>
 							<!--End Page header-->
 
-							<!--Email to Tickets-->
+							<!--Email to Complaints-->
 							<div class="col-xl-12 col-lg-12 col-md-12">
 								<div class="card ">
 									<form action="{{route('admin.emaitickets')}}" method="POST">
 										<div class="card-header border-0">
-											<h4 class="card-title">{{lang('Email to Tickets', 'menu')}}</h4>
+											<h4 class="card-title">{{lang('Email to Complaints', 'menu')}}</h4>
 											<div class="card-options">
 												<div class="form-group mb-0">
 													<div class="switch_section m-0">
@@ -126,6 +126,6 @@
 									</form>
 								</div>
 							</div>
-							<!-- End Email to Tickets-->
+							<!-- End Email to Complaints-->
 							@endsection
 

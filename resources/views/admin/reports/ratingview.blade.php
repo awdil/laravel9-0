@@ -157,8 +157,8 @@
 															<th width="10">{{lang('Sl.No')}}</th>
 															<th>#{{lang('ID')}}</th>
 															<th>{{lang('Rating')}}</th>
-															<th>{{lang('Ticket Comment')}}</th>
-															<th>{{lang('Ticket Customer')}}</th>
+															<th>{{lang('Complaint Comment')}}</th>
+															<th>{{lang('Complaint Customer')}}</th>
 															<th>{{lang('Actions')}}</th>
 														</tr>
 													</thead>

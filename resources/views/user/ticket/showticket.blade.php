@@ -22,7 +22,7 @@
             <div class="container ">
                 <div class="row text-white">
                     <div class="col">
-                        <h1 class="mb-0">{{lang('Ticket View')}}</h1>
+                        <h1 class="mb-0">{{lang('Complaint View')}}</h1>
                     </div>
                     <div class="col col-auto">
                         <ol class="breadcrumb text-center">
@@ -30,7 +30,7 @@
                                 <a href="#" class="text-white-50">{{lang('Home', 'menu')}}</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                <a href="#" class="text-white">{{lang('Ticket View')}}</a>
+                                <a href="#" class="text-white">{{lang('Complaint View')}}</a>
                             </li>
                         </ol>
                     </div>
@@ -41,7 +41,7 @@
 </section>
 <!-- Section -->
 
-<!--Ticket Show-->
+<!--Complaint Show-->
 <section>
     <div class="cover-image sptb">
         <div class="container ">
@@ -73,14 +73,14 @@
                             </div>
                         </div>
 
-                        <!--  Ticket Information -->
+                        <!--  Complaint Information -->
                         <div class="card">
                             <div class="card-header  border-0">
-                                <div class="card-title">{{lang('Ticket Information')}}</div>
+                                <div class="card-title">{{lang('Complaint Information')}}</div>
                                 <input type="hidden" name="" data-id="{{$ticket->id}}" id="ticket">
                                 @if(setting('CUSTOMER_TICKET') == 'no')
 
-                                <div class="float-end ms-auto"><a href="{{route('client.ticket')}}" class="btn btn-white btn-sm ms-auto"><i class="fa fa-paper-plane-o me-2 fs-14"></i>{{lang('Create Ticket')}}</a></div>
+                                <div class="float-end ms-auto"><a href="{{route('client.ticket')}}" class="btn btn-white btn-sm ms-auto"><i class="fa fa-paper-plane-o me-2 fs-14"></i>{{lang('Create Complaint')}}</a></div>
                                 @endif
                             </div>
                             <div class="card-body pt-2 px-0 pb-0">
@@ -89,7 +89,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <span class="w-50">{{lang('Ticket ID')}}</span>
+                                                    <span class="w-50">{{lang('Complaint ID')}}</span>
                                                 </td>
                                                 <td>:</td>
                                                 <td>
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Ticket Information -->
+                        <!-- End Complaint Information -->
                         <!-- Bussiness Hour -->
                         @if(setting('businesshoursswitch') == 'on')
                         <div class="card p-3 pricing-card border d-flex notify-days-toggle">
@@ -399,7 +399,7 @@
                         </div>
 
                     </div>
-        {{-- Reply Ticket Display --}}
+        {{-- Reply Complaint Display --}}
         @if ($ticket->status == 'Closed')
             @if (setting('USER_REOPEN_ISSUE') == 'yes')
                 @if (setting('USER_REOPEN_TIME') == '0')
@@ -469,7 +469,7 @@
                                 <div class="panel-heading1">
                                     <h4 class="panel-title1">
                                         <a class="accordion-toggle collapsed bg-gradient-primary" data-bs-toggle="collapse"
-                                            data-parent="#accordion" href="#collapseFour" aria-expanded="false">Reply Ticket</a>
+                                            data-parent="#accordion" href="#collapseFour" aria-expanded="false">Reply Complaint</a>
                                     </h4>
                                 </div>
                                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
@@ -534,7 +534,7 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="form-group float-end">
-                                                        <input type="submit" class="btn btn-secondary" value="{{lang('Reply Ticket')}}"
+                                                        <input type="submit" class="btn btn-secondary" value="{{lang('Reply Complaint')}}"
                                                         onclick="this.disabled=true;this.form.submit();">
                                                     </div>
                                                 </div>
@@ -552,7 +552,7 @@
             @if ($ticket->status != 'Suspend')
             <div class="card">
                 <div class="card-header border-0">
-                    <h4 class="card-title">{{lang('Reply Ticket')}}</h4>
+                    <h4 class="card-title">{{lang('Reply Complaint')}}</h4>
                 </div>
                 <form method="POST" action="{{route('client.comment', $ticket->ticket_id)}}"
                     enctype="multipart/form-data">
@@ -613,7 +613,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="form-group mb-0">
-                            <input type="submit" class="btn btn-secondary" value="{{lang('Reply Ticket')}}"
+                            <input type="submit" class="btn btn-secondary" value="{{lang('Reply Complaint')}}"
                             onclick="this.disabled=true;this.form.submit();">
                         </div>
                     </div>
@@ -624,7 +624,7 @@
 
         @endif
 
-                    <!---- End Reply Ticket Display ---->
+                    <!---- End Reply Complaint Display ---->
 
                     @if($comments->isNotEmpty())
 
@@ -649,7 +649,7 @@
         </div>
     </div>
 </section>
-<!--Ticket Show-->
+<!--Complaint Show-->
 
 @endsection
 

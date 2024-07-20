@@ -15,15 +15,15 @@
 		<!--Page header-->
 		<div class="page-header d-xl-flex d-block">
 			<div class="page-leftheader">
-				<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Ticket Information')}}</span></h4>
+				<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Complaint Information')}}</span></h4>
 			</div>
 			<div class="page-rightheader ms-md-auto">
 				<a href="javascript:void(0)" data-id="{{$tickettrashedview->id}}" class="btn btn-sm btn-danger" id="show-delete">
-					<span> Delete Ticket </span>
+					<span> Delete Complaint </span>
 					<i class="feather feather-trash-2 text-white" data-id="{{$tickettrashedview->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Delete')}}"></i>
 				</a>
 				<a href="javascript:void(0)" data-id="{{$tickettrashedview->id}}" class="btn btn-sm btn-info" id="show-restore" >
-					<span> Restore Ticket </span>
+					<span> Restore Complaint </span>
 					<i class="feather feather-rotate-ccw text-white" data-id="{{$tickettrashedview->id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Restore')}}"></i>
 				</a>
 			</div>
@@ -302,7 +302,7 @@
 					<div class="col-xl-5 col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-header  border-0">
-								<div class="card-title">{{lang('Ticket Information')}}</div>
+								<div class="card-title">{{lang('Complaint Information')}}</div>
 							</div>
 							<div class="card-body pt-2 ps-0 pe-0 pb-0">
 								<div class="table-responsive tr-lastchild">
@@ -311,7 +311,7 @@
 
 											<tr>
 												<td>
-													<span class="w-50">{{lang('Ticket ID')}}</span>
+													<span class="w-50">{{lang('Complaint ID')}}</span>
 												</td>
 												<td>:</td>
 												<td>
@@ -538,7 +538,7 @@
 						<!--ticke note  -->
 						<div class="card">
 							<div class="card-header  border-0">
-								<div class="card-title">{{lang('Ticket Note')}}</div>
+								<div class="card-title">{{lang('Complaint Note')}}</div>
 
 							</div>
 							@php $emptynote = $tickettrashedview->ticketnote()->get() @endphp

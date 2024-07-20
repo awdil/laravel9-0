@@ -22,7 +22,7 @@
             <div class="container ">
                 <div class="row text-white">
                     <div class="col">
-                        <h1 class="mb-0">{{lang('Create Ticket', 'menu')}}</h1>
+                        <h1 class="mb-0">{{lang('Create Complaint', 'menu')}}</h1>
                     </div>
                     <div class="col col-auto">
                         <ol class="breadcrumb text-center">
@@ -30,7 +30,7 @@
                                 <a href="{{url('/')}}" class="text-white-50">{{lang('Home', 'menu')}}</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                <a href="#" class="text-white">{{lang('Create Ticket', 'menu')}}</a>
+                                <a href="#" class="text-white">{{lang('Create Complaint', 'menu')}}</a>
                             </li>
                         </ol>
                     </div>
@@ -52,7 +52,7 @@
                     
                     <div class="card">
                         <div class="card-header  border-0">
-                            <h4 class="card-title">{{lang('New Ticket')}}</h4>
+                            <h4 class="card-title">{{lang('New Complaint')}}</h4>
                         </div>
                         <form method="POST" id="user_form" enctype="multipart/form-data">
 
@@ -272,7 +272,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="form-group float-end">
-                                    <button type="submit" class="btn btn-secondary btn-lg " id="createticketbtn">{{lang('Create Ticket')}}</button>
+                                    <button type="submit" class="btn btn-secondary btn-lg " id="createticketbtn">{{lang('Create Complaint')}}</button>
                                 </div>
                             </div>
                         </form>
@@ -480,7 +480,7 @@
                     ajax(formData);
                 }else{
                     $('#createticketbtn').prop('disabled', false);
-                    $('#createticketbtn').html(`{{lang('Create Ticket', 'menu')}}`);
+                    $('#createticketbtn').html(`{{lang('Create Complaint', 'menu')}}`);
                     toastr.error('{{lang('Check the all field(*) required', 'alerts')}}')
                 }
             }
@@ -524,7 +524,7 @@
                     $('#verifyotpError').html(data.responseJSON.errors.verifyotp);
                     $('#agreetermsError').html(data.responseJSON.errors.agree_terms);
                     if(data.responseJSON.errors.agree_terms) {
-                        $('#createticketbtn').html(`{{lang('Create Ticket', 'menu')}}`);
+                        $('#createticketbtn').html(`{{lang('Create Complaint', 'menu')}}`);
                         $('#createticketbtn').prop('disabled', false);
                     }
 

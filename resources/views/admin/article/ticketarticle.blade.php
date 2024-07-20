@@ -16,7 +16,7 @@
 <!--Page header-->
 <div class="page-header d-xl-flex d-block">
 	<div class="page-leftheader">
-		<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Ticket To Article')}}</span></h4>
+		<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Complaint To Article')}}</span></h4>
 	</div>
 </div>
 <!--End Page header-->
@@ -25,7 +25,7 @@
 	<div class="col-xl-12 col-lg-12 col-md-12">
 	<div class="card ">
 		<div class="card-header border-0">
-			<h4 class="card-title">{{lang('Ticket To Article')}}</h4>
+			<h4 class="card-title">{{lang('Complaint To Article')}}</h4>
 		</div>
 		<form method="post"  enctype="multipart/form-data" id="adminarticle_forms">
 
@@ -439,7 +439,7 @@
 	})
 
 
-	// Create Ticket
+	// Create Complaint
 	$('body').on('submit', '#adminarticle_forms', function (e) {
 		e.preventDefault();
 		$('#TitleError').html('');

@@ -21,7 +21,7 @@
                     <div class="container">
                         <div class="row text-white">
                             <div class="col">
-                                <h1 class="mb-0">{{lang('Guest Ticket')}}</h1>
+                                <h1 class="mb-0">{{lang('Guest Complaint')}}</h1>
                             </div>
                             <div class="col col-auto">
                                 <ol class="breadcrumb text-center">
@@ -29,7 +29,7 @@
                                         <a href="{{url('/')}}" class="text-white-50">{{lang('Home', 'menu')}}</a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <a href="#" class="text-white">{{lang('Guest Ticket')}}</a>
+                                        <a href="#" class="text-white">{{lang('Guest Complaint')}}</a>
                                     </li>
                                 </ol>
                             </div>
@@ -48,7 +48,7 @@
                         <div class="col-xl-9">
                             <div class="card">
                                 <div class="card-header  border-0">
-                                    <h4 class="card-title">{{lang('Guest Ticket')}}</h4>
+                                    <h4 class="card-title">{{lang('Guest Complaint')}}</h4>
                                 </div>
                                 <form  method="post" id="emailotp_form" enctype="multipart/form-data">
                                     <div class="card-body pb-0">
@@ -331,7 +331,7 @@
                                     <div  class="verifyotp">
                                         <div class="card-footer">
                                             <div class="form-group float-end">
-                                                <button type="submit" class="btn btn-secondary btn-lg " id="createticketbtn"><i class="fa fa-paper-plane-o me-1"></i> {{lang('Create Ticket', 'menu')}} </button>
+                                                <button type="submit" class="btn btn-secondary btn-lg " id="createticketbtn"><i class="fa fa-paper-plane-o me-1"></i> {{lang('Create Complaint', 'menu')}} </button>
                                             </div>
                                         </div>
                                     </div>
@@ -602,7 +602,7 @@
 							ajax(formData);
 						}else{
 							$('#createticketbtn').prop('disabled', false);
-							$('#createticketbtn').html(`{{lang('Create Ticket', 'menu')}}`);
+							$('#createticketbtn').html(`{{lang('Create Complaint', 'menu')}}`);
 							toastr.error('{{lang('Check the all field(*) required', 'alerts')}}')
 						}
 					}
@@ -664,12 +664,12 @@
                                 $('#verifyotpError').html(data.responseJSON.errors.verifyotp);
                                 $('#agreetermsError').html(data.responseJSON.errors.agree_terms);
                                 if(data.responseJSON.errors.agree_terms) {
-                                    $('#createticketbtn').html('Create Ticket');
+                                    $('#createticketbtn').html('Create Complaint');
                                     $('#createticketbtn').prop('disabled', false);
                                 }
                             }
                             else{
-                                toastr.error('Ticket Creation Failed, Please Create new Ticket');
+                                toastr.error('Complaint Creation Failed, Please Create new Complaint');
                                 setTimeout(()=>{
                                     window.location.reload();
                                 }, 500)

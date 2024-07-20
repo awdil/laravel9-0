@@ -1,4 +1,4 @@
-				<!-- Assigned Tickets-->
+				<!-- Assigned Complaints-->
 				<div class="modal fade sprukosearch"  id="customfieldopen" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -44,7 +44,7 @@
                                                 </label>
                                                 <label class="custom-control form-radio success me-4">
                                                     <input type="radio" class="custom-control-input display" id="display1" name="display" value="createticket">
-                                                    <span class="custom-control-label">{{lang('Create Tickets')}}</span>
+                                                    <span class="custom-control-label">{{lang('Create Complaints')}}</span>
                                                 </label>
                                                 <label class="custom-control form-radio success me-4">
                                                     <input type="radio" class="custom-control-input display" id="display2" name="display" value="registerform">
@@ -100,6 +100,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- End Assigned Tickets  -->
+				<!-- End Assigned Complaints  -->
 
 

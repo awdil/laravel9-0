@@ -20,7 +20,7 @@
                 <div class="border p-4 w-100">
                     <table >
                         <tr>
-                            <td><strong>{{lang('Ticket Category :')}}</strong></td>
+                            <td><strong>{{lang('Complaint Category :')}}</strong></td>
                             @if($showprintticket->category)
                                 <td>{{$showprintticket->category->name}}</td>
                             @else

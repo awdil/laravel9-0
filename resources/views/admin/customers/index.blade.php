@@ -156,7 +156,7 @@
 									@endphp
 
 									@if($ticketCount > 0)
-										<a href="{{route('admin.customer.tickethistory', $customer->id)}}" class="action-btns1"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Tickets History')}}">
+										<a href="{{route('admin.customer.tickethistory', $customer->id)}}" class="action-btns1"  target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Complaints History')}}">
 											<i class="feather-rotate-ccw text-primary"></i>
 										</a>
 									@endif

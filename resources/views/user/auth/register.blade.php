@@ -346,7 +346,7 @@
                     ajax(formData);
                 }else{
                     $('#register_button').prop('disabled', false);
-                    $('#register_button').html(`{{lang('Create Ticket', 'menu')}}`);
+                    $('#register_button').html(`{{lang('Create Complaint', 'menu')}}`);
                     toastr.error('{{lang('Check the all field(*) required', 'alerts')}}')
                 }
             }

@@ -153,7 +153,7 @@
                                         <div class="row">
                                             <div class="col-7">
                                                 <div class="mt-0 text-start">
-                                                    <span class="fs-16 font-weight-semibold">{{lang('Total Tickets',
+                                                    <span class="fs-16 font-weight-semibold">{{lang('Total Complaints',
                                                         'menu')}}</span>
                                                     <h3 class="mb-0 mt-1 text-primary fs-25">{{$tickets->count()}}</h3>
                                                 </div>
@@ -174,7 +174,7 @@
                                         <div class="row">
                                             <div class="col-7">
                                                 <div class="mt-0 text-start">
-                                                    <span class="fs-16 font-weight-semibold">{{lang('Active Tickets',
+                                                    <span class="fs-16 font-weight-semibold">{{lang('Active Complaints',
                                                         'menu')}}</span>
                                                     <h3 class="mb-0 mt-1 text-success fs-25">
 
@@ -199,7 +199,7 @@
                                         <div class="row">
                                             <div class="col-7">
                                                 <div class="mt-0 text-start">
-                                                    <span class="fs-16 font-weight-semibold">{{lang('On-Hold Tickets',
+                                                    <span class="fs-16 font-weight-semibold">{{lang('On-Hold Complaints',
                                                         'menu')}}</span>
                                                     <h3 class="mb-0 mt-1 text-secondary fs-25">{{$onhold->count()}}</h3>
                                                 </div>
@@ -220,7 +220,7 @@
                                         <div class="row">
                                             <div class="col-7">
                                                 <div class="mt-0 text-start">
-                                                    <span class="fs-16 font-weight-semibold">{{lang('Closed Tickets',
+                                                    <span class="fs-16 font-weight-semibold">{{lang('Closed Complaints',
                                                         'menu')}}</span>
                                                     <h3 class="mb-0 mt-1 text-secondary fs-25">{{$closed->count()}}</h3>
                                                 </div>
@@ -242,10 +242,10 @@
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="card mb-0">
                                 <div class="card-header border-0 d-flex">
-                                    <h4 class="card-title">{{lang('Tickets Summary')}}</h4>
+                                    <h4 class="card-title">{{lang('Complaints Summary')}}</h4>
                                     @if(setting('CUSTOMER_TICKET') == 'no')
 
-                                    <div class="float-end ms-auto"><a href="{{route('client.ticket')}}" class="btn btn-secondary ms-auto"><i class="fa fa-paper-plane-o me-2"></i>{{lang('Create Ticket', 'menu')}}</a></div>
+                                    <div class="float-end ms-auto"><a href="{{route('client.ticket')}}" class="btn btn-secondary ms-auto"><i class="fa fa-paper-plane-o me-2"></i>{{lang('Create Complaint', 'menu')}}</a></div>
                                     @endif
                                 </div>
                                 <div class="card-body">
@@ -262,7 +262,7 @@
                                                     <input type="checkbox"  id="customCheckAll">
                                                     <label  for="customCheckAll"></label>
                                                 </th>
-                                                <th >{{lang('Ticket Details')}}</th>
+                                                <th >{{lang('Complaint Details')}}</th>
                                                 <th >{{lang('Status')}}</th>
                                                 <th >{{lang('Actions')}}</th>
                                                 </tr>
@@ -354,9 +354,9 @@
                                                     </td>
                                                     <td>
                                                         <div class = "d-flex">
-                                                            <a href="{{route('loadmore.load_data',$ticket->ticket_id)}}" class="action-btns1" data-bs-toggle="tooltip" data-placement="top" title="{{lang('View Ticket')}}"><i class="feather feather-edit text-primary"></i></a>
+                                                            <a href="{{route('loadmore.load_data',$ticket->ticket_id)}}" class="action-btns1" data-bs-toggle="tooltip" data-placement="top" title="{{lang('View Complaint')}}"><i class="feather feather-edit text-primary"></i></a>
                                                             @if(setting('CUSTOMER_RESTICT_TO_DELETE_TICKET') == 'off')
-                                                                <a href="javascript:void(0)" class="action-btns1" data-id="{{$ticket->id}}" id="show-delete" data-bs-toggle="tooltip" data-placement="top" title="{{lang('Delete Ticket')}}"><i class="feather feather-trash-2 text-danger"></i></a>
+                                                                <a href="javascript:void(0)" class="action-btns1" data-id="{{$ticket->id}}" id="show-delete" data-bs-toggle="tooltip" data-placement="top" title="{{lang('Delete Complaint')}}"><i class="feather feather-trash-2 text-danger"></i></a>
                                                             @endif
                                                         </div>
                                                     </td>
@@ -467,7 +467,7 @@
             ],
         });
 
-        // Ticket Detele System
+        // Complaint Detele System
         $('body').on('click', '#show-delete', function () {
             var _id = $(this).data("id");
             swal({

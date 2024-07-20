@@ -1,4 +1,4 @@
-				<!-- Assigned Tickets to Agent-->
+				<!-- Assigned Complaints to Agent-->
 				<div class="modal fade sprukosearch"  id="addassigned" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -29,4 +29,4 @@
 						</div>
 					</div>
 				</div>
-				<!-- End Assigned Tickets to Agent  -->
+				<!-- End Assigned Complaints to Agent  -->

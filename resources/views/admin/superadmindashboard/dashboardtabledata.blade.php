@@ -17,7 +17,7 @@
             </th>
             @endcannot
 
-            <th >{{lang('Ticket Details')}}</th>
+            <th >{{lang('Complaint Details')}}</th>
             <th>{{lang('User')}}</th>
             <th >{{lang('Status')}}</th>
             <th >{{lang('Assign To')}}</th>

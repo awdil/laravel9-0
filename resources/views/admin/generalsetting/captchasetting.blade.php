@@ -146,8 +146,8 @@
                         <input type="checkbox" name="RECAPTCH_ENABLE_GUEST" id="myonoffswitch112" class=" toggle-class onoffswitch2-checkbox" value="yes" @if(setting('RECAPTCH_ENABLE_GUEST') == 'yes') checked="" @endif>
                         <label for="myonoffswitch112" class="toggle-class onoffswitch2-label" ></label>
                     </a>
-                    <label class="form-label ps-3 ps-md-max-0">{{lang('Enable On Guest Ticket', 'setting')}}</label>
-                    <small class="text-muted ps-2 ps-md-max-0"><i>({{lang('If you enable this captcha setting feature, it will appear on the "Guest Ticket".', 'setting')}})</i></small>
+                    <label class="form-label ps-3 ps-md-max-0">{{lang('Enable On Guest Complaint', 'setting')}}</label>
+                    <small class="text-muted ps-2 ps-md-max-0"><i>({{lang('If you enable this captcha setting feature, it will appear on the "Guest Complaint".', 'setting')}})</i></small>
                 </div>
             </div>
             <div class="switch_section">

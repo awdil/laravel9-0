@@ -38,7 +38,7 @@
 			$('body').on('click', '#guestopen', function(e){
 				e.preventDefault();
                 $('#guestticket_form').trigger("reset");
-                $('.modal-title').html("Email Verification for Guest Ticket")
+                $('.modal-title').html("Email Verification for Guest Complaint")
 				$('#guestmodalopen').modal('show');
 			});
 

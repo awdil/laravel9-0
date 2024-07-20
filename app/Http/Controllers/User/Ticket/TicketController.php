@@ -461,7 +461,7 @@ class TicketController extends Controller
 
                                 return view('user.ticket.showticket', compact('ticket', 'category', 'comments', 'title', 'footertext', 'createdcount'))->with($data);
                             }else{
-                                return back()->with('error', lang('Cannot Access This Ticket'));
+                                return back()->with('error', lang('Cannot Access This Complaint'));
                             }
                         }else{
                             $createdcount = $ticket->comments()->where('cust_id', Auth::guard('customer')->user()->id)->count();
@@ -473,7 +473,7 @@ class TicketController extends Controller
 
                                 return view('user.ticket.showticket', compact('ticket', 'category', 'comments', 'title', 'footertext', 'createdcount'))->with($data);
                             }else{
-                                return back()->with('error', lang('Cannot Access This Ticket'));
+                                return back()->with('error', lang('Cannot Access This Complaint'));
                             }
                         }
                     }else{
@@ -486,7 +486,7 @@ class TicketController extends Controller
 
                             return view('user.ticket.showticket', compact('ticket', 'category', 'comments', 'title', 'footertext', 'createdcount'))->with($data);
                         }else{
-                            return back()->with('error', lang('Cannot Access This Ticket'));
+                            return back()->with('error', lang('Cannot Access This Complaint'));
                         }
                     }
                 }
@@ -500,7 +500,7 @@ class TicketController extends Controller
 
                     return view('user.ticket.showticket', compact('ticket', 'category', 'comments', 'title', 'footertext', 'createdcount'))->with($data);
                 }else{
-                    return back()->with('error', lang('Cannot Access This Ticket'));
+                    return back()->with('error', lang('Cannot Access This Complaint'));
                 }
             }
         }else{
@@ -513,7 +513,7 @@ class TicketController extends Controller
 
                 return view('user.ticket.showticket', compact('ticket', 'category', 'comments', 'title', 'footertext', 'createdcount'))->with($data);
             }else{
-                return back()->with('error', lang('Cannot Access This Ticket'));
+                return back()->with('error', lang('Cannot Access This Complaint'));
             }
         }
 
@@ -873,7 +873,7 @@ class TicketController extends Controller
             }
 
             $output .= '
-                <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Ticket Deleted)</span></p>
+                <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Complaint Deleted)</span></p>
             </div>
             <div class="ms-auto">
             <span class="float-end badge badge-danger-light">
@@ -933,7 +933,7 @@ class TicketController extends Controller
             }
 
             $output .= '
-                <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Ticket Deleted)</span></p>
+                <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Complaint Deleted)</span></p>
             </div>
             <div class="ms-auto">
             <span class="float-end badge badge-danger-light">
@@ -1014,7 +1014,7 @@ class TicketController extends Controller
                 }
 
                 $output .= '
-                    <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Ticket Deleted)</span></p>
+                    <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Complaint Deleted)</span></p>
                 </div>
                 <div class="ms-auto">
                 <span class="float-end badge badge-primary-light">
@@ -1078,7 +1078,7 @@ class TicketController extends Controller
                 }
 
                 $output .= '
-                    <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Ticket Deleted)</span></p>
+                    <p class="mb-0 fs-17 font-weight-semibold text-dark">'.Auth::guard('customer')->user()->username.'<span class="fs-11 mx-1 text-muted">(Complaint Deleted)</span></p>
                 </div>
                 <div class="ms-auto">
                 <span class="float-end badge badge-primary-light">

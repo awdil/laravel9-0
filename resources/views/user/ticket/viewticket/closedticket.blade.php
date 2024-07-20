@@ -17,7 +17,7 @@
             <div class="container ">
                 <div class="row text-white">
                     <div class="col">
-                        <h1 class="mb-0">{{lang('Closed Tickets', 'menu')}}</h1>
+                        <h1 class="mb-0">{{lang('Closed Complaints', 'menu')}}</h1>
                     </div>
                     <div class="col col-auto">
                         <ol class="breadcrumb text-center">
@@ -25,7 +25,7 @@
                                 <a href="#" class="text-white-50">{{lang('Home', 'menu')}}</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                <a href="#" class="text-white">{{lang('Closed Tickets', 'menu')}}</a>
+                                <a href="#" class="text-white">{{lang('Closed Complaints', 'menu')}}</a>
                             </li>
                         </ol>
                     </div>
@@ -36,7 +36,7 @@
 </section>
 <!-- Section -->
 
-<!--Closed Ticket List-->
+<!--Closed Complaint List-->
 <section>
     <div class="cover-image sptb">
         <div class="container ">
@@ -45,7 +45,7 @@
                 <div class="col-xl-9">
                     <div class="card mb-0">
                         <div class="card-header border-0">
-                            <h4 class="card-title">{{lang('Closed Tickets', 'menu')}}</h4>
+                            <h4 class="card-title">{{lang('Closed Complaints', 'menu')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -62,7 +62,7 @@
                                                 <input type="checkbox"  id="customCheckAll">
                                                 <label  for="customCheckAll"></label>
                                             </th>
-                                            <th>{{lang('Ticket Details')}}</th>
+                                            <th>{{lang('Complaint Details')}}</th>
                                             <th>{{lang('Status')}}</th>
                                             <th>{{lang('Actions')}}</th>
                                         </tr>
@@ -152,9 +152,9 @@
                                             </td>
                                             <td>
                                                 <div class = "d-flex">
-                                                    <a href="{{route('loadmore.load_data',$closedticket->ticket_id)}}" class="action-btns1" data-bs-toggle="tooltip" data-placement="top" title="{{lang('View Ticket')}}"><i class="feather feather-edit text-primary"></i></a>
+                                                    <a href="{{route('loadmore.load_data',$closedticket->ticket_id)}}" class="action-btns1" data-bs-toggle="tooltip" data-placement="top" title="{{lang('View Complaint')}}"><i class="feather feather-edit text-primary"></i></a>
                                                     @if(setting('CUSTOMER_RESTICT_TO_DELETE_TICKET') == 'off')
-                                                        <a href="javascript:void(0)" class="action-btns1" data-id="{{$closedticket->id}}" id="show-delete" data-bs-toggle="tooltip" data-placement="top" title="{{lang('Delete Ticket')}}"><i class="feather feather-trash-2 text-danger"></i></a>
+                                                        <a href="javascript:void(0)" class="action-btns1" data-id="{{$closedticket->id}}" id="show-delete" data-bs-toggle="tooltip" data-placement="top" title="{{lang('Delete Complaint')}}"><i class="feather feather-trash-2 text-danger"></i></a>
                                                     @endif
                                                 </div>
                                             </td>
@@ -170,7 +170,7 @@
         </div>
     </div>
 </section>
-<!--Closed Ticket List-->
+<!--Closed Complaint List-->
 
 @endsection
 

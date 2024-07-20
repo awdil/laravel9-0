@@ -108,7 +108,7 @@ $post = $pages;
 										</a>
 										<a class="dropdown-item d-flex" href="{{url('customer/activeticket')}}">
 											<i class="ri-ticket-2-line me-3 fs-16 my-auto"></i>
-											<div class="mt-1">{{lang('Tickets', 'Menu')}}</div>
+											<div class="mt-1">{{lang('Complaints', 'Menu')}}</div>
 										</a>
 										<form id="logout-form" action="{{route('client.logout')}}" method="POST">
 
@@ -186,7 +186,7 @@ $post = $pages;
 								</a>
 								<a class="dropdown-item d-flex" href="{{route('activeticket')}}">
 									<i class="ri-ticket-2-line me-3 fs-16 my-auto"></i>
-									<div class="mt-1">{{lang('Tickets', 'Menu')}}</div>
+									<div class="mt-1">{{lang('Complaints', 'Menu')}}</div>
 								</a>
 								<form id="logout-form" action="{{route('client.logout')}}" method="POST">
 									@csrf
@@ -241,7 +241,7 @@ $post = $pages;
 							<span class="menu-btn">
 								<a class="btn btn-secondary m-0" href="{{url('/guest/openticket')}}">
 									<i class="fa fa-paper-plane-o me-1"></i>
-									{{lang('Submit Ticket', 'Menu')}}
+									{{lang('Submit Complaint', 'Menu')}}
 								</a>
 							</span>
 						</li>

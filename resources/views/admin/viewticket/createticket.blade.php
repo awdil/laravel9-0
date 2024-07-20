@@ -17,16 +17,16 @@
 					<!--Page header-->
 					<div class="page-header d-xl-flex d-block">
 						<div class="page-leftheader">
-							<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Create Ticket', 'menu')}}</span></h4>
+							<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Create Complaint', 'menu')}}</span></h4>
 						</div>
 					</div>
 					<!--End Page header-->
 
-					<!-- Create Ticket List-->
+					<!-- Create Complaint List-->
 					<div class="col-xl-12 col-lg-12 col-md-12">
 						<div class="card ">
 							<div class="card-header border-0">
-								<h4 class="card-title">{{lang('New Ticket')}}</h4>
+								<h4 class="card-title">{{lang('New Complaint')}}</h4>
 							</div>
 							<form method="post" id="admin_form" enctype="multipart/form-data">
 								@honeypot
@@ -195,13 +195,13 @@
 								</div>
 								<div class="card-footer">
 									<div class="form-group float-end">
-										<button type="submit" id="createticketbtn"  class="btn btn-secondary btn-lg">{{lang('Create Ticket', 'menu')}}</button>
+										<button type="submit" id="createticketbtn"  class="btn btn-secondary btn-lg">{{lang('Create Complaint', 'menu')}}</button>
 									</div>
 								</div>
 							</form>
 						</div>
 					</div>
-					<!--End Create Ticket List-->
+					<!--End Create Complaint List-->
 					@endsection
 
 		@section('scripts')

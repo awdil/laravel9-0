@@ -1,6 +1,6 @@
 <div class="card">
 	<div class="card-header  border-0">
-		<div class="card-title">{{lang('Ticket Information')}}</div>
+		<div class="card-title">{{lang('Complaint Information')}}</div>
 	</div>
 	<div class="card-body pt-2 ps-0 pe-0 pb-0">
 		<div class="table-responsive tr-lastchild">
@@ -9,7 +9,7 @@
 
 					<tr>
 						<td>
-							<span class="w-50">{{lang('Ticket ID')}}</span>
+							<span class="w-50">{{lang('Complaint ID')}}</span>
 						</td>
 						<td>:</td>
 						<td>

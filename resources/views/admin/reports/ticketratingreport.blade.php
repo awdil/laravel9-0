@@ -35,7 +35,7 @@
                                     <th>{{lang('Name')}}</th>
                                     <th>{{lang('Rating')}}</th>
                                     <th>{{lang('Overall Rating')}}</th>
-                                    <th>{{lang('Total Answered Ticket')}}</th>
+                                    <th>{{lang('Total Answered Complaint')}}</th>
                                     <th>{{lang('Actions')}}</th>
                                 </tr>
                             </thead>

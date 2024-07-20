@@ -67,10 +67,10 @@
 								
 
 								
-								<!--  Ticket Information -->
+								<!--  Complaint Information -->
 								<div class="card">
 									<div class="card-header  border-0">
-										<div class="card-title">{{lang('Ticket Information')}}</div>
+										<div class="card-title">{{lang('Complaint Information')}}</div>
 										<input type="hidden" name="" data-id="{{$ticket->id}}" id="ticket">
 									</div>
 									<div class="card-body pt-2 px-0 pb-0">
@@ -79,7 +79,7 @@
 												<tbody>
 													<tr>
 														<td>
-															<span class="w-50">{{lang('Ticket ID')}}</span>
+															<span class="w-50">{{lang('Complaint ID')}}</span>
 														</td>
 														<td>:</td>
 														<td>
@@ -377,7 +377,7 @@
 
 							</div>
 
-							{{-- Reply Ticket Display --}}
+							{{-- Reply Complaint Display --}}
 							@if ($ticket->status == 'Closed')
 
 								@if (setting('USER_REOPEN_ISSUE') == 'yes')
@@ -427,7 +427,7 @@
 												<div class="panel-heading1 panel-arrows">
 													<h4 class="panel-title1">
 														<a class="accordion-toggle collapsed bg-gradient-primary" data-bs-toggle="collapse"
-															data-parent="#accordion" href="#collapseFour" aria-expanded="false">{{lang('Reply Ticket')}}</a>
+															data-parent="#accordion" href="#collapseFour" aria-expanded="false">{{lang('Reply Complaint')}}</a>
 													</h4>
 												</div>
 												<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
@@ -483,7 +483,7 @@
 																</div>
 																<div class="card-footer">
 																	<div class="form-group float-end">
-																		<input type="submit" class="btn btn-secondary" value="{{lang('Reply Ticket')}}" onclick="this.disabled=true;this.form.submit();">
+																		<input type="submit" class="btn btn-secondary" value="{{lang('Reply Complaint')}}" onclick="this.disabled=true;this.form.submit();">
 																	</div>
 																</div>
 															</form>
@@ -499,7 +499,7 @@
 								@if ($ticket->status != 'Suspend')
 									<div class="card">
 										<div class="card-header border-0">
-											<h4 class="card-title">{{lang('Reply Ticket')}}</h4>
+											<h4 class="card-title">{{lang('Reply Complaint')}}</h4>
 										</div>
 										<form method="POST" action="{{url('guest/ticket/'. $ticket->ticket_id)}}" enctype="multipart/form-data">
 											@csrf
@@ -551,7 +551,7 @@
 											</div>
 											<div class="card-footer">
 												<div class="form-group float-end">
-													<input type="submit" class="btn btn-secondary" value="{{lang('Reply Ticket')}}" onclick="this.disabled=true;this.form.submit();">
+													<input type="submit" class="btn btn-secondary" value="{{lang('Reply Complaint')}}" onclick="this.disabled=true;this.form.submit();">
 												</div>
 											</div>
 										</form>
@@ -560,7 +560,7 @@
 								@endif
 
 							@endif
-							<!---- End Reply Ticket Display ---->
+							<!---- End Reply Complaint Display ---->
 
 							<!---- Comments Display ---->
 								@if($comments->isNotEmpty())

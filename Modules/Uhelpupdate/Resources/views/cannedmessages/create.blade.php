@@ -109,7 +109,7 @@
                                                             </td>
                                                             <td>:</td>
                                                             <td>
-                                                                <span class="font-weight-semibold">The Ticket ID</span>
+                                                                <span class="font-weight-semibold">The Complaint ID</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -127,7 +127,7 @@
                                                             </td>
                                                             <td>:</td>
                                                             <td>
-                                                                <span class="font-weight-semibold">The Ticket Title</span>
+                                                                <span class="font-weight-semibold">The Complaint Title</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -136,7 +136,7 @@
                                                             </td>
                                                             <td>:</td>
                                                             <td>
-                                                                <span class="font-weight-semibold">The Ticket Priority</span>
+                                                                <span class="font-weight-semibold">The Complaint Priority</span>
                                                             </td>
                                                         </tr>
                                                         <tr>

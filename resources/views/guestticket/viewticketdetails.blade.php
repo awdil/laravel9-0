@@ -42,7 +42,7 @@
                                     <img src="{{asset('assets/images/svgs/check.svg')}}" alt="img" class="w-10">
                                     <h6 class="mt-5 fs-20 leading-normal">{{lang('Thank you for submitting your ticket to us. Your tickets are always our top priority. You are submitting a guest ticket.')}}</h6>
                                     <p class="mt-3 mb-5 fs-16"> {{lang('Please register your account with us to access more features.')}} </p>
-                                    <a class="btn ripple btn-primary" href="{{route('gusetticket',$ticket->ticket_id)}}">{{lang('View Ticket')}}</a>
+                                    <a class="btn ripple btn-primary" href="{{route('gusetticket',$ticket->ticket_id)}}">{{lang('View Complaint')}}</a>
 								</div>
                             </div>
                         </div>

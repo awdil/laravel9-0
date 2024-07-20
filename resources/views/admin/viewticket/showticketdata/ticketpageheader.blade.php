@@ -3,11 +3,11 @@
 									<!-- @if($ticket->status == 'Closed')
 										<button type="buttom" class="btn btn-sm btn-light me-2 d-none" id="ticket_to_article" value="">
 											<i class="feather feather-book me-3 fs-18 my-auto text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Create Article')}}"></i>
-											<span>{{lang('Ticket To Article')}} </span>
+											<span>{{lang('Complaint To Article')}} </span>
 										</button>
 										<a href="{{route('admin.article.ticket', $ticket->ticket_id)}}" class="btn btn-sm btn-light me-2"  id="ticket_to_article">
 											<i class="feather feather-book me-3 fs-18 my-auto text-muted" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Create Article')}}"></i>
-											<span>{{lang('Ticket To Article')}} </span>
+											<span>{{lang('Complaint To Article')}} </span>
 										</a>
 									@endif -->
 
@@ -21,7 +21,7 @@
 
 												<a href="javascript:void(0)" data-id="{{$ticket->id}}" class="dropdown-item" id="show-delete">
 													<i class="fa fa-trash me-3 fs-18 my-auto text-muted" data-id="{{$ticket->id}}"></i>
-													{{lang('Delete Ticket')}}
+													{{lang('Delete Complaint')}}
 												</a>
 
 												@if($ticket->cust->voilated != 'on')
@@ -44,12 +44,12 @@
 												@if($ticket->status == 'Suspend')
 													<a href="javascript:void(0)" data-id="{{$ticket->id}}" class="dropdown-item" id="unsuspend">
 														<i class="fa fa-pause-circle me-3 fs-18 my-auto text-muted" data-id="{{$ticket->id}}"></i>
-														{{lang('Unsuspend Ticket')}}
+														{{lang('Unsuspend Complaint')}}
 													</a>
 												@else
 													<a href="javascript:void(0)" data-id="{{$ticket->id}}" class="dropdown-item" id="suspend">
 														<i class="fa fa-pause-circle me-3 fs-18 my-auto text-muted" data-id="{{$ticket->id}}"></i>
-														{{lang('Suspend Ticket')}}
+														{{lang('Suspend Complaint')}}
 													</a>
 												@endif
 

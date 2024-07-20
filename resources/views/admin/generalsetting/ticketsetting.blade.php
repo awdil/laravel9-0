@@ -14,17 +14,17 @@
 <!--Page header-->
 <div class="page-header d-xl-flex d-block">
     <div class="page-leftheader">
-        <h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Ticket Setting', 'menu')}}</span></h4>
+        <h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Complaint Setting', 'menu')}}</span></h4>
     </div>
 </div>
 <!--End Page header-->
 
 
-<!-- Ticket Settings-->
+<!-- Complaint Settings-->
 <div class="col-xl-12 col-lg-12 col-md-12">
     <div class="card ">
         <div class="card-header border-0">
-            <h4 class="card-title">{{lang('Ticket Setting', 'menu')}}</h4>
+            <h4 class="card-title">{{lang('Complaint Setting', 'menu')}}</h4>
         </div>
         <form method="POST" action="{{ route('settings.ticket.store') }}" enctype="multipart/form-data">
             <div class="card-body" >
@@ -38,7 +38,7 @@
                         <div class="col-sm-12 col-md-12 ">
                             <div class="form-group mt-2 ms-7 {{ $errors->has('CUSTOMER_TICKETID') ? ' has-danger' : '' }}">
                                 <div class="pb-2">
-                                    <label class="form-label pb-0 mb-0"> {{lang('Custom Ticket Id', 'setting')}} <span class="text-red">*</span></label>
+                                    <label class="form-label pb-0 mb-0"> {{lang('Custom Complaint Id', 'setting')}} <span class="text-red">*</span></label>
                                     <small class="text-muted "><i>({{lang('Simply customise your ticket ID. For example, SPT-1 is the ticket id. You can only customise the first letters of the ticket ID of your choice. It displays SPT-1 for the registered user and SPTG-1 for the guest user. By default, the letter "G" represents the guest user.', 'setting')}})</i></small>
                                 </div>
                                     <input type="text" class="form-control w-20 w-lg-max-30 ms-2 {{ $errors->has('ticketid') ? ' is-invalid' : '' }}"  name="ticketid"  value="{{old('CUSTOMER_TICKETID', setting('CUSTOMER_TICKETID')) }}" required="">
@@ -59,7 +59,7 @@
                         <div class="col-sm-12 col-md-12 ">
                             <div class="form-group mt-2 ms-7 {{ $errors->has('ticketcharacter') ? ' has-danger' : '' }}">
                                 <div class="pb-2">
-                                    <label class="form-label pb-0 mb-0"> {{lang('Ticket Title Character Limit', 'setting')}} <span class="text-red">*</span></label>
+                                    <label class="form-label pb-0 mb-0"> {{lang('Complaint Title Character Limit', 'setting')}} <span class="text-red">*</span></label>
                                     <small class="text-muted "><i>({{lang('The character limit of a ticket title can be fixed here. Enter your desired ticket title’s character count. And characters in title now cannot exceed that value', 'setting')}})</i></small>
                                 </div>
                                     <input type="text" class="form-control w-20 w-lg-max-30 ms-2 {{ $errors->has('ticketcharacter') ? ' is-invalid' : '' }}"  name="ticketcharacter"  value="{{old('TICKET_CHARACTER', setting('TICKET_CHARACTER')) }}" required="">
@@ -75,7 +75,7 @@
                     </div>
                     <!---  End TICKET Character Limit--->
 
-                    <!---Customer Maximum Allowed Tickets--->
+                    <!---Customer Maximum Allowed Complaints--->
                     <div class="border-bottom">
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group {{ $errors->has('RESTRICT_TO_CREATE_TICKET') ? ' has-danger' : '' }}">
@@ -88,7 +88,7 @@
                                         <div class="ps-3">
                                             <label class="form-label">{{lang('Restrict Customers from creating tickets continously', 'setting')}}</label>
                                             <small class="text-muted ">
-                                            <i>({{lang('If you enable this ticket setting, customers cannot create multiple tickets at a time. Customers will be restricted to the value specified in "Maximum Number Of Tickets Allowed" untill the given timeframe "In Hours"', 'setting')}})</i>
+                                            <i>({{lang('If you enable this ticket setting, customers cannot create multiple tickets at a time. Customers will be restricted to the value specified in "Maximum Number Of Complaints Allowed" untill the given timeframe "In Hours"', 'setting')}})</i>
                                             </small>
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
                             <div class="col-sm-12 col-md-12 ms-7 ps-3 ">
                                 <div class="form-group d-flex d-md-max-block {{ $errors->has('MAXIMUM_ALLOW_TICKETS') ? ' is-invalid' : '' }}">
                                     <input type="number" id="maximumallowtickets" maxlength="2" class="form-control wd-5 w-lg-max-30 ms-2 " name="MAXIMUM_ALLOW_TICKETS" value="{{setting('MAXIMUM_ALLOW_TICKETS') }}">
-                                    <label for="maximumallowtickets" class="form-label mt-2 ms-2">{{lang('Maximum Number Of Tickets Allowed', 'setting')}}</label>
+                                    <label for="maximumallowtickets" class="form-label mt-2 ms-2">{{lang('Maximum Number Of Complaints Allowed', 'setting')}}</label>
                                 </div>
                                 @if ($errors->has('MAXIMUM_ALLOW_TICKETS'))
                                 <span class="invalid-feedback" role="alert">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <!---END Customer Maximum Allowed Tickets--->
+                    <!---END Customer Maximum Allowed Complaints--->
 
                     <!---Customer Maximum Allowed Replies--->
                     <div class="border-bottom">
@@ -137,7 +137,7 @@
                                             <label for="restricttoreply" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Restrict Customer From Replying To Ticket Continously', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Restrict Customer From Replying To Complaint Continously', 'setting')}}</label>
                                             <small class="text-muted ">
                                             <i>({{lang('If you enable this ticket setting, customers can not "Reply" their tickets within the mentioned hours and tickets in the input fields as below.', 'setting')}})</i></small>
                                         </div>
@@ -192,7 +192,7 @@
                                             <label for="responsetime" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Ticket Auto Response Time Enable', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Complaint Auto Response Time Enable', 'setting')}}</label>
                                             <small class="text-muted ">
                                                 <i>({{lang('This setting is used to change the ticket status to "Waiting for response" when a customer doesn’t reply to the ticket within the mentioned hours in the input field, and an email will also be sent to the customer. If you disable this ticket setting, then it won’t change the ticket status.', 'setting')}})</i></small>
                                         </div>
@@ -210,7 +210,7 @@
                         <div class="col-sm-12 col-md-12 ms-7">
                             <div class="form-group d-flex d-md-max-block {{ $errors->has('autoresponsetickettime') ? ' is-invalid' : '' }}">
                                 <input type="number" maxlength="2" class="form-control wd-5 w-lg-max-30 ms-2"  name="autoresponsetickettime"  value="{{old('autoresponsetickettime', setting('AUTO_RESPONSETIME_TICKET_TIME')) }}">
-                                <label class="form-label mt-2 ms-2">{{lang('Ticket Auto Response time in Hours', 'setting')}}</label>
+                                <label class="form-label mt-2 ms-2">{{lang('Complaint Auto Response time in Hours', 'setting')}}</label>
                             </div>
                             @if ($errors->has('autoresponsetickettime'))
 
@@ -234,7 +234,7 @@
                                             <label for="myonoffswitch1" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Auto Close Ticket Enable', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Auto Close Complaint Enable', 'setting')}}</label>
                                             <small class="text-muted ">
                                                 <i>({{lang('If you disable this ticket setting, the inactive ticket won’t be closed automatically. Users will need to close the ticket manually. If it is enabled, the inactive ticket will close automatically after the completion of the days that are mentioned in the input field below.', 'setting')}})</i></small>
                                         </div>
@@ -276,7 +276,7 @@
                                             <label for="myonoffswitch18" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Customer Re-Open Ticket Enable', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Customer Re-Open Complaint Enable', 'setting')}}</label>
                                             <small class="text-muted ">
                                                 <i>({{lang('If you disable this ticket setting, customers can not "Re-Open" their tickets. If it is enabled, then the customers can "Re-Open" their tickets within the mentioned days in the input field below. And if it is set to 0 (zero), then the customers can reopen their tickets at any time.', 'setting')}})</i></small>
                                         </div>
@@ -294,7 +294,7 @@
                         <div class="col-sm-12 col-md-12 ms-7 ps-3 ">
                             <div class="form-group d-flex d-md-max-block {{ $errors->has('userreopentime') ? ' is-invalid' : '' }}">
                                 <input type="number" maxlength="2" class="form-control wd-5 w-lg-max-30 ms-2 "  name="userreopentime"  value="{{old('userreopentime', setting('USER_REOPEN_TIME')) }}">
-                                <label class="form-label mt-2 ms-2">{{lang('Re-Open Ticket In Days', 'setting')}}</label>
+                                <label class="form-label mt-2 ms-2">{{lang('Re-Open Complaint In Days', 'setting')}}</label>
                             </div>
                             @if ($errors->has('userreopentime'))
 
@@ -318,7 +318,7 @@
                                             <label for="myonoffswitchs1" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Auto Ticket Overdue Enable', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Auto Complaint Overdue Enable', 'setting')}}</label>
                                             <small class="text-muted ">
                                                 <i>({{lang('If you disable this ticket setting, the "overdue" status won’t reflect on the tickets table in the admin panel. If it is enabled and the users of an admin panel don’t give a reply to the customer within the mentioned days, then the ticket status changes to "Overdue."', 'setting')}})</i></small>
                                         </div>
@@ -336,7 +336,7 @@
                         <div class="col-sm-12 col-md-12 ms-7">
                             <div class="form-group d-flex d-md-max-block {{ $errors->has('autooverduetickettime') ? ' is-invalid' : '' }}">
                                 <input type="number" maxlength="2" class="form-control wd-5 w-lg-max-30 ms-2 "  name="autooverduetickettime"  value="{{old('autooverduetickettime', setting('AUTO_OVERDUE_TICKET_TIME')) }}">
-                                <label class="form-label mt-2 ms-2">{{lang('Auto Overdue Ticket In Days', 'setting')}}</label>
+                                <label class="form-label mt-2 ms-2">{{lang('Auto Overdue Complaint In Days', 'setting')}}</label>
                             </div>
                             @if ($errors->has('autooverduetickettime'))
 
@@ -361,7 +361,7 @@
                                             <label for="myonoffswitchs13" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Auto Delete Trashed Tickets', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Auto Delete Trashed Complaints', 'setting')}}</label>
                                             <small class="text-muted ">
                                                 <i>({{lang('If you enable this ticket setting, trashed tickets will be deleted automatically deleted after the time mentioned in the below input field.', 'setting')}})</i></small>
                                         </div>
@@ -378,7 +378,7 @@
                         <div class="col-sm-12 col-md-12 ms-7">
                             <div class="form-group d-flex d-md-max-block {{ $errors->has('trashed_ticket_delete_time') ? ' is-invalid' : '' }}">
                                 <input type="number" maxlength="2" class="form-control wd-5 w-lg-max-30 ms-2 "  name="trashed_ticket_delete_time"  value="{{setting('trashed_ticket_delete_time') }}">
-                                <label class="form-label mt-2 ms-2">{{lang('Trashed Tickets Auto Delete In Days', 'setting')}}</label>
+                                <label class="form-label mt-2 ms-2">{{lang('Trashed Complaints Auto Delete In Days', 'setting')}}</label>
                             </div>
                             @if ($errors->has('trashed_ticket_delete_time'))
 
@@ -478,8 +478,8 @@
                                             <label for="myonoffswitch2" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Guest Ticket Enable', 'setting')}}</label>
-                                            <small class="text-muted"><i>({{lang('If you disable this ticket setting, the "Guest Ticket" option will disappear from the application’s header section.', 'setting')}})</i></small>
+                                            <label class="form-label">{{lang('Guest Complaint Enable', 'setting')}}</label>
+                                            <small class="text-muted"><i>({{lang('If you disable this ticket setting, the "Guest Complaint" option will disappear from the application’s header section.', 'setting')}})</i></small>
                                         </div>
                                     </div>
                                 </div>
@@ -534,7 +534,7 @@
                                         <label for="custrestrictdelete" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Ticket Delete By Customer Disable', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Complaint Delete By Customer Disable', 'setting')}}</label>
                                             <small class="text-muted"><i>({{lang('If you enable this ticket setting, delete ticket option will disappear from customer’s dashboard.', 'setting')}})</i></small>
                                         </div>
                                     </div>
@@ -551,7 +551,7 @@
                     </div>
                     <!--- END TICKET DELETE BY CUSTOMER DISABLE --->
 
-                    <!-- Customer File Upload in Ticket -->
+                    <!-- Customer File Upload in Complaint -->
                     <div class="border-bottom">
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group {{ $errors->has('USER_FILE_UPLOAD_ENABLE') ? ' has-danger' : '' }}">
@@ -562,7 +562,7 @@
                                             <label for="myonoffswitch1823" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Customer File Uploads for Ticket', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Customer File Uploads for Complaint', 'setting')}}</label>
                                             <small class="text-muted"><i>({{lang('If you disable this ticket setting, the "File Upload" option will disappear from the create ticket page, while creating or replying to the ticket.', 'setting')}})</i></small>
                                         </div>
                                     </div>
@@ -577,9 +577,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Customer File Upload in Ticket -->
+                    <!-- End Customer File Upload in Complaint -->
 
-                    <!-- Guest User File Upload in Ticket -->
+                    <!-- Guest User File Upload in Complaint -->
                     <div class="border-bottom">
                         <div class="col-sm-12 col-md-12">
                             <div class="form-group {{ $errors->has('GUEST_FILE_UPLOAD_ENABLE') ? ' has-danger' : '' }}">
@@ -590,8 +590,8 @@
                                             <label for="myonoffswitch1825" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Guest User File Upload in Ticket', 'setting')}}</label>
-                                            <small class="text-muted "><i>({{lang('If you disable this ticket setting, the "File Upload" option will disappear from the "Guest Ticket" page while creating or replying to the ticket to the guest users.', 'setting')}})</i></small>
+                                            <label class="form-label">{{lang('Guest User File Upload in Complaint', 'setting')}}</label>
+                                            <small class="text-muted "><i>({{lang('If you disable this ticket setting, the "File Upload" option will disappear from the "Guest Complaint" page while creating or replying to the ticket to the guest users.', 'setting')}})</i></small>
                                         </div>
                                     </div>
                                 </div>
@@ -605,7 +605,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Guest User File Upload in Ticket -->
+                    <!-- End Guest User File Upload in Complaint -->
 
                     <!--- GUEST TICKET OTP Enable --->
                     <div class="border-bottom">
@@ -618,8 +618,8 @@
                                             <label for="myonoffswitcho2" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Guest Ticket OTP Disable', 'setting')}}</label>
-                                            <small class="text-muted"><i>({{lang('If you enable this ticket setting, the "Guest Ticket OTP" option will be disabled.', 'setting')}})</i></small>
+                                            <label class="form-label">{{lang('Guest Complaint OTP Disable', 'setting')}}</label>
+                                            <small class="text-muted"><i>({{lang('If you enable this ticket setting, the "Guest Complaint OTP" option will be disabled.', 'setting')}})</i></small>
                                         </div>
                                     </div>
                                 </div>
@@ -646,7 +646,7 @@
                                             <label for="myonoffswitch2e" class="toggle-class onoffswitch2-label" ></label>
                                         </a>
                                         <div class="ps-3">
-                                            <label class="form-label">{{lang('Customer Create Ticket Disable', 'setting')}}</label>
+                                            <label class="form-label">{{lang('Customer Create Complaint Disable', 'setting')}}</label>
                                             <small class="text-muted"><i>({{lang('If you enable this ticket setting, the create ticket option will disappear from the customer’s dashboard.', 'setting')}})</i></small>
                                         </div>
                                     </div>
@@ -703,7 +703,7 @@
                                         </a>
                                         <div class="ps-3">
                                             <label class="form-label">{{lang('CC Mail Enable', 'setting')}}</label>
-                                            <small class="text-muted"><i>({{lang('If you "Enable" this "CC Mail" setting, the CC Mail input field options will appear on the Create Ticket, Admin Create Ticket, and Guest Ticket pages.', 'setting')}})</i></small>
+                                            <small class="text-muted"><i>({{lang('If you "Enable" this "CC Mail" setting, the CC Mail input field options will appear on the Create Complaint, Admin Create Complaint, and Guest Complaint pages.', 'setting')}})</i></small>
                                         </div>
                                     </div>
                                 </div>
@@ -729,7 +729,7 @@
         </form>
     </div>
 </div>
-<!-- End Ticket Settings-->
+<!-- End Complaint Settings-->
 
 <!-- File Setting-->
 <div class="col-xl-12 col-lg-12 col-md-12">

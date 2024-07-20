@@ -135,7 +135,7 @@
 
 							<!--Dashboard List-->
 							<h6 class="fw-semibold mb-3">
-								{{lang('Global Tickets', 'menu')}}
+								{{lang('Global Complaints', 'menu')}}
 							</h6>
 							<div class="row row-cols-xxl-5">
 								<div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
@@ -147,7 +147,7 @@
 														<i class="las la-ticket-alt"></i>
 													</div>
 													<div>
-														<p class="fs-14 font-weight-semibold mb-1">{{lang('All Tickets')}} </p>
+														<p class="fs-14 font-weight-semibold mb-1">{{lang('All Complaints')}} </p>
 														<h5 class="mb-0">{{$totaltickets}}</h5>
 													</div>
 												</div>
@@ -164,7 +164,7 @@
 														<i class="las la-ticket-alt"></i>
 													</div>
 													<div>
-														<p class="fs-14 font-weight-semibold mb-1">{{lang('Recent Tickets')}} </p>
+														<p class="fs-14 font-weight-semibold mb-1">{{lang('Recent Complaints')}} </p>
 														<h5 class="mb-0">{{$recentticketcount}}</h5>
 													</div>
 												</div>
@@ -181,7 +181,7 @@
 														<i class="las la-ticket-alt"></i>
 													</div>
 													<div>
-														<p class="fs-14 font-weight-semibold mb-1">{{lang('Active Tickets')}} </p>
+														<p class="fs-14 font-weight-semibold mb-1">{{lang('Active Complaints')}} </p>
 														<h5 class="mb-0">{{$totalactivetickets}}</h5>
                                                         @if($replyrecent > 0)
                                                             <span class="position-absolute uhelp-reply-badge pulse-badge" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Un-Answered"><i class="fa fa-commenting me-1"></i>{{$replyrecent}}</span>
@@ -204,7 +204,7 @@
 														<i class="las la-ticket-alt"></i>
 													</div>
 													<div>
-														<p class="fs-14 font-weight-semibold mb-1">{{lang('Suspended Tickets')}}</p>
+														<p class="fs-14 font-weight-semibold mb-1">{{lang('Suspended Complaints')}}</p>
 														<h5 class="mb-0">{{$suspendedticketcount}}</h5>
 													</div>
 												</div>
@@ -221,7 +221,7 @@
 														<i class="las la-ticket-alt"></i>
 													</div>
 													<div>
-														<p class="fs-14 font-weight-semibold mb-1">{{lang('Closed Tickets')}} </p>
+														<p class="fs-14 font-weight-semibold mb-1">{{lang('Closed Complaints')}} </p>
 														<h5 class="mb-0">{{$totalclosedtickets}}</h5>
 													</div>
 												</div>
@@ -232,7 +232,7 @@
 							</div>
 
 							<h6 class="fw-semibold mb-3">
-								{{lang('Self Tickets')}}
+								{{lang('Self Complaints')}}
 							</h6>
 							<div class="row">
 								<div class="col-xl-3 col-lg-6 col-sm-6">
@@ -257,7 +257,7 @@
 													</div>
 													<div>
 														<p class="fs-14 font-weight-semibold mb-1">
-															{{lang('Self assigned Tickets')}}</p>
+															{{lang('Self assigned Complaints')}}</p>
 															<h5 class="mb-0">{{$selfassigncount}}</h5>
 													</div>
 												</div>
@@ -287,7 +287,7 @@
 													</div>
 													<div>
 														<p class="fs-14 font-weight-semibold mb-1">
-															{{lang('My Assigned Tickets')}}</p>
+															{{lang('My Assigned Complaints')}}</p>
 															<h5 class="mb-0">{{$myassignedticketcount}}</h5>
 													</div>
 												</div>
@@ -317,7 +317,7 @@
 													</div>
 													<div>
 														<p class="fs-14 font-weight-semibold mb-1">
-															{{lang('Closed Tickets')}}</p>
+															{{lang('Closed Complaints')}}</p>
 															<h5 class="mb-0">{{$myclosedticketcount}}</h5>
 													</div>
 												</div>
@@ -347,7 +347,7 @@
 													</div>
 													<div>
 														<p class="fs-14 font-weight-semibold mb-1">
-															{{lang('Suspend Tickets')}}</p>
+															{{lang('Suspend Complaints')}}</p>
 															<h5 class="mb-0">{{$suspendticketcount}}</h5>
 													</div>
 												</div>
@@ -397,7 +397,7 @@
 																</th>
 																@endcannot
 																<th class="ticket-dets">
-																	{{lang('Ticket Details')}}
+																	{{lang('Complaint Details')}}
 																</th>
 																<th>{{lang('User')}}</th>
 																<th >{{lang('Status')}}</th>

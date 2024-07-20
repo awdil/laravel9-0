@@ -17,7 +17,7 @@
 							<!--Page header-->
 							<div class="page-header d-xl-flex d-block">
 								<div class="page-leftheader">
-									<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Total Active On-Hold Tickets', 'menu')}}</span></h4>
+									<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Total Active On-Hold Complaints', 'menu')}}</span></h4>
 								</div>
 							</div>
 							<!--End Page header-->
@@ -27,7 +27,7 @@
 							<div class="col-xl-12 col-lg-12 col-md-12">
 								<div class="card ">
 									<div class="card-header border-0">
-										<h4 class="card-title">{{lang('Total Active On-Hold Tickets', 'menu')}}</h4>
+										<h4 class="card-title">{{lang('Total Active On-Hold Complaints', 'menu')}}</h4>
 									</div>
 									<div class="card-body overflow-scroll">
 										<div class="  spruko-delete">
@@ -57,7 +57,7 @@
 															</th>
 															@endcannot
 
-															<th >{{lang('Ticket Details')}}</th>
+															<th >{{lang('Complaint Details')}}</th>
 															<th>{{lang('User')}}</th>
 															<th>{{lang('Status')}}</th>
 															<th >{{lang('Assign To')}}</th>

@@ -402,7 +402,7 @@
 				}
 			})
 
-			// Create Ticket
+			// Create Complaint
 			$('body').on('submit', '#adminarticle_forms', function (e) {
 				e.preventDefault();
 				$('#TitleError').html('');

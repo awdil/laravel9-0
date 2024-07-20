@@ -74,17 +74,17 @@
            <li class="slide">
                <a class="side-menu__item" data-bs-toggle="slide" href="#">
                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M22 10V6c0-1.11-.9-2-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2zm-2-1.46c-1.19.69-2 1.99-2 3.46s.81 2.77 2 3.46V18H4v-2.54c1.19-.69 2-1.99 2-3.46 0-1.48-.8-2.77-1.99-3.46L4 6h16v2.54zM11 15h2v2h-2zm0-4h2v2h-2zm0-4h2v2h-2z"/></svg>
-                   <span class="side-menu__label">{{lang('Manage Tickets', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
+                   <span class="side-menu__label">{{lang('Manage Complaints', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
                </a>
                <ul class="slide-menu custom-ul">
-                   <li><a href="{{route('admin.recenttickets')}}" class="slide-item">{{lang('Recent Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/all-tickets')}}" class="slide-item">{{lang('All Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/activeticket')}}" class="slide-item">{{lang('Active Tickets', 'Menu')}}</a></li>
-                   <!-- <li><a href="{{url('/admin/closedticket')}}" class="slide-item">{{lang('Closed Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.onholdticket')}}" class="slide-item">{{lang('On-Hold Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.overdueticket')}}" class="slide-item">{{lang('Overdue Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.allassignedtickets')}}" class="slide-item">{{lang('Assigned Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.suspendedtickets')}}" class="slide-item">{{lang('Suspended Tickets', 'Menu')}}</a></li> -->
+                   <li><a href="{{route('admin.recenttickets')}}" class="slide-item">{{lang('Recent Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/all-tickets')}}" class="slide-item">{{lang('All Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/activeticket')}}" class="slide-item">{{lang('Active Complaints', 'Menu')}}</a></li>
+                   <!-- <li><a href="{{url('/admin/closedticket')}}" class="slide-item">{{lang('Closed Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.onholdticket')}}" class="slide-item">{{lang('On-Hold Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.overdueticket')}}" class="slide-item">{{lang('Overdue Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.allassignedtickets')}}" class="slide-item">{{lang('Assigned Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.suspendedtickets')}}" class="slide-item">{{lang('Suspended Complaints', 'Menu')}}</a></li> -->
 
 
                </ul>
@@ -93,13 +93,13 @@
            <li class="slide">
                <a class="side-menu__item" data-bs-toggle="slide" href="#">
                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M22 10V6c0-1.11-.9-2-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2zm-2-1.46c-1.19.69-2 1.99-2 3.46s.81 2.77 2 3.46V18H4v-2.54c1.19-.69 2-1.99 2-3.46 0-1.48-.8-2.77-1.99-3.46L4 6h16v2.54zM11 15h2v2h-2zm0-4h2v2h-2zm0-4h2v2h-2z"/></svg>
-                   <span class="side-menu__label">{{lang('Self Tickets', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
+                   <span class="side-menu__label">{{lang('Self Complaints', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
                </a>
                <ul class="slide-menu custom-ul">
-                   <li><a href="{{route('admin.selfassignticketview')}}" class="slide-item">{{lang('Self Assigned Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/myassignedtickets')}}" class="slide-item">{{lang('My Assigned Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.myclosedtickets')}}" class="slide-item">{{lang('Closed Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.mysuspendtickets')}}" class="slide-item">{{lang('Suspend Tickets', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.selfassignticketview')}}" class="slide-item">{{lang('Self Assigned Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/myassignedtickets')}}" class="slide-item">{{lang('My Assigned Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.myclosedtickets')}}" class="slide-item">{{lang('Closed Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.mysuspendtickets')}}" class="slide-item">{{lang('Suspend Complaints', 'Menu')}}</a></li>
                </ul>
            </li>
            @endif
@@ -107,16 +107,16 @@
            <li class="slide">
                <a class="side-menu__item" data-bs-toggle="slide" href="#">
                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M22 10V6c0-1.11-.9-2-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2zm-2-1.46c-1.19.69-2 1.99-2 3.46s.81 2.77 2 3.46V18H4v-2.54c1.19-.69 2-1.99 2-3.46 0-1.48-.8-2.77-1.99-3.46L4 6h16v2.54zM11 15h2v2h-2zm0-4h2v2h-2zm0-4h2v2h-2z"/></svg>
-                   <span class="side-menu__label">{{lang('Tickets', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
+                   <span class="side-menu__label">{{lang('Complaints', 'Menu')}}</span><i class="angle fa fa-angle-right"></i>
                </a>
                <ul class="slide-menu custom-ul">
 
-                   <li><a href="{{route('admin.recenttickets')}}" class="slide-item">{{lang('Recent Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/activeticket')}}" class="slide-item">{{lang('Active Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.selfassignticketview')}}" class="slide-item">{{lang('Self Assigned Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{url('/admin/myassignedtickets')}}" class="slide-item">{{lang('My Assigned Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.myclosedtickets')}}" class="slide-item">{{lang('Closed Tickets', 'Menu')}}</a></li>
-                   <li><a href="{{route('admin.mysuspendtickets')}}" class="slide-item">{{lang('Suspend Tickets', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.recenttickets')}}" class="slide-item">{{lang('Recent Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/activeticket')}}" class="slide-item">{{lang('Active Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.selfassignticketview')}}" class="slide-item">{{lang('Self Assigned Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{url('/admin/myassignedtickets')}}" class="slide-item">{{lang('My Assigned Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.myclosedtickets')}}" class="slide-item">{{lang('Closed Complaints', 'Menu')}}</a></li>
+                   <li><a href="{{route('admin.mysuspendtickets')}}" class="slide-item">{{lang('Suspend Complaints', 'Menu')}}</a></li>
 
                </ul>
            </li>
@@ -126,17 +126,17 @@
 
            <!--- Employee menu tickets --->
 
-           <!-- Trashed Ticket For Admin -->
+           <!-- Trashed Complaint For Admin -->
            @if(!empty(Auth::user()->getRoleNames()[0]) && Auth::user()->getRoleNames()[0] == 'superadmin')
            <li class="slide">
                <a class="side-menu__item"  href="{{route('admin.tickettrashed')}}">
                    <svg class="sidemenu_icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M6.5 17q-.625 0-1.062-.438Q5 16.125 5 15.5v-10H4V4h4V3h4v1h4v1.5h-1v10q0 .625-.438 1.062Q14.125 17 13.5 17Zm7-11.5h-7v10h7ZM8 14h1.5V7H8Zm2.5 0H12V7h-1.5Zm-4-8.5v10Z"/></svg>
 
-                   <span class="side-menu__label">{{lang('Trashed Tickets', 'Menu')}}</span>
+                   <span class="side-menu__label">{{lang('Trashed Complaints', 'Menu')}}</span>
                </a>
            </li>
            @endif
-           <!--- End Trashed Ticket For Admin -->
+           <!--- End Trashed Complaint For Admin -->
 
 
 
@@ -316,7 +316,7 @@
                     @endcan
                     @can('Ticket Setting Access')
 
-                    <li><a href="{{url('/admin/ticketsetting')}}" class="slide-item">{{lang('Ticket Setting',
+                    <li><a href="{{url('/admin/ticketsetting')}}" class="slide-item">{{lang('Complaint Setting',
                             'Menu')}}</a></li>
                     @endcan
                    
@@ -328,7 +328,7 @@
                    
                     @can('Emailtoticket Access')
 
-                    <li><a href="{{route('admin.emailtoticket')}}" class="slide-item">{{lang('Email to Tickets',
+                    <li><a href="{{route('admin.emailtoticket')}}" class="slide-item">{{lang('Email to Complaints',
                             'Menu')}}</a></li>
                     @endcan
 

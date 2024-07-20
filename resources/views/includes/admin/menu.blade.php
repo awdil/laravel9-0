@@ -67,7 +67,7 @@
 										</nav>
 										
 										<div class="d-flex order-lg-2 my-auto ms-sm-auto dropdown-container align-items-center">
-											<a class="btn btn-primary header-buttons text-center" href="{{url('/admin/createticket')}}"><i class="fa fa-paper-plane-o pe-lg-2"></i><span class="d-m-none">{{lang('Create Ticket', 'Menu')}}</span></a>
+											<a class="btn btn-primary header-buttons text-center" href="{{url('/admin/createticket')}}"><i class="fa fa-paper-plane-o pe-lg-2"></i><span class="d-m-none">{{lang('Create Complaint', 'Menu')}}</span></a>
 											<div class="dropdown header-flags ms-1">
 
 												<a href="#" class="text-capitalize dropdown-toggle" data-bs-toggle="dropdown">

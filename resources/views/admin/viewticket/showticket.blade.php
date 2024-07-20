@@ -21,7 +21,7 @@
 <!--Page header-->
 <div class="page-header d-xl-flex d-block">
 	<div class="page-leftheader">
-		<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Ticket Information')}}</span></h4>
+		<h4 class="page-title"><span class="font-weight-normal text-muted ms-2">{{lang('Complaint Information')}}</span></h4>
 	</div>
 
 	<!--page header left -->
@@ -262,7 +262,7 @@
 				@endif
 
 
-				{{-- Reply Ticket Display --}}
+				{{-- Reply Complaint Display --}}
 
 				@if($ticket->ticketassignmutliples->isNotEmpty() && $ticket->selfassignuser_id == null)
 					@if(!empty(Auth::user()->getRoleNames()[0]) && Auth::user()->getRoleNames()[0] == 'superadmin')
@@ -282,7 +282,7 @@
 					@include('admin.viewticket.showticketdata.showticketinclude')
 				@endif
 
-				{{-- End Reply Ticket Display --}}
+				{{-- End Reply Complaint Display --}}
 
 
 
@@ -295,7 +295,7 @@
                         @if($ticket->status == 'Closed')
                             <button type="buttom" class="btn btn-primary ms-auto disabled" id="ticket_to_article" value="">
                                 <i class="feather feather-book me-3 fs-18 my-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Create Article')}}"></i>
-                                <span>{{lang('Ticket To Article')}} </span>
+                                <span>{{lang('Complaint To Article')}} </span>
                             </button>
                         @endif
 					</div>
@@ -314,7 +314,7 @@
 
 			<div class="col-xl-5 col-lg-12 col-md-12">
 
-				<!-- Ticket Information -->
+				<!-- Complaint Information -->
 
 					@if($ticket->ticketassignmutliples->isNotEmpty() && $ticket->selfassignuser_id == null)
 						@if(!empty(Auth::user()->getRoleNames()[0]) && Auth::user()->getRoleNames()[0] == 'superadmin')
@@ -336,9 +336,9 @@
 						@include('admin.viewticket.showticketdata.ticketinfooter')
 					@endif
 
-				<!-- Ticket Information -->
+				<!-- Complaint Information -->
 
-				<!-- Ticket Activity Details -->
+				<!-- Complaint Activity Details -->
 				<div class="card">
 					<div class="card-header d-sm-max-flex border-bottom-0 d-flex">
 						<h3 class="card-title">{{lang('Assign Activity')}}</h3>
@@ -544,14 +544,14 @@
 						</ul>
 					</div>
 				</div>
-				<!-- End Ticket Activity Details -->
+				<!-- End Complaint Activity Details -->
 				<!-- Customer Details -->
 				<div class="card">
 					<div class="card-header d-sm-max-flex border-0">
 						<div class="card-title">{{lang('Customer Details')}}</div>
 						@if($custsimillarticket > 1)
 							<div class="card-options">
-								<a class="btn btn-sm btn-outline-primary" href="{{route('admin.customer.tickethistory', $ticket->cust->id)}}" target="_blank" rel="noopener noreferrer">{{lang('Previous Tickets')}}</a>
+								<a class="btn btn-sm btn-outline-primary" href="{{route('admin.customer.tickethistory', $ticket->cust->id)}}" target="_blank" rel="noopener noreferrer">{{lang('Previous Complaints')}}</a>
 							</div>
 						@endif
 					</div>
@@ -627,7 +627,7 @@
 				<!--ticke note  -->
 				<div class="card">
 					<div class="card-header d-sm-max-flex border-0">
-						<div class="card-title">{{lang('Ticket Note')}}</div>
+						<div class="card-title">{{lang('Complaint Note')}}</div>
 						<div class="card-options">
 							@if ($ticket->status != 'Closed')
 
@@ -1705,7 +1705,7 @@ $('body').on('click', '#show-delete', function () {
 
 let suspend = document.getElementById('suspend'),
 	unsuspend = document.getElementById('unsuspend');
-/*** Suspend Ticket ***/
+/*** Suspend Complaint ***/
 	if(suspend != null){
 
 		suspend.addEventListener('click', function(event){
@@ -1750,8 +1750,8 @@ let suspend = document.getElementById('suspend'),
 
 		})
 	}
-/*** End Suspend Ticket ***/
-/*** UnSuspend Ticket ***/
+/*** End Suspend Complaint ***/
+/*** UnSuspend Complaint ***/
 	if(unsuspend != null)
 	{
 		unsuspend.addEventListener('click', function(event){
@@ -1797,7 +1797,7 @@ let suspend = document.getElementById('suspend'),
 
 		})
 	}
-/*** End UnSuspend Ticket ***/
+/*** End UnSuspend Complaint ***/
 
 //** Chat GPT modal script**//
 $('body').on('click', '#gptmodal', function(){
@@ -2009,9 +2009,9 @@ $('body').on('click', '#gptmodal', function(){
 <!-- End  Add note  -->
 
 @include('admin.modalpopup.assignmodal')
-<!-- End Assigned Tickets  -->
+<!-- End Assigned Complaints  -->
 
-<!-- Priority Tickets-->
+<!-- Priority Complaints-->
 <div class="modal fade sprukopriority"  id="addpriority" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -2046,7 +2046,7 @@ $('body').on('click', '#gptmodal', function(){
 		</div>
 	</div>
 </div>
-<!-- End priority Tickets  -->
+<!-- End priority Complaints  -->
 
 @include('admin.viewticket.modalpopup.categorymodalpopup')
 

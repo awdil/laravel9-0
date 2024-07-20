@@ -9,7 +9,7 @@
                 <div class="d-flex">
                     <div class="ps-3">
                         <h6 class="mb-1">{{ Str::limit($notification->data['title'], '30') }}</h6>
-                        <p class="fs-13 mb-1 text-wrap">{{ $notification->data['ticket_id'] }} {{lang('Ticket is assigned', 'notification')}} </p>
+                        <p class="fs-13 mb-1 text-wrap">{{ $notification->data['ticket_id'] }} {{lang('Complaint is assigned', 'notification')}} </p>
                         <div class="small text-muted">
                         {{ $notification->created_at->diffForHumans() }}
                         </div>

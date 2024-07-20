@@ -135,7 +135,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="w-100">
-                                                <span class="w-50">{{lang('Ticket ID')}}</span>
+                                                <span class="w-50">{{lang('Complaint ID')}}</span>
                                             </td>
                                             <td>:</td>
                                             <td>

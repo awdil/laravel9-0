@@ -61,7 +61,7 @@
         <div class="col-xl-4 col-md-12 col-sm-12 col-lg-12">
             <div class="card">
                 <div class="card-header d-flex border-0">
-                    <h4 class="card-title">{{ lang('Ticket') }}</h4>
+                    <h4 class="card-title">{{ lang('Complaint') }}</h4>
                     <div class="card-options">
                         <a class="btn btn-light btn-sm" href="{{ route('admin.alltickets') }}">{{ lang('View All') }}</a>
                     </div>
@@ -92,7 +92,7 @@
             <div class="card">
                 <div class="card-header border-bottom-0">
                     <h3 class="card-title">
-                        {{ lang('Ticket Priority') }}
+                        {{ lang('Complaint Priority') }}
                     </h3>
                 </div>
                 <div class="card-body pb-8">
@@ -389,7 +389,7 @@
         }
         // End Customer Chart
 
-        // Ticket Chart
+        // Complaint Chart
         if (({{ $newticket }} !== 0) || ({{ $inprogressticket }} !== 0) || ({{ $onholdticket }} !== 0) || (
                 {{ $reopenticket }} !== 0) || ({{ $closedticket }} !== 0)) {
             var ticketchart = {
@@ -463,7 +463,7 @@
         } else {
             let noData = new nodata(document.querySelector("#ticketchart"));
         }
-        // End Ticket Chart
+        // End Complaint Chart
 
         $(".allemployeerating").starRating({
             readOnly: true,

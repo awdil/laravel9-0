@@ -142,7 +142,7 @@
 
 							<div class="row">
 								<div class="col-xl-4">
-									<h6 class="mb-3 fw-semibold">{{lang('General Tickets')}}</h6>
+									<h6 class="mb-3 fw-semibold">{{lang('General Complaints')}}</h6>
 									<div class="row">
 										<div class="col-xl-6 col-lg-6 col-sm-6">
 											<div class="card">
@@ -165,7 +165,7 @@
                                                                 </svg>
                                                             </span>
                                                             <div class="">
-                                                                <p class="fs-14 font-weight-semibold mb-0">{{lang('Recents Tickets')}}
+                                                                <p class="fs-14 font-weight-semibold mb-0">{{lang('Recents Complaints')}}
                                                                 </p>
                                                                 <h3 class="mb-0 text-primary">{{$recentticketcount}}</h3>
                                                             </div>
@@ -195,7 +195,7 @@
                                                                 </svg>
                                                             </span>
                                                             <div>
-                                                                <p class="fs-14 font-weight-semibold mb-0">{{lang('Unassigned Tickets')}}</p>
+                                                                <p class="fs-14 font-weight-semibold mb-0">{{lang('Unassigned Complaints')}}</p>
 
                                                                     <h3 class="mb-0 text-secondary">{{$totalactivetickets}}</h3>
                                                                     @if($totalactiverecent > 0)
@@ -212,7 +212,7 @@
 									</div>
 								</div>
 								<div class="col-xl-8">
-									<h6 class="fw-esmibold mb-3">{{lang('Self Tickets')}}</h6>
+									<h6 class="fw-esmibold mb-3">{{lang('Self Complaints')}}</h6>
 									<div class="row">
 										<div class="col-xl-3 col-lg-6 col-sm-6">
 											<div class="card">
@@ -236,7 +236,7 @@
 															</div>
 															<div>
 																<p class="fs-14 font-weight-semibold mb-1">
-																	{{lang('Self assigned Tickets')}}</p>
+																	{{lang('Self assigned Complaints')}}</p>
 																	<h5 class="mb-0">{{$selfassigncount}}</h5>
                                                                     @if($selfassignrecentreply > 0)
                                                                         <span class="position-absolute uhelp-reply-badge pulse-badge" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Un-Answered"><i class="fa fa-commenting me-1"></i>{{$selfassignrecentreply}}</span>
@@ -272,7 +272,7 @@
 															</div>
 															<div>
 																<p class="fs-14 font-weight-semibold mb-1">
-																	{{lang('My Assigned Tickets')}}</p>
+																	{{lang('My Assigned Complaints')}}</p>
 																	<h5 class="mb-0">{{$myassignedticketcount}}</h5>
                                                                     @if($myassignedticketrecentreply > 0)
                                                                         <span class="position-absolute uhelp-reply-badge pulse-badge" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Un-Answered"><i class="fa fa-commenting me-1"></i>{{$myassignedticketrecentreply}}</span>
@@ -308,7 +308,7 @@
 															</div>
 															<div>
 																<p class="fs-14 font-weight-semibold mb-1">
-																	{{lang('Closed Tickets')}}</p>
+																	{{lang('Closed Complaints')}}</p>
 																	<h5 class="mb-0">{{$myclosedticketcount}}</h5>
 															</div>
 														</div>
@@ -338,7 +338,7 @@
 															</div>
 															<div>
 																<p class="fs-14 font-weight-semibold mb-1">
-																	{{lang('Suspend Tickets')}}</p>
+																	{{lang('Suspend Complaints')}}</p>
 																	<h5 class="mb-0">{{$suspendticketcount}}</h5>
 															</div>
 														</div>
@@ -357,7 +357,7 @@
 								<div class="col-lg-12">
 									<div class="card">
 										<div class="card-header border-0">
-											<h4 class="card-title">{{lang('Recent Tickets')}}</h4>
+											<h4 class="card-title">{{lang('Recent Complaints')}}</h4>
 										</div>
 										<div class="card-body overflow-scroll">
 											<div class="">
@@ -390,7 +390,7 @@
 																</th>
 																@endcannot
 																<th class="ticket-dets">
-																	{{lang('Ticket Details')}}
+																	{{lang('Complaint Details')}}
 																</th>
 																<th>{{lang('User')}}</th>
 																<th>
