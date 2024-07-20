@@ -308,9 +308,8 @@
                                             </div>
 
                                             <div class="card-footer">
-                                                <div class="form-group float-end">
-                                                    <button  type="submit"  class="btn btn-secondary btn-lg " id="createticketbtn"> {{lang('Create Ticket', 'menu')}} </button>
-
+                                                <div class="form-group">
+                                                    <button  type="submit"  class="btn-block btn btn-secondary btn-lg " id="createticketbtn"> {{lang('Create Ticket', 'menu')}} </button>
                                                 </div>
                                             </div>
                                         </div>
