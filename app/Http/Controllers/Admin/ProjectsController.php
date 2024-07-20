@@ -25,6 +25,13 @@ class ProjectsController extends Controller
     public function index()
     {
 
+        $title = getAppTitle();
+        $footertext = getFooterText();
+        $seopage = getSeoSetting();
+        $pages = getPages();
+        $post = $pages;
+        $basic = $title;
+        $data['basic'] = $title;
         $projectss = Projects::latest()->get();
         $data['projectss'] = $projectss;
         
