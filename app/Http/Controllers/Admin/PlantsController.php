@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plant;
+use App\Models\Projects;
 use Illuminate\Http\Request;
 
 use App\Models\Department;
@@ -19,21 +20,21 @@ class PlantsController extends Controller
     {
 
         $this->authorize('Department Access');
-
-        $departments = Plant::latest()->get();
-        $data['plants'] = $departments;
+        $data['projects'] = Projects::latest()->get();
+        $plant = Plant::latest()->get();
+        $data['plants'] = $plant;
 
         return view('admin.plant.index')->with($data);
     }
 
-    public function create(Request $request)
+    public function createOldish(Request $request)
     {
-        $validate = Department::find($request->id);
+        $validate = Plant::find($request->id);
         if(!$validate){
 
             $request->validate([
 
-                'departmentname'=> 'required|max:255|unique:departments',
+                'plant_id'=> 'required|max:255|unique:plant_id',
 
             ]);
 
@@ -44,7 +45,7 @@ class PlantsController extends Controller
 
                 $request->validate([
 
-                    'departmentname'=> 'required|max:255',
+                    'plant_id'=> 'required|max:255',
 
                 ]);
 
@@ -52,31 +53,72 @@ class PlantsController extends Controller
 
                 $request->validate([
 
-                    'departmentname'=> 'required|max:255|unique:departments',
+                    'plant_id'=> 'required|max:255|unique:plant_id',
 
                 ]);
             }
         }
 
-          $department = Department::updateOrCreate( ['id' => $request->id], ['departmentname' => $request->departmentname, 'status' => $request->status ]);
+          $plant = Plant::updateOrCreate( ['id' => $request->id], ['plant_id' => $request->plant_id]);
 
-          return response()->json(['code'=>200, 'success'=> lang('The Department has been successfully updated.', 'alerts'),'data' => $department], 200);
+          return response()->json(['code'=>200, 'success'=> lang('The Plant has been successfully updated.', 'alerts'),'data' => $plant], 200);
     }
+
+    public function create(Request $request)
+    {
+        // Check if it's an update or create new entry
+        $plant = Plant::find($request->id);
+
+        // Common validation rules
+        $rules = [
+            'plant_id' => 'required|max:255',
+        ];
+
+        // Handle unique validation for new entries
+        if (!$plant) {
+            $rules['plant_id'] .= '|unique:plants'; // Ensure plant ID is unique when creating a new plant
+        }
+
+        // Validate request data
+        $validatedData = $request->validate($rules);
+
+        // Use updateOrCreate method to either update existing or create new
+        $data = [
+            'plant_id' => $request->plant_id,
+            'project_id' => $request->project_id,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'installation_date' => $request->installation_date,
+            'zone' => $request->zone,
+            'plant_type' => $request->plant_type,
+            'address' => $request->address,
+            'status' => $request->status,
+        ];
+        $plant = Plant::updateOrCreate(['id' => $request->id], $data);
+
+        // Return JSON response
+        return response()->json([
+            'code' => 200,
+            'message' => lang('The Plant has been successfully updated.', 'alerts'),
+            'data' => $plant
+        ], 200);
+    }
+
 
     public function edit($id)
     {
         $this->authorize('Department Edit');
-        $department = Department::find($id);
-        return response()->json($department);
+        $plant = Plant::find($id);
+        return response()->json($plant);
     }
 
     public function delete($id)
     {
         $this->authorize('Department Delete');
-        $department = Department::find($id);
-		$department->delete();
+        $pant = Plant::find($id);
+		$pant->delete();
 
-		return response()->json(['success'=>lang('The Department has been successfully deleted.', 'alerts')]);
+		return response()->json(['success'=>lang('The Plant has been successfully deleted.', 'alerts')]);
     }
 
     public function deleteall(Request $request)
@@ -84,7 +126,7 @@ class PlantsController extends Controller
         $this->authorize('Department Delete');
         $id_array = $request->input('id');
 
-		$departments = Department::whereIn('id', $id_array)->get();
+		$departments = Plant::whereIn('id', $id_array)->get();
 
 		foreach($departments as $department){
 			$department->delete();

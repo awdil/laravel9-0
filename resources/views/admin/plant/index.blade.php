@@ -28,7 +28,7 @@
 					<div class="card-options mt-sm-max-2">
 						@can('Department Create')
 
-						<a href="javascript:void(0)" class="btn btn-secondary me-3" id="create-new-department" onclick="adddepartment()">{{lang('Add Plants')}}</a>
+						<a href="javascript:void(0)" class="btn btn-secondary me-3" id="create-new-department" onclick="adddplant()">{{lang('Add Plants')}}</a>
 						@endcan
 
 					</div>
@@ -102,14 +102,14 @@
 											<div class = "d-flex">
 												@if(Auth::user()->can('Department Edit'))
 
-													<a href="javascript:void(0)" data-id="{{$plant->id}}" onclick="editdepartment(event.target)" class="action-btns1">
+													<a href="javascript:void(0)" data-id="{{$plant->id}}" onclick="editplant(event.target)" class="action-btns1">
 														<i class="feather feather-edit text-primary" data-id="{{$plant->id}} " data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Edit')}}"></i>
 													</a>
 												@else
 													~
 												@endif
 												@if(Auth::user()->can('Department Delete'))
-													<a href="javascript:void(0)" data-id="{{$plant->id}}" class="action-btns1"  onclick="deletedepartment(event.target)">
+													<a href="javascript:void(0)" data-id="{{$plant->id}}" class="action-btns1"  onclick="deleteplant(event.target)">
 														<i class="feather feather-trash-2 text-danger" data-id="{{$plant->id}} " data-bs-toggle="tooltip" data-bs-placement="top" title="{{lang('Delete')}}"></i>
 													</a>
 												@else
@@ -284,45 +284,112 @@
 
 			})(jQuery);
 
-			// Add department
-			function adddepartment() {
-                $("#department_id").val('');
-                $(".modal-title").text('{{lang('Add New Department')}}');
-				$('#department_form').trigger("reset");
-                $('#adddepartment').modal('show');
+			// Add palnt
+			function adddplant() {
+                $("#p_id").val(''); // Clear the hidden plant ID
+				$(".modal-title").text('{{lang('Add New Plant')}}'); // Set the modal title for adding a new plant
+				$('#project_id').val('');
+				$('#latitude').val('');
+				$('#longitude').val('');
+				$('#installation_date').val('');
+				$('#zone').val('');
+				$('#plant_type').val('');
+				$('#address').val('');
+				$('#plant_form').trigger("reset");
+				$('#adddplant').modal('show'); 
             }
 
-			// edit department
-            function editdepartment(event) {
-                var id  = $(event).data("id");
-                let _url = `{{url('/admin/department/edit/${id}')}}`;
-                $('#departmentnameError').text('');
+			// edit plant
+            function editplant0old(event) {
+				var id = $(event).data("id");
+				let _url = `{{url('/admin/plants/edit/${id}')}}`; // URL constructed dynamically based on the plant ID
 
-				$(".modal-title").text('{{lang('Edit department')}}');
-                $.ajax({
-                	url: _url,
-               		type: "GET",
-                	success: function(response) {
-                    	if(response) {
-							$('#departmentnameError').text('');
-                			$('#answerError').text('');
-                        	$("#department_id").val(response.id);
-                        	$("#departmentname").val(response.departmentname);
-							if (response.status == "1")
-							{
+				$(".modal-title").text('{{lang('Edit Plant')}}'); // Set the modal title for editing
+				$.ajax({
+					url: _url,
+					type: "GET",
+					success: function(response) {
+						if(response) {
+							// Reset error messages
+							$('.alert-message').text('');
+
+							// Populate form fields with response data
+							$("#p_id").val(response.id);
+							$("#plant_id").val(response.plant_id);
+							$("#project_id").val(response.project_id);
+							$("#latitude").val(response.latitude);
+							$("#longitude").val(response.longitude);
+							$("#installation_date").val(response.installation_date);
+							$("#zone").val(response.zone);
+							$("#plant_type").val(response.plant_type);
+							$("#address").val(response.address);
+
+							// Check the status checkbox based on the response
+							if (response.status === "1" || response.status === true) {
 								$('#status').prop('checked', true);
+							} else {
+								$('#status').prop('checked', false);
 							}
 
-                        }
-                        $('#adddepartment').modal('show');
-                	}
-                });
-            }
+							// Show the modal window
+							$('#adddplant').modal('show');
+						}
+					},
+					error: function(err) {
+						// Log errors or show an error message
+						console.log(err);
+						alert('Error retrieving plant data. Please try again.');
+					}
+				});
+			}
 
-			// Delete department
-            function deletedepartment(event) {
+			function editplant(event) {
+				var id = $(event).data("id");
+				let _url = `{{url('/admin/plants/edit/${id}')}}`; // URL constructed dynamically based on the plant ID
+
+				$(".modal-title").text('{{lang('Edit Plant')}}'); // Set the modal title for editing
+				$.ajax({
+					url: _url,
+					type: "GET",
+					success: function(response) {
+						if(response) {
+							// Reset error messages
+							$('.alert-message').text('');
+
+							// Populate form fields with response data
+							$("#p_id").val(response.id);
+							$("#plant_id").val(response.plant_id);
+							$("#latitude").val(response.latitude);
+							$("#longitude").val(response.longitude);
+							$("#installation_date").val(response.installation_date);
+							$("#zone").val(response.zone);
+							$("#plant_type").val(response.plant_type);
+							$("#address").val(response.address);
+
+							// Check the status checkbox based on the response
+							$('#status').prop('checked', response.status === "1" || response.status === true);
+
+							// Set the selected option for the project dropdown
+							$('#project_id').val(response.project_id).trigger('change'); // Ensure to trigger change event if using plugins like Select2
+
+							// Show the modal window
+							$('#adddplant').modal('show');
+						}
+					},
+					error: function(err) {
+						// Log errors or show an error message
+						console.log(err);
+						alert('Error retrieving plant data. Please try again.');
+					}
+				});
+			}
+
+
+
+			// Delete plant
+            function deleteplant(event) {
                 var id  = $(event).data("id");
-                let _url = `{{url('/admin/department/delete/${id}')}}`;
+                let _url = `{{url('/admin/plants/delete/${id}')}}`;
                 let _token   = $('meta[name="csrf-token"]').attr('content');
 				swal({
 					title: `{{lang('Are you sure you want to continue?', 'alerts')}}`,
@@ -351,54 +418,74 @@
 				});
             }
 
-			// create the department
-            function createdepartment() {
-				console.log('testing fodf');
-				$('#departmentnameError').text('');
-                $('#answerError').text('');
-                var departmentname = $('#departmentname').val();
-				var status = $('#status').prop('checked') == true ? '1' : '0';
+			// create the plant
+            function createplant() {
+				console.log('Creating new plant...');
+				// Reset error messages
+				$('.alert-message').text('');
 
-                var id = $('#department_id').val();
-				var actionType = $('#btnsave').val();
-				var fewSeconds = 2;
+				// Collect form data
+				var id = $('#p_id').val();
+				var plant_id = $('#plant_id').val();
+				var project_id = $('#project_id').val();
+				var latitude = $('#latitude').val();
+				var longitude = $('#longitude').val();
+				var installation_date = $('#installation_date').val();
+				var zone = $('#zone').val();
+				var plant_type = $('#plant_type').val();
+				var address = $('#address').val();
+				var status = $('#status').prop('checked') ? '1' : '0'; // Checkbox value
+
+				// Formulate request URL and CSRF token
+				let _url = `{{route('plants.create')}}`;
+				let _token = $('meta[name="csrf-token"]').attr('content');
+
+				// Button delay logic
 				$('#btnsave').prop('disabled', true);
-					setTimeout(function(){
-						$('#btnsave').prop('disabled', false);
-					}, fewSeconds*1000);
-                let _url = `{{route('department.create')}}`;
-                let _token   = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url:_url,
-                    type:"POST",
-                    data:{
-                        id: id,
-                        departmentname: departmentname,
-                        status: status,
-                        _token: _token
-                    },
-                    success: function(response) {
-                        if(response.code == 200) {
-							$('#departmentnameError').text('');
-							$('#department_form').trigger("reset");
-							$('#adddepartment').modal('hide');
-                            toastr.success(response.success);
-							location.reload();
+				setTimeout(function(){
+					$('#btnsave').prop('disabled', false);
+				}, 2000); // Re-enable after 2 seconds
 
-                        }
-                    },
-                    error: function(response) {
-						$('#departmentnameError').text('');
-                        $('#departmentnameError').text(response.responseJSON.errors.departmentname);
+				// AJAX request to server
+				$.ajax({
+					url: _url,
+					type: "POST",
+					data: {
+						id: id,
+						plant_id: plant_id,
+						project_id: project_id,
+						latitude: latitude,
+						longitude: longitude,
+						installation_date: installation_date,
+						zone: zone,
+						plant_type: plant_type,
+						address: address,
+						status: status,
+						_token: _token
+					},
+					success: function(response) {
+						if(response.code == 200) {
+							$('#plant_form').trigger("reset"); // Reset form
+							$('#adddplant').modal('hide'); // Hide modal
+							toastr.success(response.message); // Show success message
+							location.reload(); // Reload the page to update the list
+						}
+					},
+					error: function(response) {
+						// Show error messages for specific fields
+						if(response.responseJSON.errors) {
+							Object.keys(response.responseJSON.errors).forEach(function(key) {
+								$(`#${key}Error`).text(response.responseJSON.errors[key][0]);
+							});
+						}
+					}
+				});
+			}
 
-                    }
-                });
 
-            }
-
-			// cancel department
+			// cancel plant
 			function canceldepartment() {
-				$('#department_form').trigger("reset");
+				$('#plant_form').trigger("reset");
 			}
 
 		</script>
@@ -408,6 +495,6 @@
 
         @section('modal')
 
-   	@include('admin.department.model')
+   	@include('admin.plant.model')
 
 	@endsection
