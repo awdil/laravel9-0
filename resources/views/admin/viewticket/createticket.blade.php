@@ -60,47 +60,31 @@
 												<label class="form-label mb-0 mt-2">{{ lang('Category') }}<span class="text-red">*</span></label>
 											</div>
 											<div class="col-md-10">
-											<ul class="custom-checkbox-list">
-												@foreach ($categories as $category)
-												<li>
-													<input type="checkbox" id="checkbox_{{ $category->id }}" name="category[]" value="{{ $category->id }}" @if(in_array($category->id, old('category', []))) checked @endif />
-													<label for="checkbox_{{ $category->id }}">
-														@if($category->image) 
-														<img src="{{ asset('uploads/callaction/' . $category->image) }}" alt="{{ $category->name }}" />
-														@else 
-														<img src="{{ asset('uploads/callaction/noimage/noimage.png') }}" alt="{{ $category->name }}" />
-														@endif
-														<span class="category-name">{{ $category->name }}</span>
-													</label>
-												</li>
-												@endforeach
-											</ul>
-											<span id="CategoryError" class="text-danger alert-message"></span>
-											@error('category')
-												<span class="invalid-feedback" role="alert">
-												<strong>{{ lang($message) }}</strong>
-												</span>
-											@enderror
+												<ul class="custom-checkbox-list">
+													@foreach ($categories as $category)
+													<li>
+														<input type="checkbox" id="checkbox_{{ $category->id }}" name="category[]" value="{{ $category->id }}" @if(in_array($category->id, old('category', []))) checked @endif />
+														<label for="checkbox_{{ $category->id }}">
+															@if($category->image) 
+															<img src="{{ asset('uploads/callaction/' . $category->image) }}" alt="{{ $category->name }}" />
+															@else 
+															<img src="{{ asset('uploads/callaction/noimage/noimage.png') }}" alt="{{ $category->name }}" />
+															@endif
+															<span class="category-name">{{ $category->name }}</span>
+														</label>
+													</li>
+													@endforeach
+												</ul>
+												<span id="CategoryError" class="text-danger alert-message"></span>
+												@error('category')
+													<span class="invalid-feedback" role="alert">
+													<strong>{{ lang($message) }}</strong>
+													</span>
+												@enderror
 											</div>
 										</div>
 									</div>
-									<div class="form-group" id="selectssSubCategory" style="display: none;">
-
-										<div class="row">
-											<div class="col-md-2">
-												<label class="form-label mb-0 mt-2">{{lang('Subcategory')}}</label>
-											</div>
-											<div class="col-md-10">
-												<select  class="form-control select2-show-search  select2"  data-placeholder="{{lang('Select SubCategory')}}" name="subscategory" id="subscategory" >
-
-												</select>
-												<span id="subsCategoryError" class="text-danger alert-message"></span>
-											</div>
-										</div>
-
-									</div>
-									<div class="form-group" id="selectSubCategory">
-									</div>
+									<div id="subcategoryDiv"></div>
 									
 									@if($customfields->isNotEmpty())
 										@foreach($customfields as $customfield)
@@ -307,73 +291,59 @@
 			});
 
 			// when category change its get the subcat list
-			$('#category').on('change',function(e) {
-				var cat_id = e.target.value;
-				$('#selectssSubCategory').hide();
-				$.ajax({
-					url:"{{ route('guest.subcategorylist') }}",
-					type:"POST",
-						data: {
-						cat_id: cat_id
-						},
-						cache : false,
-						async: true,
-					success:function (data) {
-						if(data.subcategoriess != ''){
-							$('#subscategory').html(data.subcategoriess)
-							$('#selectssSubCategory').show()
-						}
-						else{
-							$('#selectssSubCategory').hide();
-							$('#subscategory').html('')
-						}
-						//projectlist
-						if(data.subcategories.length >= 1){
+			$(document).ready(function() {
+				$('input[name="category[]"]').on('change', function() {
+					let selectedCategories = [];
+					$('input[name="category[]"]:checked').each(function() {
+						selectedCategories.push($(this).val());
+					});
 
-							$('#subcategory')?.empty();
-							$('#selectSubCategory .row')?.remove();
-							let selectDiv = document.querySelector('#selectSubCategory');
-							let Divrow = document.createElement('div');
-							Divrow.setAttribute('class','row mt-4');
-							let Divcol3 = document.createElement('div');
-							Divcol3.setAttribute('class','col-md-2');
-							let selectlabel =  document.createElement('label');
-							selectlabel.setAttribute('class','form-label mb-0 mt-2')
-							selectlabel.innerText = "Projects";
-							let divcol9 = document.createElement('div');
-							divcol9.setAttribute('class', 'col-md-10');
-							let selecthSelectTag =  document.createElement('select');
-							selecthSelectTag.setAttribute('class','form-control select2-show-search');
-							selecthSelectTag.setAttribute('id', 'subcategory');
-							selecthSelectTag.setAttribute('name', 'project');
-							selecthSelectTag.setAttribute('data-placeholder','Select Projects');
-							let selectoption = document.createElement('option');
-							selectoption.setAttribute('label','Select Projects')
-							selectDiv.append(Divrow);
-							Divrow.append(Divcol3);
-							Divcol3.append(selectlabel);
-							divcol9.append(selecthSelectTag);
-							selecthSelectTag.append(selectoption);
-							Divrow.append(divcol9);
-							$('.select2-show-search').select2();
-							$.each(data.subcategories,function(index,subcategory){
-							$('#subcategory').append('<option value="'+subcategory.name+'">'+subcategory.name+'</option>');
-							})
-						}
-						else{
-							$('#subcategory')?.empty();
-							$('#selectSubCategory .row')?.remove();
-						}
-						
-					},
-					error:(data)=>{
-
+					$('#subcategoryDiv').empty(); // Clear previous subcategories
+					if (selectedCategories.length > 0) {
+						selectedCategories.forEach(cat_id => {
+							fetchSubcategories(cat_id);
+						});
 					}
 				});
+
+				function fetchSubcategories(cat_id) {
+					$.ajax({
+						url: "{{ route('guest.subcategoryWithCategorylist') }}",
+						type: "POST",
+						data: {
+							cat_id: cat_id
+						},
+						cache: false,
+						async: true,
+						success: function(data) {
+							if (data.subcategoriess) {
+								let subcategorySection = `
+								<div class="form-group subcategory-group mt-3">
+									<div class="row">
+										<div class="col-md-2">
+											<label class="form-label mb-0 mt-2">{{ lang('Subcategories for') }} ${data.category}</label>
+										</div>
+										<div class="col-md-10">
+											<select class="form-control select2-show-search" name="subscategory_${cat_id}[]" multiple data-placeholder="Select Subcategories for ${data.category}">
+												${data.subcategoriess}
+											</select>
+										</div>
+									</div>
+								</div>`;
+								$('#subcategoryDiv').append(subcategorySection);
+								$('.select2-show-search').select2(); // Initialize select2 for the new elements
+							}
+						},
+						error: function(data) {
+							console.error("Error fetching subcategories:", data);
+						}
+					});
+				}
 			});
 
 
-			
+
+
 
 			// $('#subject').maxlength({
 			// 	alwaysShow: true,

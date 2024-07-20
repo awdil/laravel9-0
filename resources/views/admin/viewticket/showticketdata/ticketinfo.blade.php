@@ -46,13 +46,14 @@
 
 																	</td>
 																</tr>
-																@if ($ticket->subcategory != null)
+																@if ($ticket->subcategories != null)
 																<tr>
 																	<td>
-																		<span class="w-50">{{lang('SubCategory')}}</span>
+																		<span class="w-50">{{lang('SubCategories')}}</span>
 																	</td>
 																	<td>:</td>
 																	<td>
+																		@php showTicketWithSubcategories($ticket); @endphp
 																		<span class="font-weight-semibold">{{$ticket->subcategoriess->subcategoryname}}</span>
 
 																	</td>

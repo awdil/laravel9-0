@@ -30,7 +30,7 @@ class Ticket extends Model implements HasMedia
     protected $table ="tickets";
     protected $fillable = [
         'cust_id', 'category_id', 'image', 'ticket_id', 'title', 'priority', 'message', 'status','subject','user_id','project_id','auto_close_ticket',
-        'project', 'subcategory','plant_id', 'categories'
+        'project', 'subcategory','plant_id', 'categories', 'subcategories'
     ];
 
     protected $dates = [

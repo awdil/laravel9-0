@@ -1965,6 +1965,42 @@ class GuestticketController extends Controller
 
     }
 
+    public function subcategoryWithCategorylist(Request $request)
+    {
+        $parent_id = $request->cat_id;
+
+        $category = Category::find($parent_id); // Assuming Category is the model for categories
+
+        $subcategoriess = Subcategorychild::where('category_id', $parent_id)->get();
+
+        $output = '';
+        if ($subcategoriess->isNotEmpty()) {
+            $output .= '<option label="select subcategory"></option>';
+            foreach ($subcategoriess as $subcats) {
+                $sucatss = $subcats->subcatlists()->where('status', '1')->get();
+                if ($sucatss->isNotEmpty()) {
+                    foreach ($sucatss as $subcategory) {
+                        $output .= '<option value="' . $subcategory->id . '">' . $subcategory->subcategoryname . '</option>';
+                    }
+                }
+            }
+        }
+
+        //projectlist
+        $subcategories = Projects::select('projects.*', 'projects_categories.category_id')
+            ->join('projects_categories', 'projects_categories.projects_id', 'projects.id')
+            ->where('projects_categories.category_id', $parent_id)
+            ->get();
+
+        $data = [
+            'category' => $category->name,
+            'subcategoriess' => $output,
+            'subcategories' => $subcategories,
+        ];
+        return response()->json($data, 200);
+    }
+
+
     public function subcategorylist(Request $request)
     {
 

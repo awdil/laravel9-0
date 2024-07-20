@@ -1073,6 +1073,15 @@ class AdminTicketController extends Controller
         $categoryNames = getCategoryNamesByIds($request->input('category'));
         $plantName = getPlantNameById($request->input('plant_id'));
 
+        // Processing dynamic subcategories
+        $subcategoriesData = [];
+        foreach ($categories as $categoryId) {
+            $subcategoryKey = 'subscategory_' . $categoryId;
+            if ($request->has($subcategoryKey)) {
+                $subcategoriesData[$categoryId] = $request->input($subcategoryKey);
+            }
+        }
+
         $subject = $this->formatSubject($plantName, $categoryNames);
         $ticket = Ticket::create([
             'subject' => $subject,
@@ -1084,6 +1093,7 @@ class AdminTicketController extends Controller
             'status' => 'New',
             'plant_id' => $request->input('plant_id'),
             'categories' => $categories, // Store multiple categories
+            'subcategories' => json_encode(extractSubcategories($request, $categories)), // Store subcategories
         ]);
         $ticket = Ticket::find($ticket->id);
         $ticket->ticket_id = setting('CUSTOMER_TICKETID').'-Internal-'.$ticket->id;

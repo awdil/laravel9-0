@@ -570,6 +570,8 @@ Route::middleware(ProtectAgainstSpam::class)->group(function() {
 	Route::post('/guest/emailsvalidate', [GuestticketController::class, 'emailsvalidateguest'])->name('guest.emailsvalidate');
 	Route::post('/guest/verifyotp', [GuestticketController::class, 'verifyotp'])->name('guest.verifyotp');
 	Route::post('subcategorylist',[GuestticketController::class, 'subcategorylist'])->name('guest.subcategorylist');
+	Route::post('subcategoryWithCategorylist',[GuestticketController::class, 'subcategoryWithCategorylist'])->name('guest.subcategoryWithCategorylist');
+	
 	Route::post('/search',[HomeController::class, 'searchlist']);
 	Route::post('/suggestarticle',[HomeController::class, 'suggestarticle']);
 	Route::get('ipblock', [App\Http\Controllers\CaptchaipblockController::class, 'index'])->name('ipblock');

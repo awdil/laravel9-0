@@ -7,11 +7,13 @@ use App\Models\SocialAuthSetting;
 use App\Models\customizeerror;
 use App\Models\Customcssjs;
 use App\Models\Bussinesshours;
+use App\Models\Subcategory;
 use App\Models\Ticket\Category;
 use App\Models\Apptitle;
 use App\Models\Footertext;
 use App\Models\Seosetting;
 use App\Models\Pages;
+use App\Models\Ticket\Ticket;
 use App\Models\User;
 
 function setting($key){
@@ -201,6 +203,37 @@ function generateBreadcrumbs(){
         }
         return session('customers');
     }
+
+    function extractSubcategories($request, $categories)
+    {
+        $subcategoriesData = [];
+        foreach ($categories as $categoryId) {
+            $subcategoryKey = 'subscategory_' . $categoryId;
+            if ($request->has($subcategoryKey)) {
+                $subcategoriesData[$categoryId] = $request->input($subcategoryKey);
+            }
+        }
+        return $subcategoriesData;
+    }
+
+    function showTicketWithSubcategories($ticket)
+    {   
+        $categories = Category::whereIn('id', $ticket->categories)->get();
+        $subcategories = [];
+        $subcategoriesstring = '';
+        $subcatdata = json_decode($ticket->subcategories);
+        foreach ($subcatdata as $categoryId => $subcategoryIds) {
+            $subcategoriesstring = Subcategory::whereIn('id', $subcategoryIds)->pluck('subcategoryname')->toArray();
+            //$subcategories[$categoryId] = Subcategory::whereIn('id', $subcategoryIds)->pluck('name')->toArray();
+        }
+        return implode(', ', $subcategoriesstring);
+    }
+    function getSubCategoryNamesByIds($subcategoryIds)
+    {
+        $categories = Subcategory::whereIn('id', $subcategoryIds)->pluck('subcategoryname')->toArray();
+        return implode(', ', $categories);
+    }
+
     
 
 
