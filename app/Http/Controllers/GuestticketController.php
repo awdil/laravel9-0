@@ -12,6 +12,7 @@ use App\Models\Customfield;
 use App\Models\Employeerating;
 use App\Models\Footertext;
 use App\Models\Pages;
+use App\Models\Plant;
 use App\Models\Projects;
 use App\Models\Ratingtoken;
 use App\Models\Seosetting;
@@ -38,6 +39,7 @@ class GuestticketController extends Controller
 {
     public function index()
     {
+        $data['plants'] = Plant::all();
         if (setting('GUEST_TICKET') == 'yes') {
             $tickets = Ticket::paginate(10);
             $categories = Category::whereIn('display', ['ticket', 'both'])->where('status', '1')
