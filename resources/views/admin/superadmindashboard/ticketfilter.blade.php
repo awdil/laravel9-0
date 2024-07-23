@@ -20,9 +20,7 @@
 				</select>
 			</div>
 			<div class="form-group col-3">
-				<select data-filter="date" class="filter-date filter form-control">
-					<option value="">Select Date</option>
-				</select>
+				<input class="form-control" type="date" placeholder="Search" />
 			</div>
 			<div class="form-group col-3">
 				<select data-filter="priority" class="filter-priority filter form-control">

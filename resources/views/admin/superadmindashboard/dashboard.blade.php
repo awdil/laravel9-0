@@ -120,9 +120,16 @@
 															<i class="feather feather-clock"></i>
 													</div><!-- input-group-text -->
 													<span id="tpBasic" placeholder="" class="form-control input-small pb-0 pt-1" >
-
-														{{\Carbon\Carbon::now(Auth::user()->timezone)->format(setting('time_format'))}}
-
+													@php
+														$userTimezone = Auth::user()->timezone;
+														$defaultTimezone = setting('default_timezone');
+														$now = \Carbon\Carbon::now($userTimezone);
+													@endphp
+														@if($now->timezone(setting('default_timezone'))->format('Y-m-d') == now()->timezone(setting('default_timezone'))->format('Y-m-d'))
+															{{ $now->timezone(setting('default_timezone'))->format('h:i A') }} 
+														@else
+															{{ $now->timezone(setting('default_timezone'))->format('D, d M Y, h:i A') }}
+														@endif
 													</span>
 
 												</div>

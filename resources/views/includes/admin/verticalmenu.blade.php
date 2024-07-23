@@ -336,6 +336,8 @@
 
                     <li><a href="{{url('/admin/emailtemplates')}}" class="slide-item">{{lang('Email Templates',
                             'Menu')}}</a></li>
+                    <li><a href="{{url('/admin/customfield')}}" class="slide-item">{{lang('Custom fields',
+                            'Menu')}}</a></li>
                     @endcan
 
                 </ul>
