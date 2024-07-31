@@ -144,8 +144,8 @@
 							<h6 class="fw-semibold mb-3">
 								{{lang('Global Complaints', 'menu')}}
 							</h6>
-							<div class="row row-cols-xxl-5">
-								<div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
+							<div class="row">
+								<!-- <div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
 									<div class="card">
 										<div class="card-body p-4">
 											<a href="{{url('/admin/alltickets')}}">
@@ -161,8 +161,8 @@
 											</a>
 										</div>
 									</div>
-								</div>
-								<div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
+								</div> -->
+								<div class="col-xl-3 col-lg-6 col-sm-6">
 									<div class="card">
 										<div class="card-body p-4">
 											<a href="{{route('admin.recenttickets')}}">
@@ -179,7 +179,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
+								<div class="col-xl-3 col-lg-6 col-sm-6">
 									<div class="card">
 										<div class="card-body p-4">
 											<a href="{{url('/admin/activeticket')}}">
@@ -202,7 +202,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
+								<div class="col-xl-3 col-lg-6 col-sm-6">
 									<div class="card">
 										<div class="card-body p-4">
 											<a href="{{route('admin.suspendedtickets')}}">
@@ -219,7 +219,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-xxl-2 col-xl-6 col-lg-6 col-sm-6">
+								<div class="col-xl-3 col-lg-6 col-sm-6">
 									<div class="card">
 										<div class="card-body p-4">
 											<a href="{{url('/admin/closedticket')}}">

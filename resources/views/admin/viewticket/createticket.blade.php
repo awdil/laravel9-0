@@ -34,10 +34,10 @@
 								<div class="card-body">
 									<div class="form-group">
 										<div class="row">
-											<div class="col-md-2">
+											<div class="col-md-3">
 												<label class="form-label mb-0 mt-2">{{ lang('Plant') }}<span class="text-red">*</span></label>
 											</div>
-											<div class="col-md-10">
+											<div class="col-md-9">
 												<select class="form-control select2-show-search  select2" name="plant_id" id="plant_id">
 													<option value="" disabled selected>{{ lang('Select Plant') }}</option>
 													@foreach ($plants as $plant)
@@ -56,10 +56,10 @@
 
 									<div class="form-group">
 										<div class="row">
-											<div class="col-md-2">
+											<div class="col-md-3">
 												<label class="form-label mb-0 mt-2">{{ lang('Category') }}<span class="text-red">*</span></label>
 											</div>
-											<div class="col-md-10">
+											<div class="col-md-9">
 												<ul class="custom-checkbox-list">
 													@foreach ($categories as $category)
 													<li>
@@ -90,7 +90,7 @@
 										@foreach($customfields as $customfield)
 										<div class="form-group ">
 											<div class="row">
-												<div class="col-md-2">
+												<div class="col-md-3">
 													<label class="form-label mb-0 mt-2">{{$customfield->fieldnames}}
 														@if($customfield->fieldrequired == '1')
 
@@ -98,7 +98,7 @@
 														@endif
 													</label>
 												</div>
-												<div class="col-md-10">
+												<div class="col-md-9">
 
 													@if($customfield->fieldtypes == 'text')
 
@@ -162,10 +162,10 @@
 									@endif
 									<div class="form-group ticket-summernote ">
 										<div class="row">
-											<div class="col-md-2">
+											<div class="col-md-3">
 												<label class="form-label mb-0 mt-2">{{lang('Description')}}<span class="text-red">*</span></label>
 											</div>
-											<div class="col-md-10">
+											<div class="col-md-9">
 												<textarea class="summernote form-control @error('message') is-invalid @enderror" rows="7" name="message">{{old('message')}}</textarea>
 												<span id="MessageError" class="text-danger alert-message"></span>
 												@error('message')
@@ -181,10 +181,10 @@
 
 									<div class="form-group">
 										<div class="row">
-											<div class="col-md-2">
+											<div class="col-md-3">
 												<label class="form-label mb-0 mt-2">{{lang('Upload File')}}</label>
 											</div>
-											<div class="col-md-10">
+											<div class="col-md-9">
 												<div class="form-group mb-0">
 													<div class="needsclick dropzone" id="document-dropzone"></div>
 												</div>
@@ -320,10 +320,10 @@
 								let subcategorySection = `
 								<div class="form-group subcategory-group mt-3">
 									<div class="row">
-										<div class="col-md-2">
+										<div class="col-md-3">
 											<label class="form-label mb-0 mt-2">{{ lang('Subcategories for') }} ${data.category}</label>
 										</div>
-										<div class="col-md-10">
+										<div class="col-md-9">
 											<select class="form-control select2-show-search" name="subscategory_${cat_id}[]" multiple data-placeholder="Select Subcategories for ${data.category}">
 												${data.subcategoriess}
 											</select>

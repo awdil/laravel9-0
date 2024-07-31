@@ -84,7 +84,7 @@
 												@if($plant->status == '1')
 
 													<label class="custom-switch form-switch mb-0">
-														<input type="checkbox" name="status" data-id="{{$plant->id}}" id="myonoffswitch{{$department->id}}" value="1" class="custom-switch-input tswitch" checked>
+														<input type="checkbox" name="status" data-id="{{$plant->id}}" id="myonoffswitch{{$plant->id}}" value="1" class="custom-switch-input tswitch" checked>
 														<span class="custom-switch-indicator"></span>
 													</label>
 												@else
@@ -269,7 +269,7 @@
 					var status = $(this).prop('checked') == true ? '1' : '0';
 					$.ajax({
 						type: "post",
-						url: SITEURL + "/admin/department/status"+'/'+_id,
+						url: SITEURL + "/admin/plants/status"+'/'+_id,
 						data: {'status': status},
 						success: function (data) {
 							toastr.success(data.success);

@@ -139,7 +139,7 @@ class PlantsController extends Controller
     {
         $this->authorize('Department Edit');
 
-        $calID = Department::find($id);
+        $calID = Plant::find($id);
         $calID->status = $request->status;
         $calID->save();
 
